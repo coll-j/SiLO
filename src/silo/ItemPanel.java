@@ -5,6 +5,9 @@
  */
 package silo;
 
+import java.sql.Connection;
+import koneksi.DBHandler;
+
 /**
  *
  * @author ZK
@@ -12,11 +15,13 @@ package silo;
 public class ItemPanel extends javax.swing.JPanel {
 
     Object[][] table_data;
+    Connection con;
     /**
      * Creates new form ItemPanel
      */
-    public ItemPanel(Object[][] new_data) {
-        table_data = new_data;
+    public ItemPanel(Connection cn) {
+        con = cn;
+        table_data = DBHandler.SelectAll(cn, "item");
         initComponents();
         System.out.println("Item Panel created!");
     }

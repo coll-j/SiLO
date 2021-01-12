@@ -26,13 +26,25 @@ public class MainPage extends javax.swing.JFrame {
      */
     public MainPage() {
         cn = koneksi.Koneksi.Koneksi();
-        //
-        
-        Object[][] array = DBHandler.SelectAll(cn, "item");
-        item_panel = new ItemPanel(array);
+
+        initPanels();
         initComponents();
     }
 
+    private void initPanels(){
+
+        // Item Panel
+        item_panel = new ItemPanel(cn);
+        
+        // Tagihan Panel
+        tagihan_panel = new TagihanPanel();
+        
+        // Buat Surat Panel
+        buat_surat_panel = new BuatSuratPanel();
+        
+        // Surat Jalan Panel
+        surat_jalan_panel = new SuratJalanPanel();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,12 +63,6 @@ public class MainPage extends javax.swing.JFrame {
         MainPanel = new javax.swing.JPanel();
         WelcomePanel = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
-        TagihanPanel = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
-        BuatSuratPanel = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        SuratJalanPanel = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SILO");
@@ -156,75 +162,6 @@ public class MainPage extends javax.swing.JFrame {
 
         MainPanel.add(WelcomePanel, "card6");
 
-        TagihanPanel.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel11.setText("Tagihan");
-
-        javax.swing.GroupLayout TagihanPanelLayout = new javax.swing.GroupLayout(TagihanPanel);
-        TagihanPanel.setLayout(TagihanPanelLayout);
-        TagihanPanelLayout.setHorizontalGroup(
-            TagihanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(TagihanPanelLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(jLabel11)
-                .addContainerGap(745, Short.MAX_VALUE))
-        );
-        TagihanPanelLayout.setVerticalGroup(
-            TagihanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(TagihanPanelLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(jLabel11)
-                .addContainerGap(538, Short.MAX_VALUE))
-        );
-
-        MainPanel.add(TagihanPanel, "card4");
-
-        BuatSuratPanel.setBackground(new java.awt.Color(0, 0, 0));
-
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Buat Surat Jalan");
-
-        javax.swing.GroupLayout BuatSuratPanelLayout = new javax.swing.GroupLayout(BuatSuratPanel);
-        BuatSuratPanel.setLayout(BuatSuratPanelLayout);
-        BuatSuratPanelLayout.setHorizontalGroup(
-            BuatSuratPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BuatSuratPanelLayout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addComponent(jLabel5)
-                .addContainerGap(741, Short.MAX_VALUE))
-        );
-        BuatSuratPanelLayout.setVerticalGroup(
-            BuatSuratPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BuatSuratPanelLayout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addComponent(jLabel5)
-                .addContainerGap(538, Short.MAX_VALUE))
-        );
-
-        MainPanel.add(BuatSuratPanel, "card5");
-
-        jLabel3.setText("Surat Jalan");
-
-        javax.swing.GroupLayout SuratJalanPanelLayout = new javax.swing.GroupLayout(SuratJalanPanel);
-        SuratJalanPanel.setLayout(SuratJalanPanelLayout);
-        SuratJalanPanelLayout.setHorizontalGroup(
-            SuratJalanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(SuratJalanPanelLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(jLabel3)
-                .addContainerGap(775, Short.MAX_VALUE))
-        );
-        SuratJalanPanelLayout.setVerticalGroup(
-            SuratJalanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(SuratJalanPanelLayout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addComponent(jLabel3)
-                .addContainerGap(534, Short.MAX_VALUE))
-        );
-
-        MainPanel.add(SuratJalanPanel, "card5");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -270,7 +207,7 @@ public class MainPage extends javax.swing.JFrame {
         MainPanel.revalidate();
         
         //add
-        MainPanel.add(SuratJalanPanel);
+        MainPanel.add(surat_jalan_panel);
         MainPanel.repaint();
         MainPanel.revalidate();
     }//GEN-LAST:event_SuratJalanBtnActionPerformed
@@ -284,7 +221,7 @@ public class MainPage extends javax.swing.JFrame {
         MainPanel.revalidate();
         
         //add
-        MainPanel.add(TagihanPanel);
+        MainPanel.add(tagihan_panel);
         MainPanel.repaint();
         MainPanel.revalidate();
     }//GEN-LAST:event_TagihanBtnActionPerformed
@@ -298,7 +235,7 @@ public class MainPage extends javax.swing.JFrame {
         MainPanel.revalidate();
         
         //add
-        MainPanel.add(BuatSuratPanel);
+        MainPanel.add(buat_surat_panel);
         MainPanel.repaint();
         MainPanel.revalidate();
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -340,21 +277,18 @@ public class MainPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel BuatSuratPanel;
     private javax.swing.JButton ItemBtn;
     private javax.swing.JPanel MainPanel;
     private javax.swing.JPanel MenuPanel;
     private javax.swing.JButton SuratJalanBtn;
-    private javax.swing.JPanel SuratJalanPanel;
     private javax.swing.JButton TagihanBtn;
-    private javax.swing.JPanel TagihanPanel;
     private javax.swing.JPanel WelcomePanel;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
     // End of variables declaration//GEN-END:variables
     private ItemPanel item_panel;
+    private TagihanPanel tagihan_panel;
+    private BuatSuratPanel buat_surat_panel;
+    private SuratJalanPanel surat_jalan_panel;
 }
