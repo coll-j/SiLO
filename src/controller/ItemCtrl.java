@@ -21,11 +21,12 @@ public class ItemCtrl {
 		ItemCtrl.itemList.add(temp);
 	}
 	
-	public Item[] getAllItem() {
-		Item[] itemArr = new Item[ItemCtrl.itemList.size()]; 
-		itemArr = ItemCtrl.itemList.toArray(itemArr);
-		
-		return itemArr;
+	public Object[][] getAllItem() {
+		Object[][] array = new Object[itemList.size()][];
+        for (int i = 0; i < itemList.size(); i++) {
+        	array[i] = itemList.get(i).toObject();
+        }
+		return array;
 	}
 	
 	// misal title ntar edit

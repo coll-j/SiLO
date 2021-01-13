@@ -7,7 +7,7 @@ package main;
 
 import java.sql.Connection;
 
-import database.ZDBHandler;
+import controller.ItemCtrl;
 
 /**
  *
@@ -16,13 +16,13 @@ import database.ZDBHandler;
 public class ItemPanel extends javax.swing.JPanel {
 
     Object[][] table_data;
-    Connection con;
+    public ItemCtrl itemCtrl;
     /**
      * Creates new form ItemPanel
      */
-    public ItemPanel(Connection cn) {
-        con = cn;
-        table_data = ZDBHandler.SelectAll(cn, "item");
+    public ItemPanel() {
+    	itemCtrl = new ItemCtrl();
+    	table_data = itemCtrl.getAllItem();
         initComponents();
         System.out.println("Item Panel created!");
     }
@@ -86,7 +86,7 @@ public class ItemPanel extends javax.swing.JPanel {
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             table_data,
             new String [] {
-                "ID", "Title", "Description", "Manufacturer", "Stocks"
+                "ID", "Title", "Manufacturer", "Stocks"
             }
         ) {
             Class[] types = new Class [] {

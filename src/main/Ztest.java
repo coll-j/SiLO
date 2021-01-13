@@ -23,10 +23,10 @@ public class Ztest {
 //			System.out.println(i.toString());
 //		}
 		
-		for (Item i :itemCtrl.getAllItem()) {
-			System.out.println(i.toString());
-		}
-		System.out.println();
+//		for (Item i :itemCtrl.getAllItem()) {
+//			System.out.println(i.toString());
+//		}
+//		System.out.println();
 		
 		
 		InvoiceCtrl invoiceCtrl = new InvoiceCtrl();
@@ -44,10 +44,10 @@ public class Ztest {
 //			System.out.println(i.toString());
 //		}
 		
-		for (Invoice i :invoiceCtrl.getAllInvoice()) {
-			System.out.println(i.toString());
-		}
-		System.out.println();
+//		for (Invoice i :invoiceCtrl.getAllInvoice()) {
+//			System.out.println(i.toString());
+//		}
+//		System.out.println();
 		
 		
 		DeliveryNoteCtrl deliveryNoteCtrl = new DeliveryNoteCtrl();
@@ -65,9 +65,9 @@ public class Ztest {
 //			System.out.println(i.toString());
 //		}
 		
-		for (DeliveryNote i :deliveryNoteCtrl.getAllDeliveryNote()) {
-			System.out.println(i.toString());
-		}
+//		for (DeliveryNote i :deliveryNoteCtrl.getAllDeliveryNote()) {
+//			System.out.println(i.toString());
+//		}
 		
 		    
 	 }

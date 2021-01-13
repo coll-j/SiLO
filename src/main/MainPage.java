@@ -5,29 +5,19 @@
  */
 package main;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.*; 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-import database.ZDBHandler;
+import controller.*;
 
 public class MainPage extends javax.swing.JFrame {
 
-    public Statement st;
-    public ResultSet rs;
     public DefaultTableModel tabModel;
-    Connection cn;
     /**
      * Creates new form MainPage
      */
     public MainPage() {
-        cn = database.Koneksi.Koneksi();
-
         initPanels();
         initComponents();
     }
@@ -35,7 +25,7 @@ public class MainPage extends javax.swing.JFrame {
     private void initPanels(){
 
         // Item Panel
-        item_panel = new ItemPanel(cn);
+        item_panel = new ItemPanel();
         
         // Tagihan Panel
         tagihan_panel = new TagihanPanel();
@@ -54,7 +44,7 @@ public class MainPage extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
+    	
         MenuPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         ItemBtn = new javax.swing.JButton();

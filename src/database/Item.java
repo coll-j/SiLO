@@ -68,6 +68,16 @@ public class Item {
 				+ ", manufacturer=" + manufacturer + ", url=" + url + ", stocks=" + stocks + "]";
 	}
 	
+	public Object[] toObject() {
+		Object[] obj = new Object[7];
+		obj[0] = this.id;
+		obj[1] = this.title;
+		obj[2] = this.manufacturer;
+		obj[3] = this.stocks;
+		
+		return obj;
+	}
+	
 	
 	
     
