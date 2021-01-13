@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package silo;
+package main;
 
 /**
  *
  * @author ZK
  */
-public class BuatSuratPanel extends javax.swing.JPanel {
+public class SuratJalanPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form BuatSuratPanel
+     * Creates new form SuratJalanPanel
      */
-    public BuatSuratPanel() {
+    public SuratJalanPanel() {
         initComponents();
     }
 
@@ -27,29 +27,26 @@ public class BuatSuratPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        BuatSuratPanel = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        SuratJalanPanel = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
 
-        BuatSuratPanel.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Surat Jalan");
 
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Buat Surat Jalan");
-
-        javax.swing.GroupLayout BuatSuratPanelLayout = new javax.swing.GroupLayout(BuatSuratPanel);
-        BuatSuratPanel.setLayout(BuatSuratPanelLayout);
-        BuatSuratPanelLayout.setHorizontalGroup(
-            BuatSuratPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BuatSuratPanelLayout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addComponent(jLabel5)
-                .addContainerGap(757, Short.MAX_VALUE))
+        javax.swing.GroupLayout SuratJalanPanelLayout = new javax.swing.GroupLayout(SuratJalanPanel);
+        SuratJalanPanel.setLayout(SuratJalanPanelLayout);
+        SuratJalanPanelLayout.setHorizontalGroup(
+            SuratJalanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SuratJalanPanelLayout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(jLabel3)
+                .addContainerGap(793, Short.MAX_VALUE))
         );
-        BuatSuratPanelLayout.setVerticalGroup(
-            BuatSuratPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BuatSuratPanelLayout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addComponent(jLabel5)
-                .addContainerGap(540, Short.MAX_VALUE))
+        SuratJalanPanelLayout.setVerticalGroup(
+            SuratJalanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SuratJalanPanelLayout.createSequentialGroup()
+                .addGap(59, 59, 59)
+                .addComponent(jLabel3)
+                .addContainerGap(536, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -60,7 +57,7 @@ public class BuatSuratPanel extends javax.swing.JPanel {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(BuatSuratPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SuratJalanPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
@@ -69,14 +66,14 @@ public class BuatSuratPanel extends javax.swing.JPanel {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(BuatSuratPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SuratJalanPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel BuatSuratPanel;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel SuratJalanPanel;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }

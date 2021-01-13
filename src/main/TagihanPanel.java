@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package silo;
+package main;
 
 /**
  *
  * @author ZK
  */
-public class SuratJalanPanel extends javax.swing.JPanel {
+public class TagihanPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form SuratJalanPanel
+     * Creates new form TagihanPanel
      */
-    public SuratJalanPanel() {
+    public TagihanPanel() {
         initComponents();
     }
 
@@ -27,26 +27,29 @@ public class SuratJalanPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        SuratJalanPanel = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        TagihanPanel = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
 
-        jLabel3.setText("Surat Jalan");
+        TagihanPanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout SuratJalanPanelLayout = new javax.swing.GroupLayout(SuratJalanPanel);
-        SuratJalanPanel.setLayout(SuratJalanPanelLayout);
-        SuratJalanPanelLayout.setHorizontalGroup(
-            SuratJalanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(SuratJalanPanelLayout.createSequentialGroup()
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel11.setText("Tagihan");
+
+        javax.swing.GroupLayout TagihanPanelLayout = new javax.swing.GroupLayout(TagihanPanel);
+        TagihanPanel.setLayout(TagihanPanelLayout);
+        TagihanPanelLayout.setHorizontalGroup(
+            TagihanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TagihanPanelLayout.createSequentialGroup()
                 .addGap(45, 45, 45)
-                .addComponent(jLabel3)
-                .addContainerGap(793, Short.MAX_VALUE))
+                .addComponent(jLabel11)
+                .addContainerGap(765, Short.MAX_VALUE))
         );
-        SuratJalanPanelLayout.setVerticalGroup(
-            SuratJalanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(SuratJalanPanelLayout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addComponent(jLabel3)
-                .addContainerGap(536, Short.MAX_VALUE))
+        TagihanPanelLayout.setVerticalGroup(
+            TagihanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TagihanPanelLayout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(jLabel11)
+                .addContainerGap(538, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -57,7 +60,7 @@ public class SuratJalanPanel extends javax.swing.JPanel {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(SuratJalanPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TagihanPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
@@ -66,14 +69,14 @@ public class SuratJalanPanel extends javax.swing.JPanel {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(SuratJalanPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TagihanPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel SuratJalanPanel;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel TagihanPanel;
+    private javax.swing.JLabel jLabel11;
     // End of variables declaration//GEN-END:variables
 }

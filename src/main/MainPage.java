@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package silo;
+package main;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,6 +15,11 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import database.ZDBHandler;
+import silo.BuatSuratPanel;
+import silo.ItemPanel;
+import silo.MainPage;
+import silo.SuratJalanPanel;
+import silo.TagihanPanel;
 
 public class MainPage extends javax.swing.JFrame {
 

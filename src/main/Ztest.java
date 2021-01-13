@@ -1,4 +1,4 @@
-package silo;
+package main;
 
 
 import controller.*;
@@ -13,12 +13,12 @@ public class Ztest {
 //		itemCtrl.addItem("IT4", "empat", "empat", "empat", "empat", "empat", 4);
 		
 //		edit
-//		itemCtrl.editItem("IT3", "3 edit");
+		itemCtrl.editItem("IT3", "3 EdiT");
 			
 //		search
-//		for (Item i :itemCtrl.searchItem("edit")) {
-//			System.out.println(i.toString());
-//		}
+		for (Item i :itemCtrl.searchItem("EDIT")) {
+			System.out.println(i.toString());
+		}
 		
 //		for (Item i :itemCtrl.getAllItem()) {
 //			System.out.println(i.toString());
