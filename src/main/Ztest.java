@@ -10,22 +10,22 @@ import database.*;
 public class Ztest {
 	public static void main(String[] args) throws Exception {
 		 
-		InvoiceCtrl invoiceCtrl = new InvoiceCtrl();
+		DeliveryNoteCtrl invoiceCtrl = new DeliveryNoteCtrl();
 	
 		/* add */
 //		Date date1 =new SimpleDateFormat("dd/MM/yyyy").parse("05/01/2009");
 //		Date date2 =new SimpleDateFormat("dd/MM/yyyy").parse("06/01/2009");
-//		invoiceCtrl.addInvoice("IN4", "empat", "empat", "empat", date1, date2);
+//		invoiceCtrl.addDeliveryNote("DN3", "tiga", "tiga", "tiga", date1, date2);
 		
 //		/* edit */
-		invoiceCtrl.editInvoice("IN3", "Success");
+//		invoiceCtrl.editDeliveryNote("DN3", "berhasil");
 			
 		/* search */
-		for (Invoice i :invoiceCtrl.searchInvoice("CC")) {
+		for (DeliveryNote i :invoiceCtrl.searchDeliveryNote("ha")) {
 			System.out.println(i.toString());
 		}
 		
-//		for (Invoice i :invoiceCtrl.getAllInvoice()) {
+//		for (DeliveryNote i :invoiceCtrl.getAllDeliveryNote()) {
 //			System.out.println(i.toString());
 //		}
 		

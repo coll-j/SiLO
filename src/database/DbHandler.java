@@ -205,7 +205,7 @@ public class DbHandler {
 		try {
 			Connection conn = new DbConnection().getConn();
 			
-			String sql = "UPDATE invoice SET CustomerName = ?, Status = ?, InvoiceNumber = ?, OrderDate = ?, DeliveryDate = ?  WHERE DeliveryNoteNumber = ?";
+			String sql = "UPDATE DeliveryNote SET CustomerName = ?, Status = ?, InvoiceNumber = ?, OrderDate = ?, DeliveryDate = ?  WHERE deliveryNoteNumber = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			
 			java.sql.Date sqlOrderDate=new java.sql.Date(deliveryNote.getOrderDate().getTime());
