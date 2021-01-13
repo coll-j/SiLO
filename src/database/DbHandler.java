@@ -82,19 +82,17 @@ public class DbHandler {
 		try {
 			Connection conn = new DbConnection().getConn();
 			  
-			String sql = "INSERT INTO invoice(`invoiceNumber`, `poNumber`, `supplierName`, `status`, `orderDate`, `deliveryDate`)"
-						+ "VALUES (?,?,?,?,?,?)";
+			String sql = "INSERT INTO invoice(`invoiceNumber`, `poNumber`, `supplierName`, `status`, `orderDate`)"
+						+ "VALUES (?,?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			
 			java.sql.Date sqlOrderDate=new java.sql.Date(invoice.getOrderDate().getTime());
-			java.sql.Date sqlDeliveryDate=new java.sql.Date(invoice.getDeliveryDate().getTime());
 			
 			ps.setString(1, invoice.getInvoiceNumber());
 			ps.setString(2, invoice.getPoNumber());
 			ps.setString(3, invoice.getSupplierName());
 			ps.setString(4, invoice.getStatus());
 			ps.setDate(5, (java.sql.Date) sqlOrderDate);
-			ps.setDate(6, (java.sql.Date) sqlDeliveryDate);
 			
 			ps.executeUpdate();
 			conn.close();
@@ -114,7 +112,7 @@ public class DbHandler {
 			
 			while(rs.next()){
 				Invoice temp = new Invoice(rs.getString("invoiceNumber"), rs.getString("poNumber"), rs.getString("supplierName"),
-						rs.getDate("orderDate"), rs.getDate("deliveryDate"), rs.getString("status") ); 
+											rs.getString("status"), rs.getDate("orderDate"), rs.getDate("deliveryDate") ); 
 				invoices.add(temp);
 			}
 			conn.close();
@@ -157,19 +155,19 @@ public class DbHandler {
 		try {
 			Connection conn = new DbConnection().getConn();
 			  
-			String sql = "INSERT INTO deliverynote(`deliveryNoteNumber`, `customerName`, `status`, `invoiceNumber`, `orderDate`, `deliveryDate`)"
-						+ "VALUES (?,?,?,?,?,?)";
+			String sql = "INSERT INTO deliverynote(`deliveryNoteNumber`, `customerName`, `customerEmail`, `requestedItem`,`status`, `invoiceNumber`, `orderDate`)"
+						+ "VALUES (?,?,?,?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			
 			java.sql.Date sqlOrderDate=new java.sql.Date(deliveryNote.getOrderDate().getTime());
-			java.sql.Date sqlDeliveryDate=new java.sql.Date(deliveryNote.getDeliveryDate().getTime());
 			
 			ps.setString(1, deliveryNote.getDeliveryNoteNumber());
 			ps.setString(2, deliveryNote.getCustomerName());
-			ps.setString(3, deliveryNote.getStatus());
-			ps.setString(4, deliveryNote.getInvoiceNumber());
-			ps.setDate(5, (java.sql.Date) sqlOrderDate);
-			ps.setDate(6, (java.sql.Date) sqlDeliveryDate);
+			ps.setString(3, deliveryNote.getCustomerEmail());
+			ps.setString(4, deliveryNote.getRequestedItem());
+			ps.setString(5, deliveryNote.getStatus());
+			ps.setString(6, deliveryNote.getInvoiceNumber());
+			ps.setDate(7, (java.sql.Date) sqlOrderDate);
 			
 			ps.executeUpdate();
 			conn.close();
@@ -188,7 +186,8 @@ public class DbHandler {
 			ResultSet rs=stmt.executeQuery("select * from deliverynote");
 			
 			while(rs.next()){
-				DeliveryNote temp = new DeliveryNote(rs.getString("deliveryNoteNumber"), rs.getString("customerName"), rs.getString("status"), rs.getString("invoiceNumber"),
+				DeliveryNote temp = new DeliveryNote(rs.getString("deliveryNoteNumber"), rs.getString("customerName"), 
+						rs.getString("customerEmail"), rs.getString("requestedItem"), rs.getString("status"), rs.getString("invoiceNumber"),
 						rs.getDate("orderDate"), rs.getDate("deliveryDate"), rs.getString("sign") ); 
 				deliveryNotes.add(temp);
 			}
@@ -205,21 +204,16 @@ public class DbHandler {
 		try {
 			Connection conn = new DbConnection().getConn();
 			
-			String sql = "UPDATE DeliveryNote SET CustomerName = ?, Status = ?, InvoiceNumber = ?, OrderDate = ?, DeliveryDate = ?, Sign = ?   WHERE deliveryNoteNumber = ?";
+			String sql = "UPDATE DeliveryNote SET Status = ?, DeliveryDate = ?, Sign = ?   WHERE deliveryNoteNumber = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			
-			java.sql.Date sqlOrderDate=new java.sql.Date(deliveryNote.getOrderDate().getTime());
 			java.sql.Date sqlDeliveryDate=new java.sql.Date(deliveryNote.getDeliveryDate().getTime());
 			
-			ps.setString(7, deliveryNote.getDeliveryNoteNumber());
-			ps.setString(1, deliveryNote.getCustomerName());
-			ps.setString(2, deliveryNote.getStatus());
-			ps.setString(3, deliveryNote.getInvoiceNumber());
-			ps.setDate(4, (java.sql.Date) sqlOrderDate);
-			ps.setDate(5, (java.sql.Date) sqlDeliveryDate);
-			ps.setString(6, deliveryNote.getSign());
-			
-			
+			ps.setString(1, deliveryNote.getStatus());
+			ps.setDate(2, (java.sql.Date) sqlDeliveryDate);
+			ps.setString(3, deliveryNote.getSign());
+			ps.setString(4, deliveryNote.getDeliveryNoteNumber());
+						
 			ps.executeUpdate();
 			conn.close();
 			

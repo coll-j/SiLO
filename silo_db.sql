@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 13, 2021 at 07:05 PM
+-- Generation Time: Jan 13, 2021 at 09:04 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -30,6 +30,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `deliverynote` (
   `deliveryNoteNumber` varchar(1024) NOT NULL,
   `customerName` varchar(1024) DEFAULT NULL,
+  `customerEmail` varchar(1024) DEFAULT NULL,
+  `requestedItem` text NOT NULL,
   `status` varchar(1024) DEFAULT NULL,
   `invoiceNumber` varchar(1024) DEFAULT NULL,
   `orderDate` date DEFAULT NULL,
@@ -41,10 +43,11 @@ CREATE TABLE `deliverynote` (
 -- Dumping data for table `deliverynote`
 --
 
-INSERT INTO `deliverynote` (`deliveryNoteNumber`, `customerName`, `status`, `invoiceNumber`, `orderDate`, `deliveryDate`, `sign`) VALUES
-('DN1', 'Customer 1', 'completed', 'IN1', '2021-01-01', '2021-01-02', '0'),
-('DN2', 'Cusname 2', 'completed', 'IN2', '2009-01-07', '2009-01-08', '0'),
-('DN3', 'Customer 3', 'completed', 'IN3', '2009-01-05', '2009-01-06', '0');
+INSERT INTO `deliverynote` (`deliveryNoteNumber`, `customerName`, `customerEmail`, `requestedItem`, `status`, `invoiceNumber`, `orderDate`, `deliveryDate`, `sign`) VALUES
+('DN1', 'Customer 1', 'cus1@mail.com', 'Item 1$1;', 'completed', 'OUT1', '2021-01-01', '2021-01-02', '0'),
+('DN2', 'Cusname 2', 'cus2@mail.com', 'Item 2$2; Item 3$1;', 'completed', 'OUT2', '2021-01-02', '2021-01-05', '0'),
+('DN3', 'Customer 3', 'cus3@mail.com', 'Item 4$1;', 'completed', 'OUT3', '2021-01-03', '2021-01-04', '0'),
+('DN4', 'Person 4', 'p4@mail', 'Item 1$2;', 'new', 'OUT4', '2021-01-14', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -69,7 +72,11 @@ INSERT INTO `invoice` (`invoiceNumber`, `poNumber`, `supplierName`, `status`, `o
 ('IN1', 'PN1', 'supplier 1', 'completed', '2021-01-04', '2021-01-03'),
 ('IN2', 'PN2', 'supplier 2', 'completed', '2021-01-13', '2021-01-13'),
 ('IN3', 'PN3', 'supplier 3', 'completed', '2009-01-05', '2009-01-06'),
-('IN4', 'PN4', 'supplier 4', 'completed', '2009-01-05', '2009-01-06');
+('IN4', 'PN4', 'supplier 4', 'completed', '2009-01-05', '2009-01-06'),
+('OUT1', NULL, NULL, 'completed', '2021-01-01', '2021-01-02'),
+('OUT2', NULL, NULL, 'completed', '2021-01-02', '2021-01-05'),
+('OUT3', NULL, NULL, 'completed', '2021-01-03', '2021-01-04'),
+('OUT4', NULL, NULL, 'new', '2021-01-14', NULL);
 
 -- --------------------------------------------------------
 

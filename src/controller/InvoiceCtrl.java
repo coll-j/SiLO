@@ -17,8 +17,8 @@ public class InvoiceCtrl {
 		invoiceList = db.getAllInvoice();
 	}
 	
-	public void addInvoice(String invoiceNumber, String poNumber, String supplierName, Date orderDate, Date deliveryDate) {
-		Invoice temp = new Invoice(invoiceNumber, poNumber, supplierName, orderDate, deliveryDate); 
+	public void addInvoice(String invoiceNumber, Date orderDate) {
+		Invoice temp = new Invoice(invoiceNumber, null, null, "new", orderDate, null); 
 		db.addInvoice(temp);
 		InvoiceCtrl.invoiceList.add(temp);
 	}
@@ -35,6 +35,19 @@ public class InvoiceCtrl {
 		for(int i=0; i<InvoiceCtrl.invoiceList.size(); i++) {
 			if(InvoiceCtrl.invoiceList.get(i).getInvoiceNumber().contains(invoiceNumber)) {
 				InvoiceCtrl.invoiceList.get(i).setStatus(status);
+				db.EditInvoice(InvoiceCtrl.invoiceList.get(i));
+				return;
+			}
+		}
+	}
+	
+	public void completeInvoice(String invoiceNumber, String status){
+		for(int i=0; i<InvoiceCtrl.invoiceList.size(); i++) {
+			if(InvoiceCtrl.invoiceList.get(i).getInvoiceNumber().contains(invoiceNumber)) {
+				
+				InvoiceCtrl.invoiceList.get(i).setStatus("completed");
+				InvoiceCtrl.invoiceList.get(i).setDeliveryDate(new Date());
+				
 				db.EditInvoice(InvoiceCtrl.invoiceList.get(i));
 				return;
 			}

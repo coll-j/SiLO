@@ -6,7 +6,6 @@ import java.util.List;
 
 import database.DbHandler;
 import database.DeliveryNote;
-import database.Item;
 
 public class DeliveryNoteCtrl {
 	private DbHandler db;
@@ -17,8 +16,12 @@ public class DeliveryNoteCtrl {
 		deliveryNoteList = db.getAllDeliveryNote();
 	}
 	
-	public void addDeliveryNote(String DeliveryNoteNumber, String poNumber, String supplierName, Date orderDate, Date deliveryDate) {
-		DeliveryNote temp = new DeliveryNote(DeliveryNoteNumber, poNumber, supplierName, "new", orderDate, deliveryDate); 
+	public void addDeliveryNote(String deliveryNoteNumber, String customerName, String customerEmail, String requestedItem,
+								String invoiceNumber, Date orderDate) {
+		
+		DeliveryNote temp = new DeliveryNote(deliveryNoteNumber, customerName, customerEmail, requestedItem,"new", invoiceNumber,
+												orderDate, null, null);
+		
 		db.addDeliveryNote(temp);
 		DeliveryNoteCtrl.deliveryNoteList.add(temp);
 	}
@@ -31,7 +34,6 @@ public class DeliveryNoteCtrl {
 		return array;
 	}
 	
-	// edit status
 	public void editStatusDN(String DeliveryNoteNumber, String status){
 		for(int i=0; i<DeliveryNoteCtrl.deliveryNoteList.size(); i++) {
 			if(DeliveryNoteCtrl.deliveryNoteList.get(i).getDeliveryNoteNumber().contains(DeliveryNoteNumber)) {
@@ -43,15 +45,19 @@ public class DeliveryNoteCtrl {
 	}
 	
 	// sign status
-		public void signStatusDN(String DeliveryNoteNumber, String sign){
-			for(int i=0; i<DeliveryNoteCtrl.deliveryNoteList.size(); i++) {
-				if(DeliveryNoteCtrl.deliveryNoteList.get(i).getDeliveryNoteNumber().contains(DeliveryNoteNumber)) {
-					DeliveryNoteCtrl.deliveryNoteList.get(i).setSign(sign);
-					db.EditDeliveryNote(DeliveryNoteCtrl.deliveryNoteList.get(i));
-					return;
-				}
+	public void completeDN(String DeliveryNoteNumber, String sign){
+		for(int i=0; i<DeliveryNoteCtrl.deliveryNoteList.size(); i++) {
+			if(DeliveryNoteCtrl.deliveryNoteList.get(i).getDeliveryNoteNumber().contains(DeliveryNoteNumber)) {
+				
+				DeliveryNoteCtrl.deliveryNoteList.get(i).setSign(sign);
+				DeliveryNoteCtrl.deliveryNoteList.get(i).setStatus("completed");
+				DeliveryNoteCtrl.deliveryNoteList.get(i).setDeliveryDate(new Date());
+				
+				db.EditDeliveryNote(DeliveryNoteCtrl.deliveryNoteList.get(i));
+				return;
 			}
 		}
+	}
 	
 	public Object[][] searchDeliveryNote(String keyword) {
 		keyword = keyword.toLowerCase();
@@ -62,6 +68,8 @@ public class DeliveryNoteCtrl {
         	DeliveryNote temp = DeliveryNoteCtrl.deliveryNoteList.get(i);
             if(temp.getDeliveryNoteNumber().toLowerCase().contains(keyword) ||
                     temp.getCustomerName().toLowerCase().contains(keyword) ||
+                    temp.getCustomerEmail().toLowerCase().contains(keyword) ||
+                    temp.getRequestedItem().toLowerCase().contains(keyword) ||
                     temp.getStatus().toLowerCase().contains(keyword) ||
                     temp.getInvoiceNumber().toLowerCase().contains(keyword) )
             	array[j++] = temp.toObject();

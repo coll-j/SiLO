@@ -5,16 +5,21 @@
  */
 package main;
 
+import controller.CreateDNCtrl;
+
 /**
  *
  * @author ZK
  */
 public class BuatSuratPanel extends javax.swing.JPanel {
 
+	public CreateDNCtrl createDNCtrl;
     /**
      * Creates new form BuatSuratPanel
      */
     public BuatSuratPanel() {
+    	createDNCtrl = new CreateDNCtrl();
+    	
         initComponents();
     }
 
@@ -29,23 +34,25 @@ public class BuatSuratPanel extends javax.swing.JPanel {
 
         BuatSuratPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        invoiceNumrTF = new javax.swing.JTextField();
+        invoiceNumTF = new javax.swing.JTextField();
         dnNumTF = new javax.swing.JTextField();
-        InvoiceNumLabel = new javax.swing.JLabel();
+        invoiceNumLabel = new javax.swing.JLabel();
         dnNumLabel = new javax.swing.JLabel();
         cusNameLabel = new javax.swing.JLabel();
         cusEmailLabel = new javax.swing.JLabel();
         cusEmailTF = new javax.swing.JTextField();
         cusNameTF = new javax.swing.JTextField();
         createBtn = new javax.swing.JButton();
+        reqItemLabel = new javax.swing.JLabel();
+        reqItemTF = new javax.swing.JTextField();
 
         BuatSuratPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel2.setText("Delivery Note Form");
 
-        InvoiceNumLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        InvoiceNumLabel.setText("Invoice Number :");
+        invoiceNumLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        invoiceNumLabel.setText("Invoice Number :");
 
         dnNumLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         dnNumLabel.setText("Delivery Note Number :");
@@ -62,6 +69,9 @@ public class BuatSuratPanel extends javax.swing.JPanel {
                 createBtnActionPerformed(evt);
             }
         });
+
+        reqItemLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        reqItemLabel.setText("Requested Item(s) :");
 
         javax.swing.GroupLayout BuatSuratPanelLayout = new javax.swing.GroupLayout(BuatSuratPanel);
         BuatSuratPanel.setLayout(BuatSuratPanelLayout);
@@ -80,15 +90,19 @@ public class BuatSuratPanel extends javax.swing.JPanel {
                                 .addGroup(BuatSuratPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(BuatSuratPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(dnNumLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(InvoiceNumLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(invoiceNumLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(cusNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(cusEmailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(28, 28, 28)
                                 .addGroup(BuatSuratPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(cusEmailTF, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(invoiceNumrTF, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(invoiceNumTF, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(dnNumTF, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cusNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(cusNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(reqItemTF, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(BuatSuratPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(reqItemLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(214, Short.MAX_VALUE))
         );
         BuatSuratPanelLayout.setVerticalGroup(
@@ -98,8 +112,8 @@ public class BuatSuratPanel extends javax.swing.JPanel {
                 .addComponent(jLabel2)
                 .addGap(54, 54, 54)
                 .addGroup(BuatSuratPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(invoiceNumrTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(InvoiceNumLabel))
+                    .addComponent(invoiceNumTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(invoiceNumLabel))
                 .addGap(18, 18, 18)
                 .addGroup(BuatSuratPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dnNumTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -112,9 +126,13 @@ public class BuatSuratPanel extends javax.swing.JPanel {
                 .addGroup(BuatSuratPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cusEmailLabel)
                     .addComponent(cusEmailTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(61, 61, 61)
+                .addGap(18, 18, 18)
+                .addGroup(BuatSuratPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(reqItemLabel)
+                    .addComponent(reqItemTF, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(createBtn)
-                .addContainerGap(299, Short.MAX_VALUE))
+                .addContainerGap(263, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -130,13 +148,22 @@ public class BuatSuratPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
-        // TODO add your handling code here:
+    	createDNCtrl.CreateDN (dnNumTF.getText(),
+                                cusNameTF.getText(),
+                                cusEmailTF.getText(),
+                                reqItemTF.getText(),
+                                invoiceNumTF.getText() );
+        
+        dnNumTF.setText("");
+        cusNameTF.setText("");
+        cusEmailTF.setText("");
+        reqItemTF.setText("");
+        invoiceNumTF.setText("");
     }//GEN-LAST:event_createBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BuatSuratPanel;
-    private javax.swing.JLabel InvoiceNumLabel;
     private javax.swing.JButton createBtn;
     private javax.swing.JLabel cusEmailLabel;
     private javax.swing.JTextField cusEmailTF;
@@ -144,7 +171,10 @@ public class BuatSuratPanel extends javax.swing.JPanel {
     private javax.swing.JTextField cusNameTF;
     private javax.swing.JLabel dnNumLabel;
     private javax.swing.JTextField dnNumTF;
-    private javax.swing.JTextField invoiceNumrTF;
+    private javax.swing.JLabel invoiceNumLabel;
+    private javax.swing.JTextField invoiceNumTF;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel reqItemLabel;
+    private javax.swing.JTextField reqItemTF;
     // End of variables declaration//GEN-END:variables
 }

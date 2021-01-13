@@ -10,22 +10,12 @@ public class Invoice {
     private Date orderDate,
     				deliveryDate;
 
-	public Invoice(String invoiceNumber, String poNumber, String supplierName, Date orderDate,
+	public Invoice(String invoiceNumber, String poNumber, String supplierName, String status, Date orderDate,
 			Date deliveryDate) {
 		this.invoiceNumber = invoiceNumber;
 		this.poNumber = poNumber;
 		this.supplierName = supplierName;
-		this.status = "new";
-		this.orderDate = orderDate;
-		this.deliveryDate = deliveryDate;
-	}
-	
-	public Invoice(String invoiceNumber, String poNumber, String supplierName, Date orderDate,
-			Date deliveryDate, String sign) {
-		this.invoiceNumber = invoiceNumber;
-		this.poNumber = poNumber;
-		this.supplierName = supplierName;
-		this.status = sign;
+		this.status = status;
 		this.orderDate = orderDate;
 		this.deliveryDate = deliveryDate;
 	}
@@ -91,9 +81,9 @@ public class Invoice {
 		obj[i++] = this.invoiceNumber;
 		obj[i++] = this.poNumber;
 		obj[i++] = this.supplierName;
+		obj[i++] = this.status;
 		obj[i++] = this.orderDate;
 		obj[i++] = this.deliveryDate;	
-		obj[i++] = this.status;
 		
 		return obj;
 	}

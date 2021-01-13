@@ -61,7 +61,7 @@ public class TagihanPanel extends javax.swing.JPanel {
         TagihanPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel11.setText("Tagihan");
+        jLabel11.setText("Invoice List");
 
         setTable(invoiceData);
 
