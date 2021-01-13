@@ -22,18 +22,18 @@
                       <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="label1" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelId" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="idTextField" min="-2" pref="186" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="label2" min="-2" max="-2" attributes="0"/>
-                                  <Component id="label3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="label4" min="-2" max="-2" attributes="0"/>
-                                  <Component id="label5" min="-2" max="-2" attributes="0"/>
-                                  <Component id="label6" min="-2" max="-2" attributes="0"/>
-                                  <Component id="label7" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelBarcode" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelTitle" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelDesc" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelManu" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelUrl" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelStock" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
@@ -66,37 +66,37 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="idTextField" min="-2" max="-2" attributes="0"/>
-                          <Component id="label1" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelId" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="barcodeTextField" min="-2" max="-2" attributes="0"/>
-                          <Component id="label2" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelBarcode" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="titleTextField" min="-2" max="-2" attributes="0"/>
-                          <Component id="label3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelTitle" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="descriptionTextField" min="-2" max="-2" attributes="0"/>
-                          <Component id="label4" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelDesc" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="manuTextField" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="label5" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelManu" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="urlTextField" min="-2" max="-2" attributes="0"/>
-                  <Component id="label6" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelUrl" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="stockTextField" min="-2" max="-2" attributes="0"/>
-                  <Component id="label7" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelStock" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -109,7 +109,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="java.awt.Label" name="label1">
+    <Component class="java.awt.Label" name="labelId">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -137,7 +137,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="stockTextField">
     </Component>
-    <Component class="java.awt.Label" name="label2">
+    <Component class="java.awt.Label" name="labelBarcode">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -145,7 +145,7 @@
         <Property name="text" type="java.lang.String" value="barcode"/>
       </Properties>
     </Component>
-    <Component class="java.awt.Label" name="label3">
+    <Component class="java.awt.Label" name="labelTitle">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -153,12 +153,12 @@
         <Property name="text" type="java.lang.String" value="title"/>
       </Properties>
     </Component>
-    <Component class="java.awt.Label" name="label4">
+    <Component class="java.awt.Label" name="labelDesc">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="descriptio"/>
+        <Property name="text" type="java.lang.String" value="description"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
@@ -177,7 +177,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
       </Events>
     </Component>
-    <Component class="java.awt.Label" name="label5">
+    <Component class="java.awt.Label" name="labelManu">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -185,7 +185,7 @@
         <Property name="text" type="java.lang.String" value="manufacturer"/>
       </Properties>
     </Component>
-    <Component class="java.awt.Label" name="label6">
+    <Component class="java.awt.Label" name="labelUrl">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -193,7 +193,7 @@
         <Property name="text" type="java.lang.String" value="url"/>
       </Properties>
     </Component>
-    <Component class="java.awt.Label" name="label7">
+    <Component class="java.awt.Label" name="labelStock">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
