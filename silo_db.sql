@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 13, 2021 at 07:36 AM
+-- Generation Time: Jan 13, 2021 at 06:38 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -33,17 +33,18 @@ CREATE TABLE `deliverynote` (
   `status` varchar(1024) NOT NULL,
   `invoiceNumber` varchar(1024) NOT NULL,
   `orderDate` date NOT NULL,
-  `deliveryDate` date NOT NULL
+  `deliveryDate` date NOT NULL,
+  `sign` varchar(1024) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `deliverynote`
 --
 
-INSERT INTO `deliverynote` (`deliveryNoteNumber`, `customerName`, `status`, `invoiceNumber`, `orderDate`, `deliveryDate`) VALUES
-('DN1', 'Customer 1', 'completed', 'IN1', '2021-01-01', '2021-01-02'),
-('DN2', 'Cusname 2', 'completed', 'IN2', '2009-01-07', '2009-01-08'),
-('DN3', 'Customer 3', 'completed', 'IN3', '2009-01-05', '2009-01-06');
+INSERT INTO `deliverynote` (`deliveryNoteNumber`, `customerName`, `status`, `invoiceNumber`, `orderDate`, `deliveryDate`, `sign`) VALUES
+('DN1', 'Customer 1', 'completed', 'IN1', '2021-01-01', '2021-01-02', '0'),
+('DN2', 'Cusname 2', 'completed', 'IN2', '2009-01-07', '2009-01-08', '0'),
+('DN3', 'Customer 3', 'completed', 'IN3', '2009-01-05', '2009-01-06', '0');
 
 -- --------------------------------------------------------
 
@@ -94,7 +95,8 @@ INSERT INTO `item` (`id`, `barcode`, `title`, `description`, `manufacturer`, `ur
 ('IT1', 'barcode_1', 'Item 1', 'description 1', 'manufacturer 1', 'url 1', 1),
 ('IT2', 'barcode_2', 'Item 2', 'description 2', 'manufacturer 2', 'url 2', 2),
 ('IT3', 'barcode_3', 'Item 3', 'description 3', 'manufaturer 3', 'url 3', 3),
-('IT4', 'barcode 4', 'Item 4', 'description 4', 'manufacturere 4', 'url 4', 4);
+('IT4', 'barcode 4', 'Item 4', 'description 4', 'manufacturere 4', 'url 4', 4),
+('IT5', 'barcode 5', 'Item 5', 'desc 5', 'man 5', 'url 5', 100);
 
 --
 -- Indexes for dumped tables
