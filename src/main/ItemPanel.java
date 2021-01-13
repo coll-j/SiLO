@@ -15,14 +15,14 @@ import controller.ItemCtrl;
  */
 public class ItemPanel extends javax.swing.JPanel {
 
-    Object[][] table_data;
+    Object[][] itemData;
     public ItemCtrl itemCtrl;
     /**
      * Creates new form ItemPanel
      */
     public ItemPanel() {
     	itemCtrl = new ItemCtrl();
-    	table_data = itemCtrl.getAllItem();
+    	itemData = itemCtrl.getAllItem();
         initComponents();
         System.out.println("Item Panel created!");
     }
@@ -34,9 +34,9 @@ public class ItemPanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     
-    public void setTable() {
+    public void setTable(Object[][] tableData) {
     	jTable1.setModel(new javax.swing.table.DefaultTableModel(
-                table_data,
+                tableData,
                 new String [] {
                     "ID", "Title", "Manufacturer", "Stocks"
                 }
@@ -51,6 +51,7 @@ public class ItemPanel extends javax.swing.JPanel {
             });
             jScrollPane1.setViewportView(jTable1);
     }
+    
     private void initComponents() {
 
         ItemPanel = new javax.swing.JPanel();
@@ -66,7 +67,7 @@ public class ItemPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel2.setText("Item List");
         
-        setTable();
+        setTable(table_data);
 
         searchButton.setText("Search");
         searchButton.addActionListener(new java.awt.event.ActionListener() {
@@ -134,8 +135,7 @@ public class ItemPanel extends javax.swing.JPanel {
 
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
-        table_data = itemCtrl.searchItem(searchTF.getText());
-        setTable();
+        setTable( itemCtrl.searchItem(searchTF.getText()) );
     }//GEN-LAST:event_searchButtonActionPerformed
 
 
