@@ -25,16 +25,16 @@ public class MainPage extends javax.swing.JFrame {
     private void initPanels(){
 
         // Item Panel
-        item_panel = new ItemPanel();
+        itemPanel = new ItemPanel();
         
         // Tagihan Panel
-        tagihan_panel = new TagihanPanel();
+        tagihanPanel = new TagihanPanel();
         
         // Buat Surat Panel
-        buat_surat_panel = new BuatSuratPanel();
+        buatSuratPanel = new BuatSuratPanel();
         
         // Surat Jalan Panel
-        surat_jalan_panel = new SuratJalanPanel();
+        suratJalanPanel = new SuratJalanPanel();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -44,13 +44,13 @@ public class MainPage extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-    	
+
         MenuPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         ItemBtn = new javax.swing.JButton();
-        SuratJalanBtn = new javax.swing.JButton();
-        TagihanBtn = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        deliveryNoteBtn = new javax.swing.JButton();
+        InvoiceBtn = new javax.swing.JButton();
+        CreateDNBtn = new javax.swing.JButton();
         MainPanel = new javax.swing.JPanel();
         WelcomePanel = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
@@ -72,24 +72,24 @@ public class MainPage extends javax.swing.JFrame {
             }
         });
 
-        SuratJalanBtn.setText("Surat Jalan");
-        SuratJalanBtn.addActionListener(new java.awt.event.ActionListener() {
+        deliveryNoteBtn.setText("Delivery Note");
+        deliveryNoteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SuratJalanBtnActionPerformed(evt);
+                deliveryNoteBtnActionPerformed(evt);
             }
         });
 
-        TagihanBtn.setText("Tagihan");
-        TagihanBtn.addActionListener(new java.awt.event.ActionListener() {
+        InvoiceBtn.setText("Invoice");
+        InvoiceBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TagihanBtnActionPerformed(evt);
+                InvoiceBtnActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Buat Surat Jalan");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        CreateDNBtn.setText("Create Delivery Note");
+        CreateDNBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                CreateDNBtnActionPerformed(evt);
             }
         });
 
@@ -105,10 +105,10 @@ public class MainPage extends javax.swing.JFrame {
                     .addGroup(MenuPanelLayout.createSequentialGroup()
                         .addGap(55, 55, 55)
                         .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(SuratJalanBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(deliveryNoteBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(ItemBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(TagihanBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(InvoiceBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(CreateDNBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -120,11 +120,11 @@ public class MainPage extends javax.swing.JFrame {
                 .addGap(80, 80, 80)
                 .addComponent(ItemBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(SuratJalanBtn)
+                .addComponent(deliveryNoteBtn)
                 .addGap(11, 11, 11)
-                .addComponent(TagihanBtn)
+                .addComponent(InvoiceBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton4)
+                .addComponent(CreateDNBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -179,18 +179,18 @@ public class MainPage extends javax.swing.JFrame {
 
     private void ItemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemBtnActionPerformed
         // TODO add your handling code here:
-         MainPanel.removeAll();
+        MainPanel.removeAll();
         MainPanel.repaint();
         MainPanel.revalidate();
         
         //add
-        MainPanel.add(item_panel);
+        MainPanel.add(itemPanel);
         MainPanel.repaint();
         MainPanel.revalidate();
    
     }//GEN-LAST:event_ItemBtnActionPerformed
 
-    private void SuratJalanBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SuratJalanBtnActionPerformed
+    private void deliveryNoteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deliveryNoteBtnActionPerformed
         // TODO add your handling code here:
         
         MainPanel.removeAll();
@@ -198,12 +198,12 @@ public class MainPage extends javax.swing.JFrame {
         MainPanel.revalidate();
         
         //add
-        MainPanel.add(surat_jalan_panel);
+        MainPanel.add(suratJalanPanel);
         MainPanel.repaint();
         MainPanel.revalidate();
-    }//GEN-LAST:event_SuratJalanBtnActionPerformed
+    }//GEN-LAST:event_deliveryNoteBtnActionPerformed
 
-    private void TagihanBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TagihanBtnActionPerformed
+    private void InvoiceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InvoiceBtnActionPerformed
         // TODO add your handling code here:
         
                 //remove panel
@@ -212,12 +212,12 @@ public class MainPage extends javax.swing.JFrame {
         MainPanel.revalidate();
         
         //add
-        MainPanel.add(tagihan_panel);
+        MainPanel.add(tagihanPanel);
         MainPanel.repaint();
         MainPanel.revalidate();
-    }//GEN-LAST:event_TagihanBtnActionPerformed
+    }//GEN-LAST:event_InvoiceBtnActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void CreateDNBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateDNBtnActionPerformed
         // TODO add your handling code here:
         
                 //remove panel
@@ -226,10 +226,10 @@ public class MainPage extends javax.swing.JFrame {
         MainPanel.revalidate();
         
         //add
-        MainPanel.add(buat_surat_panel);
+        MainPanel.add(buatSuratPanel);
         MainPanel.repaint();
         MainPanel.revalidate();
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_CreateDNBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -268,18 +268,18 @@ public class MainPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CreateDNBtn;
+    private javax.swing.JButton InvoiceBtn;
     private javax.swing.JButton ItemBtn;
     private javax.swing.JPanel MainPanel;
     private javax.swing.JPanel MenuPanel;
-    private javax.swing.JButton SuratJalanBtn;
-    private javax.swing.JButton TagihanBtn;
     private javax.swing.JPanel WelcomePanel;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton deliveryNoteBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     // End of variables declaration//GEN-END:variables
-    private ItemPanel item_panel;
-    private TagihanPanel tagihan_panel;
-    private BuatSuratPanel buat_surat_panel;
-    private SuratJalanPanel surat_jalan_panel;
+    private ItemPanel itemPanel;
+    private TagihanPanel tagihanPanel;
+    private BuatSuratPanel buatSuratPanel;
+    private SuratJalanPanel suratJalanPanel;
 }
