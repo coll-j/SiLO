@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package koneksi;
+package database;
 
 /**
  *
@@ -21,7 +21,7 @@ public class Koneksi {
         try {
             System.out.println("com.mysql.cj.jdbc.Driver1");
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection koneksi = DriverManager.getConnection("jdbc:mysql://localhost:3306/akademik?serverTimezone=UTC", "root", "");
+            Connection koneksi = DriverManager.getConnection("jdbc:mysql://localhost:3306/silo?serverTimezone=UTC", "root", "");
             
             return koneksi;
         } catch(Exception e) {

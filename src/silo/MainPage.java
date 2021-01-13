@@ -13,7 +13,8 @@ import java.sql.Statement;
 import java.util.*; 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import koneksi.DBHandler;
+
+import database.ZDBHandler;
 
 public class MainPage extends javax.swing.JFrame {
 
@@ -25,7 +26,7 @@ public class MainPage extends javax.swing.JFrame {
      * Creates new form MainPage
      */
     public MainPage() {
-        cn = koneksi.Koneksi.Koneksi();
+        cn = database.Koneksi.Koneksi();
 
         initPanels();
         initComponents();

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package koneksi;
+package database;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
  *
  * @author ZK
  */
-public class DBHandler {
+public class ZDBHandler {
     static PreparedStatement ps = null;
     static ResultSet res = null;
 
