@@ -6,7 +6,7 @@
 package silo;
 
 import java.sql.Connection;
-import koneksi.DBHandler;
+//import database.DBHandler;
 
 /**
  *
@@ -21,7 +21,8 @@ public class ItemPanel extends javax.swing.JPanel {
      */
     public ItemPanel(Connection cn) {
         con = cn;
-        table_data = DBHandler.SelectAll(cn, "item");
+//        table_data = DBHandler.SelectAll(cn, "item");
+        table_data = null;
         initComponents();
         System.out.println("Item Panel created!");
     }
