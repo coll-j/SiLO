@@ -29,11 +29,15 @@ public class ItemCtrl {
 		return array;
 	}
 	
-	// misal title ntar edit
-	public void editItem(String id, String edited){
+	public void editItem(String id, String barcode, String title, String description, String manufacturer, String url, String stocks){
 		for(int i=0; i<ItemCtrl.itemList.size(); i++) {
 			if(ItemCtrl.itemList.get(i).getId().contains(id)) {
-				ItemCtrl.itemList.get(i).setTitle(edited);
+				ItemCtrl.itemList.get(i).setBarcode(barcode);
+				ItemCtrl.itemList.get(i).setTitle(title);
+				ItemCtrl.itemList.get(i).setDescription(description);
+				ItemCtrl.itemList.get(i).setManufacturer(manufacturer);
+				ItemCtrl.itemList.get(i).setUrl(url);
+				ItemCtrl.itemList.get(i).setStocks(Integer.parseInt(stocks));
 				db.EditItem(ItemCtrl.itemList.get(i));
 				return;
 			}
