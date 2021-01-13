@@ -34,6 +34,14 @@ public class DeliveryNoteCtrl {
 		return array;
 	}
 	
+	public Object[][] getDNShort() {
+		Object[][] array = new Object[deliveryNoteList.size()][];
+        for (int i = 0; i < deliveryNoteList.size(); i++) {
+        	array[i] = deliveryNoteList.get(i).toObjectShort();
+        }
+		return array;
+	}
+	
 	public void editStatusDN(String DeliveryNoteNumber, String status){
 		for(int i=0; i<DeliveryNoteCtrl.deliveryNoteList.size(); i++) {
 			if(DeliveryNoteCtrl.deliveryNoteList.get(i).getDeliveryNoteNumber().contains(DeliveryNoteNumber)) {

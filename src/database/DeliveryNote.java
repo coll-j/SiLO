@@ -121,9 +121,20 @@ public class DeliveryNote {
 		obj[i++] = this.orderDate;
 		obj[i++] = this.deliveryDate;
 		
-		
 		return obj;
 	}
 	
-
+	public Object[] toObjectShort() {
+		int i = 0;
+		Object[] obj = new Object[7];
+		
+		obj[i++] = this.invoiceNumber;
+		obj[i++] = this.deliveryNoteNumber;
+		obj[i++] = this.customerName;
+		obj[i++] = this.orderDate;
+		obj[i++] = this.deliveryDate;
+		obj[i++] = this.status;
+		
+		return obj;
+	}
 }

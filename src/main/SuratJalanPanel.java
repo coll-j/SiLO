@@ -5,16 +5,23 @@
  */
 package main;
 
+import controller.DeliveryNoteCtrl;
+
 /**
  *
  * @author ZK
  */
 public class SuratJalanPanel extends javax.swing.JPanel {
-
+	
+	private Object[][] dnData;
+	private DeliveryNoteCtrl dnCtrl;
     /**
      * Creates new form SuratJalanPanel
      */
     public SuratJalanPanel() {
+    	dnCtrl = new DeliveryNoteCtrl();
+    	dnData = dnCtrl.getDNShort();
+    	
         initComponents();
     }
 
@@ -28,52 +35,86 @@ public class SuratJalanPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         SuratJalanPanel = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        searchBtn = new javax.swing.JButton();
+        searchTF = new javax.swing.JTextField();
 
-        jLabel3.setText("Surat Jalan");
+        SuratJalanPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel2.setText("Delivery Note List");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            dnData,
+            new String [] {
+                "Invoice Number", "Delivery Notes Number", "Customer Name", "Order Date", "Delivery Date", "Status"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        searchBtn.setText("Search");
+
+        searchTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchTFActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout SuratJalanPanelLayout = new javax.swing.GroupLayout(SuratJalanPanel);
         SuratJalanPanel.setLayout(SuratJalanPanelLayout);
         SuratJalanPanelLayout.setHorizontalGroup(
             SuratJalanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(SuratJalanPanelLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(jLabel3)
-                .addContainerGap(793, Short.MAX_VALUE))
+                .addGap(46, 46, 46)
+                .addGroup(SuratJalanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(SuratJalanPanelLayout.createSequentialGroup()
+                        .addComponent(searchTF, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(searchBtn))
+                    .addGroup(SuratJalanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel2)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(125, Short.MAX_VALUE))
         );
         SuratJalanPanelLayout.setVerticalGroup(
             SuratJalanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(SuratJalanPanelLayout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addComponent(jLabel3)
-                .addContainerGap(536, Short.MAX_VALUE))
+                .addGap(44, 44, 44)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addGroup(SuratJalanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(searchBtn)
+                    .addComponent(searchTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 894, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(SuratJalanPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addComponent(SuratJalanPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 611, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(SuratJalanPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addComponent(SuratJalanPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void searchTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchTFActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel SuratJalanPanel;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JButton searchBtn;
+    private javax.swing.JTextField searchTF;
     // End of variables declaration//GEN-END:variables
 }

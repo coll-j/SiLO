@@ -6,14 +6,13 @@
 package main;
 
 import controller.InvoiceCtrl;
-import controller.ItemCtrl;
 /**
  *
  * @author ZK
  */
 public class TagihanPanel extends javax.swing.JPanel {
 
-    Object[][] invoiceData;
+    private Object[][] invoiceData;
     private InvoiceCtrl invoiceCtrl;
     /**
      * Creates new form TagihanPanel
@@ -61,9 +60,22 @@ public class TagihanPanel extends javax.swing.JPanel {
         TagihanPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel11.setText("Invoice List");
+        jLabel11.setText("Tagihan");
 
-        setTable(invoiceData);
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            invoiceData,
+            new String [] {
+                "Invoice Number", "PO Number", "Supplier Name", "Order Date", "Delivery Date", "Status"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        searchBtn.setText("Search");
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtnActionPerformed(evt);
+            }
+        });
 
         searchTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,7 +91,7 @@ public class TagihanPanel extends javax.swing.JPanel {
                 .addGap(45, 45, 45)
                 .addGroup(TagihanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(TagihanPanelLayout.createSequentialGroup()
-                        .addComponent(searchTF, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(searchTF, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(searchBtn))
                     .addGroup(TagihanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -19,8 +19,8 @@ import javax.swing.PopupFactory;
  */
 public class ItemPanel extends javax.swing.JPanel {
 
-    Object[][] itemData;
-    public ItemCtrl itemCtrl;
+    private Object[][] itemData;
+    private ItemCtrl itemCtrl;
     public MainPage parent;
     private JPanel addPopUp;
     Popup popup;
@@ -32,7 +32,15 @@ public class ItemPanel extends javax.swing.JPanel {
         initComponents();
     }
     
-    public void refreshTable(){
+    public ItemCtrl getItemCtrl() {
+		return itemCtrl;
+	}
+
+	public void setItemCtrl(ItemCtrl itemCtrl) {
+		this.itemCtrl = itemCtrl;
+	}
+
+	public void refreshTable(){
         itemData = itemCtrl.getAllItem();
         setTable(itemData);
         parent.paintItemPanel();
