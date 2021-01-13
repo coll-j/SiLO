@@ -5,17 +5,41 @@
  */
 package main;
 
+import controller.InvoiceCtrl;
+import controller.ItemCtrl;
 /**
  *
  * @author ZK
  */
 public class TagihanPanel extends javax.swing.JPanel {
 
+    Object[][] invoiceData;
+    private InvoiceCtrl invoiceCtrl;
     /**
      * Creates new form TagihanPanel
      */
     public TagihanPanel() {
-        initComponents();
+        invoiceCtrl = new InvoiceCtrl();
+    	invoiceData = invoiceCtrl.getAllInvoice();
+    	initComponents();
+
+    }
+    
+    private void setTable(Object[][] tableData) {
+    	jTable1.setModel(new javax.swing.table.DefaultTableModel(
+                tableData,
+                new String [] {
+                    "Invoice Number", "PO Number", "Supplier Name", "Order Date", "Delivery Date", "Status"
+                }
+            ));
+            jScrollPane1.setViewportView(jTable1);
+
+            searchBtn.setText("Search");
+            searchBtn.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    searchBtnActionPerformed(evt);
+                }
+            });
     }
 
     /**
@@ -29,11 +53,23 @@ public class TagihanPanel extends javax.swing.JPanel {
 
         TagihanPanel = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        searchBtn = new javax.swing.JButton();
+        searchTF = new javax.swing.JTextField();
 
         TagihanPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel11.setText("Tagihan");
+
+        setTable(invoiceData);
+
+        searchTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchTFActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout TagihanPanelLayout = new javax.swing.GroupLayout(TagihanPanel);
         TagihanPanel.setLayout(TagihanPanelLayout);
@@ -41,42 +77,61 @@ public class TagihanPanel extends javax.swing.JPanel {
             TagihanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TagihanPanelLayout.createSequentialGroup()
                 .addGap(45, 45, 45)
-                .addComponent(jLabel11)
-                .addContainerGap(765, Short.MAX_VALUE))
+                .addGroup(TagihanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(TagihanPanelLayout.createSequentialGroup()
+                        .addComponent(searchTF, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(searchBtn))
+                    .addGroup(TagihanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel11)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 697, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(468, Short.MAX_VALUE))
         );
         TagihanPanelLayout.setVerticalGroup(
             TagihanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TagihanPanelLayout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addComponent(jLabel11)
-                .addContainerGap(538, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addGroup(TagihanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(searchBtn)
+                    .addComponent(searchTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 894, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(TagihanPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(TagihanPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 611, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(TagihanPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(TagihanPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 22, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void searchTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchTFActionPerformed
+
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+        setTable( invoiceCtrl.searchInvoice(searchTF.getText()) );
+    }//GEN-LAST:event_searchBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel TagihanPanel;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JButton searchBtn;
+    private javax.swing.JTextField searchTF;
     // End of variables declaration//GEN-END:variables
 }

@@ -113,8 +113,8 @@ public class DbHandler {
 			ResultSet rs=stmt.executeQuery("select * from invoice");
 			
 			while(rs.next()){
-				Invoice temp = new Invoice(rs.getString("invoiceNumber"), rs.getString("poNumber"), rs.getString("supplierName"), rs.getString("status"),
-						rs.getDate("orderDate"), rs.getDate("deliveryDate") ); 
+				Invoice temp = new Invoice(rs.getString("invoiceNumber"), rs.getString("poNumber"), rs.getString("supplierName"),
+						rs.getDate("orderDate"), rs.getDate("deliveryDate"), rs.getString("status") ); 
 				invoices.add(temp);
 			}
 			conn.close();

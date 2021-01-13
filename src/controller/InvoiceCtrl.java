@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import database.DbHandler;
+import database.DeliveryNote;
 import database.Invoice;
 
 public class InvoiceCtrl {
@@ -17,44 +18,43 @@ public class InvoiceCtrl {
 	}
 	
 	public void addInvoice(String invoiceNumber, String poNumber, String supplierName, Date orderDate, Date deliveryDate) {
-		Invoice temp = new Invoice(invoiceNumber, poNumber, supplierName, "new", orderDate, deliveryDate); 
+		Invoice temp = new Invoice(invoiceNumber, poNumber, supplierName, orderDate, deliveryDate); 
 		db.addInvoice(temp);
 		InvoiceCtrl.invoiceList.add(temp);
 	}
 	
-	public Invoice[] getAllInvoice() {
-		Invoice[] invoiceArr = new Invoice[InvoiceCtrl.invoiceList.size()]; 
-		invoiceArr = InvoiceCtrl.invoiceList.toArray(invoiceArr);
-		
-		return invoiceArr;
+	public Object[][] getAllInvoice() {
+		Object[][] array = new Object[invoiceList.size()][];
+        for (int i = 0; i < invoiceList.size(); i++) {
+        	array[i] = invoiceList.get(i).toObject();
+        }
+		return array;
 	}
 	
-	public void editStatusInvoice(String invoiceNumber, String edited){
+	public void editStatusInvoice(String invoiceNumber, String status){
 		for(int i=0; i<InvoiceCtrl.invoiceList.size(); i++) {
 			if(InvoiceCtrl.invoiceList.get(i).getInvoiceNumber().contains(invoiceNumber)) {
-				InvoiceCtrl.invoiceList.get(i).setStatus(edited);
+				InvoiceCtrl.invoiceList.get(i).setStatus(status);
 				db.EditInvoice(InvoiceCtrl.invoiceList.get(i));
 				return;
 			}
 		}
 	}
-	
-	public Invoice[] searchInvoice(String keyword) {
-		keyword = keyword.toLowerCase();
-		List<Invoice> matchedInvoice = new ArrayList<Invoice>();
 		
-        for(int i=0; i<InvoiceCtrl.invoiceList.size(); i++){
-        	Invoice temp = InvoiceCtrl.invoiceList.get(i);
-            if(temp.getInvoiceNumber().toLowerCase().contains(keyword) ||
+	public Object[][] searchInvoice(String keyword) {
+		keyword = keyword.toLowerCase();
+		Object[][] array = new Object[invoiceList.size()][];
+		int j = 0;
+		
+		for(int i=0; i<InvoiceCtrl.invoiceList.size(); i++){
+			Invoice temp = InvoiceCtrl.invoiceList.get(i);
+			if(temp.getInvoiceNumber().toLowerCase().contains(keyword) ||
                     temp.getPoNumber().toLowerCase().contains(keyword) ||
                     temp.getSupplierName().toLowerCase().contains(keyword) ||
                     temp.getStatus().toLowerCase().contains(keyword) )
-                matchedInvoice.add(temp);
+            	array[j++] = temp.toObject();
         }
-        
-        Invoice[] matchedInvoiceList = new Invoice[matchedInvoice.size()]; 
-        matchedInvoiceList = matchedInvoice.toArray(matchedInvoiceList);
-        return matchedInvoiceList;
+        return array;
 	}
 	
 }
