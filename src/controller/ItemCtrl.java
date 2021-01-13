@@ -40,21 +40,19 @@ public class ItemCtrl {
 		}
 	}
 	
-	public Item[] searchItem(String keyword) {
+	public Object[][] searchItem(String keyword) {
 		keyword = keyword.toLowerCase();
-		List<Item> matchedItem = new ArrayList<Item>();
+		Object[][] array = new Object[itemList.size()][];
+		int j = 0;
 		
         for(int i=0; i<ItemCtrl.itemList.size(); i++){
             Item temp = ItemCtrl.itemList.get(i);
             if(temp.getId().toLowerCase().contains(keyword) ||
                     temp.getTitle().toLowerCase().contains(keyword) ||
                     temp.getManufacturer().toLowerCase().contains(keyword))
-                matchedItem.add(temp);
+            	array[j++] = temp.toObject();
         }
-        
-        Item[] matchedItemList = new Item[matchedItem.size()]; 
-        matchedItemList = matchedItem.toArray(matchedItemList);
-        return matchedItemList;
+        return array;
 	}
 	
 }
