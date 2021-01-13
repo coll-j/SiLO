@@ -69,11 +69,12 @@ public class Item {
 	}
 	
 	public Object[] toObject() {
+		int i = 0;
 		Object[] obj = new Object[7];
-		obj[0] = this.id;
-		obj[1] = this.title;
-		obj[2] = this.manufacturer;
-		obj[3] = this.stocks;
+		obj[i++] = this.id;
+		obj[i++] = this.title;
+		obj[i++] = this.manufacturer;
+		obj[i++] = this.stocks;
 		
 		return obj;
 	}

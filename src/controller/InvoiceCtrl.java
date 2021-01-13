@@ -16,8 +16,8 @@ public class InvoiceCtrl {
 		invoiceList = db.getAllInvoice();
 	}
 	
-	public void addInvoice(String invoiceNumber, String poNumber, String supplierName, String status, Date orderDate, Date deliveryDate) {
-		Invoice temp = new Invoice(invoiceNumber, poNumber, supplierName, status, orderDate, deliveryDate); 
+	public void addInvoice(String invoiceNumber, String poNumber, String supplierName, Date orderDate, Date deliveryDate) {
+		Invoice temp = new Invoice(invoiceNumber, poNumber, supplierName, "new", orderDate, deliveryDate); 
 		db.addInvoice(temp);
 		InvoiceCtrl.invoiceList.add(temp);
 	}
@@ -29,8 +29,7 @@ public class InvoiceCtrl {
 		return invoiceArr;
 	}
 	
-	// misal status ntar edit
-	public void editInvoice(String invoiceNumber, String edited){
+	public void editStatusInvoice(String invoiceNumber, String edited){
 		for(int i=0; i<InvoiceCtrl.invoiceList.size(); i++) {
 			if(InvoiceCtrl.invoiceList.get(i).getInvoiceNumber().contains(invoiceNumber)) {
 				InvoiceCtrl.invoiceList.get(i).setStatus(edited);

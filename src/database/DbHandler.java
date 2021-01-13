@@ -189,7 +189,7 @@ public class DbHandler {
 			
 			while(rs.next()){
 				DeliveryNote temp = new DeliveryNote(rs.getString("deliveryNoteNumber"), rs.getString("customerName"), rs.getString("status"), rs.getString("invoiceNumber"),
-						rs.getDate("orderDate"), rs.getDate("deliveryDate") ); 
+						rs.getDate("orderDate"), rs.getDate("deliveryDate"), rs.getString("sign") ); 
 				deliveryNotes.add(temp);
 			}
 			conn.close();
@@ -205,18 +205,19 @@ public class DbHandler {
 		try {
 			Connection conn = new DbConnection().getConn();
 			
-			String sql = "UPDATE DeliveryNote SET CustomerName = ?, Status = ?, InvoiceNumber = ?, OrderDate = ?, DeliveryDate = ?  WHERE deliveryNoteNumber = ?";
+			String sql = "UPDATE DeliveryNote SET CustomerName = ?, Status = ?, InvoiceNumber = ?, OrderDate = ?, DeliveryDate = ?, Sign = ?   WHERE deliveryNoteNumber = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			
 			java.sql.Date sqlOrderDate=new java.sql.Date(deliveryNote.getOrderDate().getTime());
 			java.sql.Date sqlDeliveryDate=new java.sql.Date(deliveryNote.getDeliveryDate().getTime());
 			
-			ps.setString(6, deliveryNote.getDeliveryNoteNumber());
+			ps.setString(7, deliveryNote.getDeliveryNoteNumber());
 			ps.setString(1, deliveryNote.getCustomerName());
 			ps.setString(2, deliveryNote.getStatus());
 			ps.setString(3, deliveryNote.getInvoiceNumber());
 			ps.setDate(4, (java.sql.Date) sqlOrderDate);
 			ps.setDate(5, (java.sql.Date) sqlDeliveryDate);
+			ps.setString(6, deliveryNote.getSign());
 			
 			
 			ps.executeUpdate();
