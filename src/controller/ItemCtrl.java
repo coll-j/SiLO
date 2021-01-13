@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import database.DbHandler;
-import database.DeliveryNote;
 import database.Item;
 
 public class ItemCtrl {
