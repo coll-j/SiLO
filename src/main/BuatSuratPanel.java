@@ -28,55 +28,123 @@ public class BuatSuratPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         BuatSuratPanel = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        invoiceNumrTF = new javax.swing.JTextField();
+        dnNumTF = new javax.swing.JTextField();
+        InvoiceNumLabel = new javax.swing.JLabel();
+        dnNumLabel = new javax.swing.JLabel();
+        cusNameLabel = new javax.swing.JLabel();
+        cusEmailLabel = new javax.swing.JLabel();
+        cusEmailTF = new javax.swing.JTextField();
+        cusNameTF = new javax.swing.JTextField();
+        createBtn = new javax.swing.JButton();
 
-        BuatSuratPanel.setBackground(new java.awt.Color(0, 0, 0));
+        BuatSuratPanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Buat Surat Jalan");
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel2.setText("Delivery Note Form");
+
+        InvoiceNumLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        InvoiceNumLabel.setText("Invoice Number :");
+
+        dnNumLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        dnNumLabel.setText("Delivery Note Number :");
+
+        cusNameLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        cusNameLabel.setText("Customer Name :");
+
+        cusEmailLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        cusEmailLabel.setText("Customer Email Address :");
+
+        createBtn.setText("Create");
+        createBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout BuatSuratPanelLayout = new javax.swing.GroupLayout(BuatSuratPanel);
         BuatSuratPanel.setLayout(BuatSuratPanelLayout);
         BuatSuratPanelLayout.setHorizontalGroup(
             BuatSuratPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BuatSuratPanelLayout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addComponent(jLabel5)
-                .addContainerGap(757, Short.MAX_VALUE))
+                .addGroup(BuatSuratPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(BuatSuratPanelLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel2))
+                    .addGroup(BuatSuratPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(BuatSuratPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(createBtn)
+                            .addGroup(BuatSuratPanelLayout.createSequentialGroup()
+                                .addGroup(BuatSuratPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(BuatSuratPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(dnNumLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(InvoiceNumLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(cusNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cusEmailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(28, 28, 28)
+                                .addGroup(BuatSuratPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cusEmailTF, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(invoiceNumrTF, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(dnNumTF, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cusNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(214, Short.MAX_VALUE))
         );
         BuatSuratPanelLayout.setVerticalGroup(
             BuatSuratPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BuatSuratPanelLayout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addComponent(jLabel5)
-                .addContainerGap(540, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addComponent(jLabel2)
+                .addGap(54, 54, 54)
+                .addGroup(BuatSuratPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(invoiceNumrTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(InvoiceNumLabel))
+                .addGap(18, 18, 18)
+                .addGroup(BuatSuratPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dnNumTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dnNumLabel))
+                .addGap(18, 18, 18)
+                .addGroup(BuatSuratPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cusNameLabel)
+                    .addComponent(cusNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(BuatSuratPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cusEmailLabel)
+                    .addComponent(cusEmailTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(61, 61, 61)
+                .addComponent(createBtn)
+                .addContainerGap(299, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 894, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(BuatSuratPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addComponent(BuatSuratPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 611, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(BuatSuratPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addComponent(BuatSuratPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_createBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BuatSuratPanel;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel InvoiceNumLabel;
+    private javax.swing.JButton createBtn;
+    private javax.swing.JLabel cusEmailLabel;
+    private javax.swing.JTextField cusEmailTF;
+    private javax.swing.JLabel cusNameLabel;
+    private javax.swing.JTextField cusNameTF;
+    private javax.swing.JLabel dnNumLabel;
+    private javax.swing.JTextField dnNumTF;
+    private javax.swing.JTextField invoiceNumrTF;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

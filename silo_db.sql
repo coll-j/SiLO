@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 13, 2021 at 06:38 PM
+-- Generation Time: Jan 13, 2021 at 07:05 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -29,11 +29,11 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `deliverynote` (
   `deliveryNoteNumber` varchar(1024) NOT NULL,
-  `customerName` varchar(1024) NOT NULL,
-  `status` varchar(1024) NOT NULL,
-  `invoiceNumber` varchar(1024) NOT NULL,
-  `orderDate` date NOT NULL,
-  `deliveryDate` date NOT NULL,
+  `customerName` varchar(1024) DEFAULT NULL,
+  `status` varchar(1024) DEFAULT NULL,
+  `invoiceNumber` varchar(1024) DEFAULT NULL,
+  `orderDate` date DEFAULT NULL,
+  `deliveryDate` date DEFAULT NULL,
   `sign` varchar(1024) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -54,11 +54,11 @@ INSERT INTO `deliverynote` (`deliveryNoteNumber`, `customerName`, `status`, `inv
 
 CREATE TABLE `invoice` (
   `invoiceNumber` varchar(1024) NOT NULL,
-  `poNumber` varchar(1024) NOT NULL,
-  `supplierName` varchar(1024) NOT NULL,
-  `status` varchar(1024) NOT NULL,
-  `orderDate` date NOT NULL,
-  `deliveryDate` date NOT NULL
+  `poNumber` varchar(1024) DEFAULT NULL,
+  `supplierName` varchar(1024) DEFAULT NULL,
+  `status` varchar(1024) DEFAULT NULL,
+  `orderDate` date DEFAULT NULL,
+  `deliveryDate` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
