@@ -38,7 +38,7 @@ public class ItemPanel extends javax.swing.JPanel {
     	jTable1.setModel(new javax.swing.table.DefaultTableModel(
                 table_data,
                 new String [] {
-                    "ID", "Title", "Description", "Manufacturer", "Stocks"
+                    "ID", "Title", "Manufacturer", "Stocks"
                 }
             ) {
                 Class[] types = new Class [] {
