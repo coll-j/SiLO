@@ -5,6 +5,7 @@
  */
 package main;
 
+import java.awt.Color;
 import javax.swing.JPanel;
 
 /**
@@ -19,6 +20,7 @@ public class addItemPanel extends javax.swing.JPanel {
     ItemPanel parent;
     public addItemPanel(ItemPanel p) {
         parent = p;
+        this.setBackground(Color.black);
         initComponents();
     }
 
@@ -48,6 +50,7 @@ public class addItemPanel extends javax.swing.JPanel {
         label6 = new java.awt.Label();
         label7 = new java.awt.Label();
 
+        label1.setForeground(new java.awt.Color(255, 255, 255));
         label1.setText("Id");
 
         barcodeTextField.addActionListener(new java.awt.event.ActionListener() {
@@ -56,10 +59,13 @@ public class addItemPanel extends javax.swing.JPanel {
             }
         });
 
+        label2.setForeground(new java.awt.Color(255, 255, 255));
         label2.setText("barcode");
 
+        label3.setForeground(new java.awt.Color(255, 255, 255));
         label3.setText("title");
 
+        label4.setForeground(new java.awt.Color(255, 255, 255));
         label4.setText("descriptio");
 
         jButton1.setText("Add");
@@ -76,10 +82,13 @@ public class addItemPanel extends javax.swing.JPanel {
             }
         });
 
+        label5.setForeground(new java.awt.Color(255, 255, 255));
         label5.setText("manufacturer");
 
+        label6.setForeground(new java.awt.Color(255, 255, 255));
         label6.setText("url");
 
+        label7.setForeground(new java.awt.Color(255, 255, 255));
         label7.setText("stock");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
