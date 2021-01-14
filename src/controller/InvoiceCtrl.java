@@ -62,10 +62,13 @@ public class InvoiceCtrl {
 		for(int i=0; i<InvoiceCtrl.invoiceList.size(); i++){
 			Invoice temp = InvoiceCtrl.invoiceList.get(i);
 			if(temp.getInvoiceNumber().toLowerCase().contains(keyword) ||
-                    temp.getPoNumber().toLowerCase().contains(keyword) ||
-                    temp.getSupplierName().toLowerCase().contains(keyword) ||
                     temp.getStatus().toLowerCase().contains(keyword) )
             	array[j++] = temp.toObject();
+			else if(temp.getPoNumber() != null) {
+				if( temp.getPoNumber().toLowerCase().contains(keyword) ||
+                    temp.getSupplierName().toLowerCase().contains(keyword))
+					array[j++] = temp.toObject();
+			}
         }
         return array;
 	}

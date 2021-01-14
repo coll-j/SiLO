@@ -14,7 +14,7 @@ import javax.swing.JPanel;
  */
 public class AddItemPanel extends JPanel {
 
-    MainPage parent;
+    private MainPage parent;
     public AddItemPanel(MainPage Main) {
         parent = Main;
         this.setBackground(Color.black);

@@ -5,17 +5,18 @@
  */
 package main;
 
-import java.util.*; 
-import javax.swing.JOptionPane;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.Popup;
-import javax.swing.table.DefaultTableModel;
 
 import controller.*;
 
-public class MainPage extends javax.swing.JFrame {
+public class MainPage extends JFrame {
 	
-    private final String[] ItemTableCol = new String[] { "ID", "Title", "Manufacturer", "Stocks"};
+    private final String[] itemTableCol = new String[] { "ID", "Title", "Manufacturer", "Stocks"};
+    private final String[] dnTableCol = new String [] { "Invoice Number", "Delivery Notes Number", "Customer Name",
+    													"Order Date", "Delivery Date", "Status" };
+    private final String[] invoiceTableCol = new String [] { "Invoice Number", "PO Number", "Supplier Name", "Order Date",
+    														"Delivery Date", "Status" };
     
 	private javax.swing.JButton CreateDNBtn;
     private javax.swing.JButton InvoiceBtn;
@@ -34,25 +35,35 @@ public class MainPage extends javax.swing.JFrame {
     private AddItemPanel addItemPanel;
     
     private Table itemTable;
-    private ItemCtrl itemCtrl;
+    private Table dnTable;
+    private Table invoiceTable;
+    
+    private CreateDNCtrl createDNCtrl;
+	private ItemCtrl itemCtrl;
+	private DeliveryNoteCtrl dnCtrl;
+	private InvoiceCtrl invoiceCtrl;    
     
     private PopUp addItemPopUp;
     
     public MainPage() {
         initComponents();
-        
         initCode();
     }
     
     private void initComponents() {
     	itemCtrl = new ItemCtrl();
-        
+    	createDNCtrl = new CreateDNCtrl();
+    	dnCtrl = new DeliveryNoteCtrl();
+    	invoiceCtrl = new InvoiceCtrl();
+    	        
     	itemTable = new Table(this);
+    	dnTable = new Table(this);
+    	invoiceTable = new Table(this);
         
         itemPanel = new ItemPanel(this);
-        tagihanPanel = new TagihanPanel();
-        buatSuratPanel = new BuatSuratPanel();
-        suratJalanPanel = new SuratJalanPanel();
+        buatSuratPanel = new BuatSuratPanel(this);
+        tagihanPanel = new TagihanPanel(this);
+        suratJalanPanel = new SuratJalanPanel(this);
         
         addItemPanel = new AddItemPanel(this);
         addItemPopUp = new PopUp(itemPanel, this);
@@ -77,6 +88,14 @@ public class MainPage extends javax.swing.JFrame {
         MainPanel.add(panel);
         MainPanel.repaint();
         MainPanel.revalidate();
+        resetTable();
+    }
+    
+    private void resetTable() {
+    	dnTable.setTable(dnCtrl.getDNShort(), dnTableCol);
+    	invoiceTable.setTable(invoiceCtrl.getAllInvoice(), invoiceTableCol);
+    	itemTable.setTable(itemCtrl.getAllItem(), itemTableCol);
+    	
     }
     
     private void ItemBtnActionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,11 +110,47 @@ public class MainPage extends javax.swing.JFrame {
     	paintPanel(this.tagihanPanel);
     }
 
-    private void CreateDNBtnActionPerformed(java.awt.event.ActionEvent evt) {        
+    public DeliveryNoteCtrl getDnCtrl() {
+		return dnCtrl;
+	}
+
+	public void setDnCtrl(DeliveryNoteCtrl dnCtrl) {
+		this.dnCtrl = dnCtrl;
+	}
+
+	private void CreateDNBtnActionPerformed(java.awt.event.ActionEvent evt) {        
     	paintPanel(this.buatSuratPanel);
     }
     
-    public ItemPanel getItemPanel() {
+    public CreateDNCtrl getCreateDNCtrl() {
+		return createDNCtrl;
+	}
+
+	public Table getInvoiceTable() {
+		return invoiceTable;
+	}
+
+	public void setInvoiceTable(Table invoiceTable) {
+		this.invoiceTable = invoiceTable;
+	}
+
+	public InvoiceCtrl getInvoiceCtrl() {
+		return invoiceCtrl;
+	}
+
+	public void setInvoiceCtrl(InvoiceCtrl invoiceCtrl) {
+		this.invoiceCtrl = invoiceCtrl;
+	}
+
+	public String[] getInvoiceTableCol() {
+		return invoiceTableCol;
+	}
+
+	public void setCreateDNCtrl(CreateDNCtrl createDNCtrl) {
+		this.createDNCtrl = createDNCtrl;
+	}
+
+	public ItemPanel getItemPanel() {
 		return itemPanel;
 	}
 	
@@ -116,7 +171,19 @@ public class MainPage extends javax.swing.JFrame {
 	}
 
 	public String[] getItemTableCol() {
-		return ItemTableCol;
+		return itemTableCol;
+	}
+
+	public Table getDnTable() {
+		return dnTable;
+	}
+
+	public void setDnTable(Table dnTable) {
+		this.dnTable = dnTable;
+	}
+
+	public String[] getDnTableCol() {
+		return dnTableCol;
 	}
 
 	public void setAddItemPopUp(PopUp addItemPopUp) {

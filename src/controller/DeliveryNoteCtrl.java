@@ -67,7 +67,7 @@ public class DeliveryNoteCtrl {
 		}
 	}
 	
-	public Object[][] searchDeliveryNote(String keyword) {
+	public Object[][] searchDN(String keyword) {
 		keyword = keyword.toLowerCase();
 		Object[][] array = new Object[deliveryNoteList.size()][];
 		int j = 0;
@@ -76,11 +76,9 @@ public class DeliveryNoteCtrl {
         	DeliveryNote temp = DeliveryNoteCtrl.deliveryNoteList.get(i);
             if(temp.getDeliveryNoteNumber().toLowerCase().contains(keyword) ||
                     temp.getCustomerName().toLowerCase().contains(keyword) ||
-                    temp.getCustomerEmail().toLowerCase().contains(keyword) ||
-                    temp.getRequestedItem().toLowerCase().contains(keyword) ||
                     temp.getStatus().toLowerCase().contains(keyword) ||
                     temp.getInvoiceNumber().toLowerCase().contains(keyword) )
-            	array[j++] = temp.toObject();
+            	array[j++] = temp.toObjectShort();
         }
         return array;
 	}
