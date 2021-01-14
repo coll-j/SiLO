@@ -22,8 +22,11 @@ public class Table {
 				  int row=table.rowAtPoint(e.getPoint());
 				  int col= table.columnAtPoint(e.getPoint());
 				  
-				  if(table.getValueAt(row,col).toString().contains("Edit")) {
-					  parent.func(table.getValueAt(row,0).toString());
+				  if(table.getValueAt(row,col).toString().equals("  Edit  ")) {
+					  parent.showEditPopUp(table.getValueAt(row,0).toString());
+				  }
+				  else if(table.getValueAt(row,col).toString().equals("  View  ")) {
+					  parent.showDNPopUp(table.getValueAt(row,0).toString());
 				  }
 		} } );
 	}

@@ -134,6 +134,7 @@ public class DeliveryNote {
 		obj[i++] = this.orderDate;
 		obj[i++] = this.deliveryDate;
 		obj[i++] = this.status;
+		obj[i++] = "  View  ";
 		
 		return obj;
 	}

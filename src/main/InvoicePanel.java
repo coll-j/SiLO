@@ -7,11 +7,11 @@ package main;
 
 import controller.InvoiceCtrl;
 
-public class TagihanPanel extends javax.swing.JPanel {
+public class InvoicePanel extends javax.swing.JPanel {
 
     private MainPage parent;
 	
-    public TagihanPanel(MainPage main) {
+    public InvoicePanel(MainPage main) {
     	parent = main;
         initComponents();
         initCode();

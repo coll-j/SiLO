@@ -6,9 +6,7 @@
 package main;
 
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTable;
 
 import controller.*;
 
@@ -16,7 +14,7 @@ public class MainPage extends JFrame {
 	
     private final String[] itemTableCol = new String[] { "ID", "Title", "Manufacturer", "Stocks", ""};
     private final String[] dnTableCol = new String [] { "Invoice Number", "Delivery Notes Number", "Customer Name",
-    													"Order Date", "Delivery Date", "Status" };
+    													"Order Date", "Delivery Date", "Status", "" };
     private final String[] invoiceTableCol = new String [] { "Invoice Number", "PO Number", "Supplier Name", "Order Date",
     														"Delivery Date", "Status" };
     
@@ -31,11 +29,9 @@ public class MainPage extends JFrame {
     private javax.swing.JLabel jLabel10;
 
     private ItemPanel itemPanel;
-    private TagihanPanel tagihanPanel;
-    private BuatSuratPanel buatSuratPanel;
-    private SuratJalanPanel suratJalanPanel;
-    private AddItemPanel addItemPanel;
-    private EditItemPanel editItemPanel;
+    private InvoicePanel invoicePanel;
+    private CreateDNPanel createDNPanel;
+    private DeliveryNotePanel deliveryNotePanel;
     
     private Table itemTable;
     private Table dnTable;
@@ -47,7 +43,11 @@ public class MainPage extends JFrame {
 	private InvoiceCtrl invoiceCtrl;    
     
     private PopUp addItemPopUp;
+    private AddItemPanel addItemPanel;
     private PopUp editItemPopUp;
+    private EditItemPanel editItemPanel;
+    private PopUp viewDNPopUp;
+    private ViewDNPanel viewDNPanel;
     
     public MainPage() {
         initComponents();
@@ -65,15 +65,18 @@ public class MainPage extends JFrame {
     	invoiceTable = new Table(this);
         
         itemPanel = new ItemPanel(this);
-        buatSuratPanel = new BuatSuratPanel(this);
-        tagihanPanel = new TagihanPanel(this);
-        suratJalanPanel = new SuratJalanPanel(this);
+        createDNPanel = new CreateDNPanel(this);
+        invoicePanel = new InvoicePanel(this);
+        deliveryNotePanel = new DeliveryNotePanel(this);
         
         addItemPanel = new AddItemPanel(this);
         addItemPopUp = new PopUp(itemPanel, this);
         
         editItemPanel = new EditItemPanel(this);
     	editItemPopUp = new PopUp(itemPanel, this);
+    	
+    	viewDNPanel = new ViewDNPanel(this);
+    	viewDNPopUp = new PopUp(deliveryNotePanel, this);
         
     	MenuPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -98,9 +101,14 @@ public class MainPage extends JFrame {
         resetTable();
     }
     
-    public void func(String row) {
+    public void showEditPopUp(String id) {
     	editItemPopUp.showPopUp(editItemPanel);
-    	editItemPanel.fill(row);
+    	editItemPanel.fill(id);
+    }
+    
+    public void showDNPopUp(String id) {
+    	viewDNPopUp.showPopUp(viewDNPanel);
+    	viewDNPanel.fill(id);
     }
     
     private void resetTable() {
@@ -115,11 +123,27 @@ public class MainPage extends JFrame {
     }
 
     private void deliveryNoteBtnActionPerformed(java.awt.event.ActionEvent evt) {
-        paintPanel(this.suratJalanPanel);
+        paintPanel(this.deliveryNotePanel);
     }
 
     public EditItemPanel getEditItemPanel() {
 		return editItemPanel;
+	}
+
+	public PopUp getViewDNPopUp() {
+		return viewDNPopUp;
+	}
+
+	public void setViewDNPopUp(PopUp viewDNPopUp) {
+		this.viewDNPopUp = viewDNPopUp;
+	}
+
+	public ViewDNPanel getViewDNPanel() {
+		return viewDNPanel;
+	}
+
+	public void setViewDNPanel(ViewDNPanel viewDNPanel) {
+		this.viewDNPanel = viewDNPanel;
 	}
 
 	public void setEditItemPanel(EditItemPanel editItemPanel) {
@@ -135,7 +159,7 @@ public class MainPage extends JFrame {
 	}
 
 	private void InvoiceBtnActionPerformed(java.awt.event.ActionEvent evt) {
-    	paintPanel(this.tagihanPanel);
+    	paintPanel(this.invoicePanel);
     }
 
     public DeliveryNoteCtrl getDnCtrl() {
@@ -147,7 +171,7 @@ public class MainPage extends JFrame {
 	}
 
 	private void CreateDNBtnActionPerformed(java.awt.event.ActionEvent evt) {        
-    	paintPanel(this.buatSuratPanel);
+    	paintPanel(this.createDNPanel);
     }
     
     public CreateDNCtrl getCreateDNCtrl() {
@@ -234,28 +258,28 @@ public class MainPage extends JFrame {
 		this.itemCtrl = itemCtrl;
 	}
 
-	public TagihanPanel getTagihanPanel() {
-		return tagihanPanel;
+	public InvoicePanel getTagihanPanel() {
+		return invoicePanel;
 	}
 	
-	public void setTagihanPanel(TagihanPanel tagihanPanel) {
-		this.tagihanPanel = tagihanPanel;
+	public void setTagihanPanel(InvoicePanel invoicePanel) {
+		this.invoicePanel = invoicePanel;
 	}
 	
-	public BuatSuratPanel getBuatSuratPanel() {
-		return buatSuratPanel;
+	public CreateDNPanel getCreateDNPanel() {
+		return createDNPanel;
 	}
 	
-	public void setBuatSuratPanel(BuatSuratPanel buatSuratPanel) {
-		this.buatSuratPanel = buatSuratPanel;
+	public void setCreateDNPanel(CreateDNPanel createDNPanel) {
+		this.createDNPanel = createDNPanel;
 	}
 	
-	public SuratJalanPanel getSuratJalanPanel() {
-		return suratJalanPanel;
+	public DeliveryNotePanel getDeliveryNotePanel() {
+		return deliveryNotePanel;
 	}
 	
-	public void setSuratJalanPanel(SuratJalanPanel suratJalanPanel) {
-		this.suratJalanPanel = suratJalanPanel;
+	public void setDeliveryNotePanel(DeliveryNotePanel deliveryNotePanel) {
+		this.deliveryNotePanel = deliveryNotePanel;
 	}
 
 	public static void main(String args[]) {

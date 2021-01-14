@@ -7,11 +7,11 @@ package main;
 
 import controller.DeliveryNoteCtrl;
 
-public class SuratJalanPanel extends javax.swing.JPanel {
+public class DeliveryNotePanel extends javax.swing.JPanel {
 	
 	private MainPage parent;
 	
-    public SuratJalanPanel(MainPage main) {
+    public DeliveryNotePanel(MainPage main) {
     	parent = main;
     	initComponents();
     	initCode();
@@ -39,7 +39,7 @@ public class SuratJalanPanel extends javax.swing.JPanel {
     private javax.swing.JTextField searchTF;
     
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {
-    	parent.getDnTable().setTable(parent.getDnCtrl().searchDN(searchTF.getText()), parent.getItemTableCol());
+    	parent.getDnTable().setTable(parent.getDnCtrl().searchDN(searchTF.getText()), parent.getDnTableCol());
     }
     
     private void initCode() {

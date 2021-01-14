@@ -76,28 +76,28 @@ public class Invoice {
 	
 	public Object[] toObject() {
 		int i = 0;
-		Object[] obj = new Object[7];
+		Object[] obj = new Object[10];
 		
 		obj[i++] = this.invoiceNumber;
 		obj[i++] = this.poNumber;
 		obj[i++] = this.supplierName;
 		obj[i++] = this.status;
 		obj[i++] = this.orderDate;
-		obj[i++] = this.deliveryDate;	
+		obj[i++] = this.deliveryDate;
 		
 		return obj;
 	}
 	
 	public String[] toArray() {
 		int i = 0;
-		String[] obj = new String[7];
+		String[] obj = new String[10];
 		
 		obj[i++] = this.invoiceNumber;
 		obj[i++] = this.poNumber;
 		obj[i++] = this.supplierName;
 		obj[i++] = this.status;
 		obj[i++] = this.orderDate.toString();
-		obj[i++] = this.deliveryDate.toString();	
+		obj[i++] = this.deliveryDate.toString();
 		
 		return obj;
 	}

@@ -18,7 +18,7 @@ public class PopUp {
     
     public void showPopUp(JPanel panel) {
     	PopupFactory pf = PopupFactory.getSharedInstance();
-        popUp = pf.getPopup(parentPanel, panel, parentPanel.getLocationOnScreen().x + (parentPanel.getWidth()/4), parentPanel.getLocationOnScreen().y + (parentPanel.getHeight()/4));
+        popUp = pf.getPopup(parentPanel, panel, (parentPanel.getLocationOnScreen().x) + (parentPanel.getWidth()/4),  (parentPanel.getHeight()/4));
         popUp.show();
     }
     
