@@ -35,6 +35,7 @@ public class MainPage extends JFrame {
     private BuatSuratPanel buatSuratPanel;
     private SuratJalanPanel suratJalanPanel;
     private AddItemPanel addItemPanel;
+    private EditItemPanel editItemPanel;
     
     private Table itemTable;
     private Table dnTable;
@@ -46,6 +47,7 @@ public class MainPage extends JFrame {
 	private InvoiceCtrl invoiceCtrl;    
     
     private PopUp addItemPopUp;
+    private PopUp editItemPopUp;
     
     public MainPage() {
         initComponents();
@@ -70,6 +72,9 @@ public class MainPage extends JFrame {
         addItemPanel = new AddItemPanel(this);
         addItemPopUp = new PopUp(itemPanel, this);
         
+        editItemPanel = new EditItemPanel(this);
+    	editItemPopUp = new PopUp(itemPanel, this);
+        
     	MenuPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         ItemBtn = new javax.swing.JButton();
@@ -93,9 +98,9 @@ public class MainPage extends JFrame {
         resetTable();
     }
     
-    public void func(Object row) {
-
-		  System.out.println(" Value in the cell clicked :"+ " " + row);
+    public void func(String row) {
+    	editItemPopUp.showPopUp(editItemPanel);
+    	editItemPanel.fill(row);
     }
     
     private void resetTable() {
@@ -113,7 +118,23 @@ public class MainPage extends JFrame {
         paintPanel(this.suratJalanPanel);
     }
 
-    private void InvoiceBtnActionPerformed(java.awt.event.ActionEvent evt) {
+    public EditItemPanel getEditItemPanel() {
+		return editItemPanel;
+	}
+
+	public void setEditItemPanel(EditItemPanel editItemPanel) {
+		this.editItemPanel = editItemPanel;
+	}
+
+	public PopUp getEditItemPopUp() {
+		return editItemPopUp;
+	}
+
+	public void setEditItemPopUp(PopUp editItemPopUp) {
+		this.editItemPopUp = editItemPopUp;
+	}
+
+	private void InvoiceBtnActionPerformed(java.awt.event.ActionEvent evt) {
     	paintPanel(this.tagihanPanel);
     }
 

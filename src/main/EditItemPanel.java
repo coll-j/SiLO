@@ -15,11 +15,24 @@ import javax.swing.JPanel;
 public class EditItemPanel extends JPanel {
 
     private MainPage parent;
+    private String[] item;
+    
     public EditItemPanel(MainPage Main) {
         parent = Main;
         this.setBackground(Color.black);
         initComponents();
         initCode();
+    }
+    
+    public void fill( String id) {
+        item = parent.getItemCtrl().getItem(id);
+        idTextField.setText(item[0]); 
+        barcodeTextField.setText(item[1]); 
+        titleTextField.setText(item[2]); 
+        descriptionTextField.setText(item[3]); 
+        manuTextField.setText(item[4]); 
+        urlTextField.setText(item[5]);
+        stockTextField.setText(item[6]);
     }
 
     private void initComponents() {
@@ -41,7 +54,48 @@ public class EditItemPanel extends JPanel {
         labelUrl = new java.awt.Label();
         labelStock = new java.awt.Label();
 
-        labelId.setForeground(new java.awt.Color(255, 255, 255));
+        
+    }
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
+        parent.getEditItemPopUp().hidePopup();
+    }
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+    	
+    	parent.getItemCtrl().editItem(
+    			idTextField.getText(), 
+                barcodeTextField.getText(), 
+                titleTextField.getText(), 
+                descriptionTextField.getText(), 
+                manuTextField.getText(), 
+                urlTextField.getText(),
+                stockTextField.getText()
+    			);
+    	        
+        parent.getEditItemPopUp().hidePopup();
+        parent.getItemTable().setTable(parent.getItemCtrl().getAllItem(), parent.getItemTableCol());
+    }
+
+    private javax.swing.JTextField barcodeTextField;
+    private javax.swing.JTextField descriptionTextField;
+    private javax.swing.JTextField idTextField;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private java.awt.Label labelBarcode;
+    private java.awt.Label labelDesc;
+    private java.awt.Label labelId;
+    private java.awt.Label labelManu;
+    private java.awt.Label labelStock;
+    private java.awt.Label labelTitle;
+    private java.awt.Label labelUrl;
+    private javax.swing.JTextField manuTextField;
+    private javax.swing.JTextField stockTextField;
+    private javax.swing.JTextField titleTextField;
+    private javax.swing.JTextField urlTextField;
+    
+    private void initCode() {
+    	labelId.setForeground(new java.awt.Color(255, 255, 255));
         labelId.setText("Id");
 
         labelBarcode.setForeground(new java.awt.Color(255, 255, 255));
@@ -76,54 +130,6 @@ public class EditItemPanel extends JPanel {
         labelStock.setForeground(new java.awt.Color(255, 255, 255));
         labelStock.setText("stock");
         
-        
-
-        idTextField.setText(); 
-        barcodeTextField.setText(); 
-        titleTextField.setText(); 
-        descriptionTextField.setText(); 
-        manuTextField.setText(); 
-        urlTextField.setText();
-        stockTextField.setText();
-    }
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-        parent.getAddItemPopUp().hidePopup();
-    }
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        parent.getItemCtrl().addItem(
-                idTextField.getText(), 
-                barcodeTextField.getText(), 
-                titleTextField.getText(), 
-                descriptionTextField.getText(), 
-                manuTextField.getText(), 
-                urlTextField.getText(),
-                Integer.parseInt(stockTextField.getText()));
-        
-        parent.getAddItemPopUp().hidePopup();
-        parent.getItemTable().setTable(parent.getItemCtrl().getAllItem(), parent.getItemTableCol());
-    }
-
-    private javax.swing.JTextField barcodeTextField;
-    private javax.swing.JTextField descriptionTextField;
-    private javax.swing.JTextField idTextField;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private java.awt.Label labelBarcode;
-    private java.awt.Label labelDesc;
-    private java.awt.Label labelId;
-    private java.awt.Label labelManu;
-    private java.awt.Label labelStock;
-    private java.awt.Label labelTitle;
-    private java.awt.Label labelUrl;
-    private javax.swing.JTextField manuTextField;
-    private javax.swing.JTextField stockTextField;
-    private javax.swing.JTextField titleTextField;
-    private javax.swing.JTextField urlTextField;
-    
-    private void initCode() {
     	javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(

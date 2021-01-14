@@ -88,4 +88,18 @@ public class Invoice {
 		return obj;
 	}
 	
+	public String[] toArray() {
+		int i = 0;
+		String[] obj = new String[7];
+		
+		obj[i++] = this.invoiceNumber;
+		obj[i++] = this.poNumber;
+		obj[i++] = this.supplierName;
+		obj[i++] = this.status;
+		obj[i++] = this.orderDate.toString();
+		obj[i++] = this.deliveryDate.toString();	
+		
+		return obj;
+	}
+	
 }

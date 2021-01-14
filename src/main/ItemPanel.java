@@ -42,7 +42,7 @@ public class ItemPanel extends JPanel {
     }
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
-    	parent.getAddItemPopUp().showPopUp();
+    	parent.getAddItemPopUp().showPopUp(parent.getAddItemPanel());
     }
     
     private javax.swing.JPanel ItemPanel;

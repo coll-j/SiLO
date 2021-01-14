@@ -31,11 +31,11 @@ public class InvoiceCtrl {
 		return array;
 	}
 	
-	public Object[] getInvoice(String invoiceNumber) {
-		Object[] array = new Object[invoiceList.size()];
+	public String[] getInvoice(String invoiceNumber) {
+		String[] array = new String[invoiceList.size()];
         for (int i = 0; i < invoiceList.size(); i++) {
         	if(InvoiceCtrl.invoiceList.get(i).getInvoiceNumber().contains(invoiceNumber)) {
-        		array = invoiceList.get(i).toObject();
+        		array = InvoiceCtrl.invoiceList.get(i).toArray();
         		return array;
         	}
         	

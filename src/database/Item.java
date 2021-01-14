@@ -80,7 +80,21 @@ public class Item {
 		return obj;
 	}
 	
-	
+	public String[] toArray() {
+		int i = 0;
+		String stock = String.valueOf(this.stocks);
+		
+		String[] obj = new String[10];
+		obj[i++] = this.id;
+		obj[i++] = this.barcode;
+		obj[i++] = this.title;
+		obj[i++] = this.description;
+		obj[i++] = this.manufacturer;
+		obj[i++] = this.url;
+		obj[i++] = stock;
+		
+		return obj;
+	}
 	
     
 }

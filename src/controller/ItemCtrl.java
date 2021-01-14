@@ -29,6 +29,18 @@ public class ItemCtrl {
 		return array;
 	}
 	
+	public String[] getItem(String itemId) {
+		String[] array = new String[itemList.size()];
+        for (int i = 0; i < itemList.size(); i++) {
+        	if(ItemCtrl.itemList.get(i).getId().contains(itemId)) {
+        		array = itemList.get(i).toArray();
+            	return array;
+        	}
+        	
+        }
+		return array;
+	}
+	
 	public void editItem(String id, String barcode, String title, String description, String manufacturer, String url, String stocks){
 		for(int i=0; i<ItemCtrl.itemList.size(); i++) {
 			if(ItemCtrl.itemList.get(i).getId().contains(id)) {
