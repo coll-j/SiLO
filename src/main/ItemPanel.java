@@ -5,23 +5,11 @@
  */
 package main;
 
-import java.sql.Connection;
-
-import controller.ItemCtrl;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.Popup;
-import javax.swing.PopupFactory;
 
-/**
- *
- * @author ZK
- */
 public class ItemPanel extends JPanel {
 
     public MainPage parent;
-    private JPanel addPopUp;
-    Popup popup;
     
     public ItemPanel(MainPage main) {
         parent = main;

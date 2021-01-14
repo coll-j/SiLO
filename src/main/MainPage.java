@@ -6,13 +6,15 @@
 package main;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 
 import controller.*;
 
 public class MainPage extends JFrame {
 	
-    private final String[] itemTableCol = new String[] { "ID", "Title", "Manufacturer", "Stocks"};
+    private final String[] itemTableCol = new String[] { "ID", "Title", "Manufacturer", "Stocks", ""};
     private final String[] dnTableCol = new String [] { "Invoice Number", "Delivery Notes Number", "Customer Name",
     													"Order Date", "Delivery Date", "Status" };
     private final String[] invoiceTableCol = new String [] { "Invoice Number", "PO Number", "Supplier Name", "Order Date",
@@ -89,6 +91,11 @@ public class MainPage extends JFrame {
         MainPanel.repaint();
         MainPanel.revalidate();
         resetTable();
+    }
+    
+    public void func(Object row) {
+
+		  System.out.println(" Value in the cell clicked :"+ " " + row);
     }
     
     private void resetTable() {

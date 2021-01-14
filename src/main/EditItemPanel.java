@@ -12,10 +12,10 @@ import javax.swing.JPanel;
  *
  * @author ZK
  */
-public class AddItemPanel extends JPanel {
+public class EditItemPanel extends JPanel {
 
     private MainPage parent;
-    public AddItemPanel(MainPage Main) {
+    public EditItemPanel(MainPage Main) {
         parent = Main;
         this.setBackground(Color.black);
         initComponents();
@@ -53,7 +53,7 @@ public class AddItemPanel extends JPanel {
         labelDesc.setForeground(new java.awt.Color(255, 255, 255));
         labelDesc.setText("description");
 
-        jButton1.setText("Add");
+        jButton1.setText("Edit");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -75,8 +75,16 @@ public class AddItemPanel extends JPanel {
 
         labelStock.setForeground(new java.awt.Color(255, 255, 255));
         labelStock.setText("stock");
-
         
+        
+
+        idTextField.setText(); 
+        barcodeTextField.setText(); 
+        titleTextField.setText(); 
+        descriptionTextField.setText(); 
+        manuTextField.setText(); 
+        urlTextField.setText();
+        stockTextField.setText();
     }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,14 +104,6 @@ public class AddItemPanel extends JPanel {
         
         parent.getAddItemPopUp().hidePopup();
         parent.getItemTable().setTable(parent.getItemCtrl().getAllItem(), parent.getItemTableCol());
-        
-        idTextField.setText(""); 
-        barcodeTextField.setText(""); 
-        titleTextField.setText(""); 
-        descriptionTextField.setText(""); 
-        manuTextField.setText(""); 
-        urlTextField.setText("");
-        stockTextField.setText("");
     }
 
     private javax.swing.JTextField barcodeTextField;

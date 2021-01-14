@@ -75,6 +75,7 @@ public class Item {
 		obj[i++] = this.title;
 		obj[i++] = this.manufacturer;
 		obj[i++] = this.stocks;
+		obj[i++] = "  Edit  ";
 		
 		return obj;
 	}

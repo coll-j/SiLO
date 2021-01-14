@@ -31,6 +31,18 @@ public class InvoiceCtrl {
 		return array;
 	}
 	
+	public Object[] getInvoice(String invoiceNumber) {
+		Object[] array = new Object[invoiceList.size()];
+        for (int i = 0; i < invoiceList.size(); i++) {
+        	if(InvoiceCtrl.invoiceList.get(i).getInvoiceNumber().contains(invoiceNumber)) {
+        		array = invoiceList.get(i).toObject();
+        		return array;
+        	}
+        	
+        }
+		return array;
+	}
+	
 	public void editStatusInvoice(String invoiceNumber, String status){
 		for(int i=0; i<InvoiceCtrl.invoiceList.size(); i++) {
 			if(InvoiceCtrl.invoiceList.get(i).getInvoiceNumber().contains(invoiceNumber)) {
