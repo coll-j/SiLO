@@ -17,59 +17,24 @@ import javax.swing.PopupFactory;
  *
  * @author ZK
  */
-public class ItemPanel extends javax.swing.JPanel {
+public class ItemPanel extends JPanel {
 
-    private Object[][] itemData;
-    private ItemCtrl itemCtrl;
     public MainPage parent;
     private JPanel addPopUp;
     Popup popup;
-    public ItemPanel(MainPage p) {
-        parent = p;
-        addPopUp = new addItemPanel(this);
-    	itemCtrl = new ItemCtrl();
-    	itemData = itemCtrl.getAllItem();
+    
+    public ItemPanel(MainPage main) {
+        parent = main;
         initComponents();
+        initCode();
     }
     
-    public ItemCtrl getItemCtrl() {
-		return itemCtrl;
-	}
-
-	public void setItemCtrl(ItemCtrl itemCtrl) {
-		this.itemCtrl = itemCtrl;
-	}
-
-	public void refreshTable(){
-        itemData = itemCtrl.getAllItem();
-        setTable(itemData);
-        parent.paintItemPanel();
-    }
-    
-    private void setTable(Object[][] tableData) {
-    	jTable1.setModel(new javax.swing.table.DefaultTableModel(
-                tableData,
-                new String [] {
-                    "ID", "Title", "Manufacturer", "Stocks"
-                }
-            ) {
-                Class[] types = new Class [] {
-                    java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
-                };
-
-                public Class getColumnClass(int columnIndex) {
-                    return types [columnIndex];
-                }
-            });
-            jScrollPane1.setViewportView(jTable1);
-    }
     
     private void initComponents() {
 
         ItemPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        
         searchTF = new javax.swing.JTextField();
         searchButton = new javax.swing.JButton();
         addButton = new javax.swing.JButton();
@@ -79,16 +44,36 @@ public class ItemPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel2.setText("Item List");
 
-        setTable(itemData);
+        parent.getItemTable().setTable(parent.getItemCtrl().getAllItem(), parent.getItemTableCol());
+        
+    }
 
-        searchButton.setText("Search");
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
+        parent.getItemTable().setTable(parent.getItemCtrl().searchItem(searchTF.getText()), parent.getItemTableCol());
+    }
+
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
+    	parent.getAddItemPopUp().showPopUp();
+    }
+    
+    private javax.swing.JPanel ItemPanel;
+    private javax.swing.JButton addButton;
+    private javax.swing.JLabel jLabel2;
+    
+    private javax.swing.JButton searchButton;
+    private javax.swing.JTextField searchTF;
+    
+    
+    private void initCode() {
+    	searchButton.setText("Search");
         searchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchButtonActionPerformed(evt);
             }
         });
-
-        addButton.setText("Add");
+        
+    	addButton.setText("Add");
         addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addButtonActionPerformed(evt);
@@ -108,7 +93,7 @@ public class ItemPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(searchButton))
                     .addGroup(ItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 638, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent( parent.getItemTable().getScrPane() , javax.swing.GroupLayout.PREFERRED_SIZE, 638, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel2)))
                 .addContainerGap(111, Short.MAX_VALUE))
         );
@@ -123,7 +108,7 @@ public class ItemPanel extends javax.swing.JPanel {
                     .addComponent(searchButton)
                     .addComponent(addButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(parent.getItemTable().getScrPane(), javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
@@ -148,30 +133,4 @@ public class ItemPanel extends javax.swing.JPanel {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
     }
-
-
-    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
-        setTable( itemCtrl.searchItem(searchTF.getText()) );
-    }
-
-    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
-        PopupFactory pf = PopupFactory.getSharedInstance();
-        popup = pf.getPopup(this, addPopUp, this.getLocationOnScreen().x + (this.getWidth()/4), this.getLocationOnScreen().y + (this.getHeight()/4));
-        popup.show();
-    }
-    
-    public void hidePopup() {
-        popup.hide();
-        popup = null;
-    }
-    
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel ItemPanel;
-    private javax.swing.JButton addButton;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JButton searchButton;
-    private javax.swing.JTextField searchTF;
-    // End of variables declaration//GEN-END:variables
 }
