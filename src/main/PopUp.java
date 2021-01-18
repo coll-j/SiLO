@@ -5,15 +5,11 @@ import javax.swing.Popup;
 import javax.swing.PopupFactory;
 
 public class PopUp {
-	private JPanel popUpPanel,
-					parentPanel;
+	private JPanel parentPanel;
     private Popup popUp;
-    private MainPage parent;
     
-    public PopUp(JPanel panel, MainPage main) {
-    	popUpPanel = 
+    public PopUp(JPanel panel) {
     	parentPanel = panel;
-    	parent = main;
     }
     
     public void showPopUp(JPanel panel) {

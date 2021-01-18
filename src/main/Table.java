@@ -3,9 +3,11 @@ package main;
 import java.awt.event.MouseEvent;
 import java.util.Vector;
 
+import javax.swing.DefaultCellEditor;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 public class Table {
@@ -13,11 +15,19 @@ public class Table {
 	private MainPage parent;
 	private JScrollPane scrPane;
     private JTable table;
+    
+    private JTextField tf;
+    private DefaultCellEditor editor;
 	
 	public Table(MainPage main) {
 		scrPane = new JScrollPane();  
 	    table = new JTable();
 	    parent = main;
+	    
+	    tf = new JTextField();
+	    tf.setEditable(false);
+	    DefaultCellEditor editor = new DefaultCellEditor( tf );
+	    table.setDefaultEditor(Object.class, editor);
 	    
 	    table.addMouseListener(new java.awt.event.MouseAdapter() {
 			  public void mouseClicked(MouseEvent e) {
@@ -28,7 +38,7 @@ public class Table {
 					  parent.showEditItemPopUp(table.getValueAt(row,0).toString());
 				  }
 				  else if(table.getValueAt(row,col).toString().equals("  View  ")) {
-					  parent.showDNPopUp(table.getValueAt(row,0).toString());
+					  parent.showDNPopUp(table.getValueAt(row,1).toString());
 				  }
 		} } );
 	}
@@ -41,8 +51,4 @@ public class Table {
 		return scrPane;
 	}
 
-	public void getScrPane(JScrollPane scrPane) {
-		this.scrPane = scrPane;
-	}
-	
 }

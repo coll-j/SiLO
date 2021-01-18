@@ -4,8 +4,6 @@ import java.sql.*;
 import java.util.List;
 import java.util.Vector;
 
-import java.util.ArrayList;
-
 public class DbHandler {
 	
 	public void addItem(Item item) {
@@ -62,20 +60,14 @@ public class DbHandler {
 	public Vector<Vector<Object>> searchItems(String keyword) {
 		try {
 			Connection conn = new DbConnection().getConn();
-			    
-			String sql = "select id, title, manufacturer, stocks from item where "
-					+ "id LIKE concat('%',? , '%')"
-					+ "title LIKE concat('%',? , '%')"
-					+ "manufacturer LIKE concat('%',? , '%')" ;
 			
-			PreparedStatement ps = conn.prepareStatement(sql);
+			Statement stmt=conn.createStatement();
+			ResultSet rs=stmt.executeQuery( "select id, title, manufacturer, stocks from item where "
+											+ "id LIKE '%" + keyword + "%' or "
+											+ "title LIKE '%" + keyword + "%' or "
+											+ "manufacturer LIKE '%" + keyword + "%'"
+											);
 			
-			int j = 0;
-			ps.setString(++j, keyword);
-			ps.setString(++j, keyword);
-			ps.setString(++j, keyword);
-			
-			ResultSet rs=ps.executeQuery();
 			ResultSetMetaData metaData = rs.getMetaData();
 			int columnCount = metaData.getColumnCount();
 
@@ -133,7 +125,7 @@ public class DbHandler {
 			
 			String sql = "UPDATE ITEM SET barcode = ?, title = ?, description = ?, manufacturer = ?, url = ?, stocks = ?  WHERE id = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
-			
+						
 			ps.setString(1, item.getBarcode());
 			ps.setString(2, item.getTitle());
 			ps.setString(3, item.getDescription());
@@ -191,7 +183,7 @@ public class DbHandler {
                 for (int i = 1; i <= columnCount; i++) {
                     vector.add(rs.getObject(i));
                 }
-                vector.add("  View  ");
+                vector.add("  View   ");
                 data.add(vector);
             }
 			
@@ -207,22 +199,15 @@ public class DbHandler {
 	public Vector<Vector<Object>> searchInvoices(String keyword) {
 		try {
 			Connection conn = new DbConnection().getConn();
-			    
-			String sql = "select invoiceNumber, poNumber, supplierName, orderDate, deliveryDate, status from invoice where "
-					+ "invoiceNumber LIKE concat('%',? , '%')"
-					+ "poNumber LIKE concat('%',? , '%')"
-					+ "supplierName LIKE concat('%',? , '%')"
-					+ "status LIKE concat('%',? , '%')";
 			
-			PreparedStatement ps = conn.prepareStatement(sql);
+			Statement stmt=conn.createStatement();
+			ResultSet rs=stmt.executeQuery("select invoiceNumber, poNumber, supplierName, orderDate, deliveryDate, status from invoice where "
+											+ "invoiceNumber LIKE '%" + keyword + "%' or "
+											+ "poNumber LIKE '%" + keyword + "%' or "
+											+ "supplierName LIKE '%" + keyword + "%' or "
+											+ "status LIKE '%" + keyword + "%' "
+											);
 			
-			int j = 0;
-			ps.setString(++j, keyword);
-			ps.setString(++j, keyword);
-			ps.setString(++j, keyword);
-			ps.setString(++j, keyword);
-			
-			ResultSet rs=ps.executeQuery();
 			ResultSetMetaData metaData = rs.getMetaData();
 			int columnCount = metaData.getColumnCount();
 
@@ -232,7 +217,7 @@ public class DbHandler {
                 for (int i = 1; i <= columnCount; i++) {
                     vector.add(rs.getObject(i));
                 }
-                vector.add("  Edit  ");
+                vector.add("  View   ");
                 data.add(vector);
             }
 			
@@ -291,7 +276,7 @@ public class DbHandler {
 		
 	}
 	
-	public void completeInvoice(String invoiceNumber, String status, Date deliveryDate) {
+	public void completeInvoice(String invoiceNumber, String status, java.util.Date deliveryDate) {
 		try {
 			Connection conn = new DbConnection().getConn();
 			
@@ -299,7 +284,7 @@ public class DbHandler {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			
 			ps.setString(1, status);
-			ps.setDate(2, deliveryDate);
+			ps.setDate(2, (java.sql.Date) deliveryDate);
 			ps.setString(3, invoiceNumber);
 			
 			ps.executeUpdate();
@@ -370,21 +355,13 @@ public class DbHandler {
 		try {
 			Connection conn = new DbConnection().getConn();
 			    
-			String sql = "select invoiceNumber, deliveryNoteNumber, customerName, orderDate, deliveryDate, status from deliverynote where "
-					+ "invoiceNumber LIKE concat('%',? , '%')"
-					+ "deliveryNoteNumber LIKE concat('%',? , '%')"
-					+ "customerName LIKE concat('%',? , '%')"
-					+ "status LIKE concat('%',? , '%')";
-			
-			PreparedStatement ps = conn.prepareStatement(sql);
-			
-			int j = 0;
-			ps.setString(++j, keyword);
-			ps.setString(++j, keyword);
-			ps.setString(++j, keyword);
-			ps.setString(++j, keyword);
-			
-			ResultSet rs=ps.executeQuery();
+			Statement stmt=conn.createStatement();
+			ResultSet rs=stmt.executeQuery( "select invoiceNumber, deliveryNoteNumber, customerName, orderDate, deliveryDate, status from deliverynote where "
+											+ "invoiceNumber LIKE '%" + keyword + "%' or "
+											+ "deliveryNoteNumber LIKE '%" + keyword + "%' or "
+											+ "customerName LIKE '%" + keyword + "%' or "
+											+ "status LIKE '%" + keyword + "%' "
+											);
 			ResultSetMetaData metaData = rs.getMetaData();
 			int columnCount = metaData.getColumnCount();
 
@@ -394,7 +371,7 @@ public class DbHandler {
                 for (int i = 1; i <= columnCount; i++) {
                     vector.add(rs.getObject(i));
                 }
-                vector.add("  Edit  ");
+                vector.add("  View  ");
                 data.add(vector);
             }
 			
@@ -417,6 +394,8 @@ public class DbHandler {
 			ps.setString(1, keyword);
 			ResultSet rs = ps.executeQuery();
 			rs.next();
+			
+			
             
             DeliveryNote deliveryNote = new DeliveryNote( rs.getString("deliveryNoteNumber"),
 						            					  rs.getString("customerName"),
@@ -424,7 +403,7 @@ public class DbHandler {
 						            					  rs.getString("requestedItem"),
 						            					  rs.getString("status"),
 						            					  rs.getString("invoiceNumber"),
-						            					  rs.getDate("oderDate"),
+						            					  rs.getDate("orderDate"),
 						            					  rs.getDate("deliveryDate"),
 						            					  rs.getString("sign")
 						            					  );
@@ -457,15 +436,17 @@ public class DbHandler {
 		
 	}
 	
-	public void completeDN(String dnNumber, String status, Date deliveryDate, String sign) {
+	public void completeDN(String dnNumber, String status, String sign) {
 		try {
 			Connection conn = new DbConnection().getConn();
 			
 			String sql = "UPDATE DeliveryNote SET Status = ?, DeliveryDate = ?, Sign = ?   WHERE deliveryNoteNumber = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			
+			Date date = new java.sql.Date(new java.util.Date().getTime());
+			
 			ps.setString(1, status);
-			ps.setDate(2, deliveryDate);
+			ps.setDate(2, date);
 			ps.setString(3, sign);
 			ps.setString(4, dnNumber);
 						

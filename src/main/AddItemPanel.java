@@ -95,7 +95,7 @@ public class AddItemPanel extends JPanel {
                 );
         
         parent.hideAddItemPopUp();
-		parent.setTable("item");
+		parent.setItemTable();
 		
 		idTextField.setText(""); 
 		barcodeTextField.setText(""); 

@@ -30,17 +30,17 @@ public class DeliveryNoteCtrl {
 		return db.searchDelivNotes(keyword);
 	}
 	
-	public String[] getdelivNote(String id) {
+	public String[] getDelivNote(String id) {
 		DeliveryNote data = db.getDelivNote(id);
 		
-		return new String [] { data.getInvoiceNumber(),
-							   data.getDeliveryNoteNumber(),
+		return new String [] { data.getDeliveryNoteNumber(),
 							   data.getCustomerName(),
 							   data.getCustomerEmail(),
-							   data.getRequestedItem(),
-							   data.getStatus(),
+							   data.getInvoiceNumber(),
 							   data.getOrderDateStr(),
 							   data.getDeliveryDateStr(),
+							   data.getStatus(),
+							   data.getRequestedItem(),
 							   data.getSign()
             };
 	}
@@ -53,6 +53,6 @@ public class DeliveryNoteCtrl {
 	}
 	
 	public void completeDN(String DeliveryNoteNumber, String sign){
-		db.completeDN( DeliveryNoteNumber, "completed",  (java.sql.Date) new Date(), sign);
+		db.completeDN( DeliveryNoteNumber, "completed", sign);
 	}
 }

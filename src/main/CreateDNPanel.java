@@ -68,12 +68,11 @@ public class CreateDNPanel extends javax.swing.JPanel {
     }
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
-    	parent.getCreateDNCtrl().CreateDN (dnNumTF.getText(),
-                                cusNameTF.getText(),
-                                cusEmailTF.getText(),
-                                reqItemTF.getText(),
-                                invoiceNumTF.getText() );
-        
+    	parent.createDN(dnNumTF.getText(),
+                        cusNameTF.getText(),
+                        cusEmailTF.getText(),
+                        reqItemTF.getText(),
+                        invoiceNumTF.getText() );
         dnNumTF.setText("");
         cusNameTF.setText("");
         cusEmailTF.setText("");

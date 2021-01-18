@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package main;
 
 import java.awt.Color;
@@ -11,24 +6,30 @@ import javax.swing.JPanel;
 public class ViewDNPanel extends JPanel {
 
     private MainPage parent;
-    private String[] item;
+    private String[] delivNote;
     
     public ViewDNPanel(MainPage Main) {
         parent = Main;
-        this.setBackground(Color.black);
         initComponents();
-        initCode();
+        initCode();        
     }
     
     public void fill( String id) {
-//        item = parent.getItemCtrl().getItem(id);
-//        dnNumTF.setText(item[0]); 
-//        cusNameTF.setText(item[1]); 
-//        cusEmailTF.setText(item[2]); 
-//        descTF.setText(item[3]); 
-//        manuTextField.setText(item[4]); 
-//        urlTextField.setText(item[5]);
-//        stockTextField.setText(item[6]);
+        delivNote = parent.getDelivNote(id);
+        
+        dnNumTF.setText(delivNote[0]);
+        cusNameTF.setText(delivNote[1]);
+        cusEmailTF.setText(delivNote[2]);
+        invoiceNumTF.setText(delivNote[3]);
+        orderDateTF.setText(delivNote[4]);
+        statusTF.setText(delivNote[6]);
+        reqItemTF.setText(delivNote[7]);
+        signTF.setText(delivNote[8]);
+        
+        if(delivNote[5].equals("null"))
+        	delivDateTF.setText("");
+        else
+        	delivDateTF.setText(delivNote[5]);
     }
 
     private void initComponents() {
@@ -56,19 +57,47 @@ public class ViewDNPanel extends JPanel {
         signBtn = new javax.swing.JButton();
     }
     
-    private void pBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pBtnActionPerformed
-       
+    private void pBtnActionPerformed(java.awt.event.ActionEvent evt) {
+    	
     }
     
-    private void signBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signBtnActionPerformed
-        // 
+    private void signBtnActionPerformed(java.awt.event.ActionEvent evt) {
+    	signTF.setText("Signed");
+    	signTF.setEditable(true);
+        signTF.setEnabled(true);
+        
+        parent.completeDN(delivNote[0], "Signed");
     }
     
-    private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtnActionPerformed
-     	parent.getViewDNPopUp().hidePopup();
+    private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {
+     	parent.hideDNPopUp();
     }
 
+    private javax.swing.JButton closeBtn;
+    private javax.swing.JTextField cusEmailTF;
+    private javax.swing.JTextField cusNameTF;
+    private javax.swing.JTextField delivDateTF;
+    private javax.swing.JTextField dnNumTF;
+    private javax.swing.JTextField invoiceNumTF;
+    private java.awt.Label label1;
+    private java.awt.Label label2;
+    private java.awt.Label label3;
+    private java.awt.Label label4;
+    private java.awt.Label label5;
+    private java.awt.Label label6;
+    private java.awt.Label label7;
+    private java.awt.Label label8;
+    private java.awt.Label label9;
+    private javax.swing.JTextField orderDateTF;
+    private javax.swing.JButton pBtn;
+    private javax.swing.JTextField reqItemTF;
+    private javax.swing.JButton signBtn;
+    private javax.swing.JTextField signTF;
+    private javax.swing.JTextField statusTF;
+    
     private void initCode() {
+    	this.setBackground(Color.black);
+        
     	label1.setForeground(new java.awt.Color(255, 255, 255));
         label1.setText("Delivery Note Number");
 
@@ -211,27 +240,5 @@ public class ViewDNPanel extends JPanel {
 
         dnNumTF.getAccessibleContext().setAccessibleName("idTextField");
     }
-    
-    private javax.swing.JButton closeBtn;
-    private javax.swing.JTextField cusEmailTF;
-    private javax.swing.JTextField cusNameTF;
-    private javax.swing.JTextField delivDateTF;
-    private javax.swing.JTextField dnNumTF;
-    private javax.swing.JTextField invoiceNumTF;
-    private java.awt.Label label1;
-    private java.awt.Label label2;
-    private java.awt.Label label3;
-    private java.awt.Label label4;
-    private java.awt.Label label5;
-    private java.awt.Label label6;
-    private java.awt.Label label7;
-    private java.awt.Label label8;
-    private java.awt.Label label9;
-    private javax.swing.JTextField orderDateTF;
-    private javax.swing.JButton pBtn;
-    private javax.swing.JTextField reqItemTF;
-    private javax.swing.JButton signBtn;
-    private javax.swing.JTextField signTF;
-    private javax.swing.JTextField statusTF;
 
 }

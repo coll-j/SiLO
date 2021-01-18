@@ -26,15 +26,12 @@ public class InvoicePanel extends javax.swing.JPanel {
 
         TagihanPanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel11.setText("Tagihan");
-
-        parent.getInvoiceTable().setTable(parent.getInvoiceCtrl().getInvoices(), parent.getInvoiceTableCol());
-   
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 24));
+        jLabel11.setText("Invoice List");
     }
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {
-    	parent.getInvoiceTable().setTable(parent.getInvoiceCtrl().searchInvoice(searchTF.getText()), parent.getInvoiceTableCol());
+    	parent.setInvoiceTable( searchTF.getText());
     }
         
     private javax.swing.JPanel TagihanPanel;
@@ -63,7 +60,7 @@ public class InvoicePanel extends javax.swing.JPanel {
                         .addComponent(searchBtn))
                     .addGroup(TagihanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel11)
-                        .addComponent(parent.getInvoiceTable().getScrPane(), javax.swing.GroupLayout.PREFERRED_SIZE, 697, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(parent.getInvoiceTableScrPane(), javax.swing.GroupLayout.PREFERRED_SIZE, 697, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(57, Short.MAX_VALUE))
         );
         TagihanPanelLayout.setVerticalGroup(
@@ -76,7 +73,7 @@ public class InvoicePanel extends javax.swing.JPanel {
                     .addComponent(searchBtn)
                     .addComponent(searchTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(parent.getInvoiceTable().getScrPane(), javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(parent.getInvoiceTableScrPane(), javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(73, Short.MAX_VALUE))
         );
 

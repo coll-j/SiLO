@@ -27,10 +27,7 @@ public class DeliveryNotePanel extends javax.swing.JPanel {
         SuratJalanPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel2.setText("Delivery Note List");
-
-//        parent.getDnTable().setTable(parent.getDnCtrl().getDNShort(), parent.getItemTableCol());
-        
+        jLabel2.setText("Delivery Note List");        
     }
 
     private javax.swing.JPanel SuratJalanPanel;
@@ -39,7 +36,7 @@ public class DeliveryNotePanel extends javax.swing.JPanel {
     private javax.swing.JTextField searchTF;
     
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {
-    	parent.getDnTable().setTable(parent.getDnCtrl().searchDN(searchTF.getText()), parent.getDnTableCol());
+    	parent.setDNTable(searchTF.getText());
     }
     
     private void initCode() {
@@ -63,7 +60,7 @@ public class DeliveryNotePanel extends javax.swing.JPanel {
                         .addComponent(searchBtn))
                     .addGroup(SuratJalanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel2)
-                        .addComponent(parent.getDnTable().getScrPane(), javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(parent.getDNTableScrPane(), javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(125, Short.MAX_VALUE))
         );
         SuratJalanPanelLayout.setVerticalGroup(
@@ -76,7 +73,7 @@ public class DeliveryNotePanel extends javax.swing.JPanel {
                     .addComponent(searchBtn)
                     .addComponent(searchTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(parent.getDnTable().getScrPane(), javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(parent.getDNTableScrPane(), javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44))
         );
 

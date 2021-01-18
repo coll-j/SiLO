@@ -35,7 +35,7 @@ public class ItemPanel extends JPanel {
 
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
-        parent.setTable(searchTF.getText(), "item");
+        parent.setItemTable(searchTF.getText());
     }
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
@@ -78,7 +78,7 @@ public class ItemPanel extends JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(searchButton))
                     .addGroup(ItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent( parent.getTableScrPane() , javax.swing.GroupLayout.PREFERRED_SIZE, 638, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent( parent.getItemTableScrPane() , javax.swing.GroupLayout.PREFERRED_SIZE, 638, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel2)))
                 .addContainerGap(111, Short.MAX_VALUE))
         );
@@ -93,7 +93,7 @@ public class ItemPanel extends JPanel {
                     .addComponent(searchButton)
                     .addComponent(addButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(parent.getTableScrPane(), javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(parent.getItemTableScrPane(), javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
