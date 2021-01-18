@@ -29,7 +29,7 @@ public class DeliveryNotePanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel2.setText("Delivery Note List");
 
-        parent.getDnTable().setTable(parent.getDnCtrl().getDNShort(), parent.getItemTableCol());
+//        parent.getDnTable().setTable(parent.getDnCtrl().getDNShort(), parent.getItemTableCol());
         
     }
 

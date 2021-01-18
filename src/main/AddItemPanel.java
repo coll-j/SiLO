@@ -15,15 +15,16 @@ import javax.swing.JPanel;
 public class AddItemPanel extends JPanel {
 
     private MainPage parent;
+    
     public AddItemPanel(MainPage Main) {
         parent = Main;
-        this.setBackground(Color.black);
         initComponents();
         initCode();
     }
 
     private void initComponents() {
-
+    	
+    	this.setBackground(Color.black);
         labelId = new java.awt.Label();
         idTextField = new javax.swing.JTextField();
         barcodeTextField = new javax.swing.JTextField();
@@ -75,35 +76,34 @@ public class AddItemPanel extends JPanel {
 
         labelStock.setForeground(new java.awt.Color(255, 255, 255));
         labelStock.setText("stock");
-
         
     }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-        parent.getAddItemPopUp().hidePopup();
+    	parent.hideAddItemPopUp();
     }
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        parent.getItemCtrl().addItem(
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+        parent.createItem(
                 idTextField.getText(), 
                 barcodeTextField.getText(), 
                 titleTextField.getText(), 
                 descriptionTextField.getText(), 
                 manuTextField.getText(), 
                 urlTextField.getText(),
-                Integer.parseInt(stockTextField.getText()));
+                stockTextField.getText()
+                );
         
-        parent.getAddItemPopUp().hidePopup();
-        parent.getItemTable().setTable(parent.getItemCtrl().getAllItem(), parent.getItemTableCol());
-        
-        idTextField.setText(""); 
-        barcodeTextField.setText(""); 
-        titleTextField.setText(""); 
-        descriptionTextField.setText(""); 
-        manuTextField.setText(""); 
-        urlTextField.setText("");
-        stockTextField.setText("");
+        parent.hideAddItemPopUp();
+		parent.setTable("item");
+		
+		idTextField.setText(""); 
+		barcodeTextField.setText(""); 
+		titleTextField.setText(""); 
+		descriptionTextField.setText(""); 
+		manuTextField.setText(""); 
+		urlTextField.setText("");
+		stockTextField.setText("");
     }
 
     private javax.swing.JTextField barcodeTextField;

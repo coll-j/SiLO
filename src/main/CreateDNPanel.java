@@ -14,9 +14,7 @@ import controller.CreateDNCtrl;
 public class CreateDNPanel extends javax.swing.JPanel {
 
 	private MainPage parent;
-    /**
-     * Creates new form BuatSuratPanel
-     */
+	
     public CreateDNPanel(MainPage main) {
     	parent = main;
         initComponents();

@@ -17,12 +17,7 @@ public class addItemPanel extends javax.swing.JPanel {
     /**
      * Creates new form addItemPanel
      */
-    ItemPanel parent;
-    public addItemPanel(ItemPanel p) {
-        parent = p;
-        this.setBackground(Color.black);
-        initComponents();
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -175,29 +170,12 @@ public class addItemPanel extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        parent.hidePopup();
+       
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        parent.itemCtrl.addItem(
-                idTextField.getText(), 
-                barcodeTextField.getText(), 
-                titleTextField.getText(), 
-                descriptionTextField.getText(), 
-                manuTextField.getText(), 
-                urlTextField.getText(),
-                Integer.parseInt(stockTextField.getText()));
-        parent.hidePopup();
-        parent.refreshTable();
         
-        idTextField.setText(""); 
-        barcodeTextField.setText(""); 
-        titleTextField.setText(""); 
-        descriptionTextField.setText(""); 
-        manuTextField.setText(""); 
-        urlTextField.setText("");
-        stockTextField.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

@@ -8,10 +8,6 @@ package main;
 import java.awt.Color;
 import javax.swing.JPanel;
 
-/**
- *
- * @author ZK
- */
 public class EditItemPanel extends JPanel {
 
     private MainPage parent;
@@ -25,7 +21,7 @@ public class EditItemPanel extends JPanel {
     }
     
     public void fill( String id) {
-        item = parent.getItemCtrl().getItem(id);
+        item = parent.getItem(id);
         idTextField.setText(item[0]); 
         barcodeTextField.setText(item[1]); 
         titleTextField.setText(item[2]); 
@@ -58,12 +54,12 @@ public class EditItemPanel extends JPanel {
     }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-        parent.getEditItemPopUp().hidePopup();
+        parent.hideEditItemPopUp();
     }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
     	
-    	parent.getItemCtrl().editItem(
+    	parent.editItem(
     			idTextField.getText(), 
                 barcodeTextField.getText(), 
                 titleTextField.getText(), 
@@ -73,8 +69,8 @@ public class EditItemPanel extends JPanel {
                 stockTextField.getText()
     			);
     	        
-        parent.getEditItemPopUp().hidePopup();
-        parent.getItemTable().setTable(parent.getItemCtrl().getAllItem(), parent.getItemTableCol());
+        parent.hideEditItemPopUp();
+        parent.setTable("item");
     }
 
     private javax.swing.JTextField barcodeTextField;

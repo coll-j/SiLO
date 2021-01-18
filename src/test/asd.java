@@ -204,29 +204,12 @@ public class asd extends javax.swing.JPanel {
 
     private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtnActionPerformed
         // TODO add your handling code here:
-        parent.hidePopup();
+        
     }//GEN-LAST:event_closeBtnActionPerformed
 
     private void pBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pBtnActionPerformed
         // TODO add your handling code here:
-        parent.itemCtrl.addItem(
-                idTextField.getText(), 
-                barcodeTextField.getText(), 
-                titleTextField.getText(), 
-                descriptionTextField.getText(), 
-                manuTextField.getText(), 
-                urlTextField.getText(),
-                Integer.parseInt(stockTextField.getText()));
-        parent.hidePopup();
-        parent.refreshTable();
         
-        idTextField.setText(""); 
-        barcodeTextField.setText(""); 
-        titleTextField.setText(""); 
-        descriptionTextField.setText(""); 
-        manuTextField.setText(""); 
-        urlTextField.setText("");
-        stockTextField.setText("");
     }//GEN-LAST:event_pBtnActionPerformed
 
     private void signBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signBtnActionPerformed

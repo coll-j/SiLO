@@ -68,38 +68,5 @@ public class Invoice {
 		this.deliveryDate = deliveryDate;
 	}
 
-	@Override
-	public String toString() {
-		return "Invoice [invoiceNumber=" + invoiceNumber + ", poNumber=" + poNumber + ", supplierName=" + supplierName
-				+ ", status=" + status + ", orderDate=" + orderDate + ", deliveryDate=" + deliveryDate + "]";
-	}
-	
-	public Object[] toObject() {
-		int i = 0;
-		Object[] obj = new Object[10];
 		
-		obj[i++] = this.invoiceNumber;
-		obj[i++] = this.poNumber;
-		obj[i++] = this.supplierName;
-		obj[i++] = this.status;
-		obj[i++] = this.orderDate;
-		obj[i++] = this.deliveryDate;
-		
-		return obj;
-	}
-	
-	public String[] toArray() {
-		int i = 0;
-		String[] obj = new String[10];
-		
-		obj[i++] = this.invoiceNumber;
-		obj[i++] = this.poNumber;
-		obj[i++] = this.supplierName;
-		obj[i++] = this.status;
-		obj[i++] = this.orderDate.toString();
-		obj[i++] = this.deliveryDate.toString();
-		
-		return obj;
-	}
-	
 }

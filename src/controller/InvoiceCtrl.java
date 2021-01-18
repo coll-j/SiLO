@@ -3,6 +3,7 @@ package controller;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Vector;
 
 import database.DbHandler;
 import database.DeliveryNote;
@@ -10,25 +11,20 @@ import database.Invoice;
 
 public class InvoiceCtrl {
 	private DbHandler db;
-	private static List<Invoice> invoiceList = new ArrayList<Invoice>();
+	private static Invoice invoice;
 	
-	public InvoiceCtrl() {
-		db = new DbHandler();
-		invoiceList = db.getAllInvoice();
+	public InvoiceCtrl(DbHandler db) {
+		this.db = db;
 	}
 	
 	public void addInvoice(String invoiceNumber, Date orderDate) {
-		Invoice temp = new Invoice(invoiceNumber, null, null, "new", orderDate, null); 
+		invoice = new Invoice(invoiceNumber, null, null, "new", orderDate, null); 
 		db.addInvoice(temp);
 		InvoiceCtrl.invoiceList.add(temp);
 	}
 	
-	public Object[][] getAllInvoice() {
-		Object[][] array = new Object[invoiceList.size()][];
-        for (int i = 0; i < invoiceList.size(); i++) {
-        	array[i] = invoiceList.get(i).toObject();
-        }
-		return array;
+	public Vector<Vector<Object>> getInvoices() {
+		return db.getInvoices();
 	}
 	
 	public String[] getInvoice(String invoiceNumber) {

@@ -22,7 +22,7 @@ public class PopUp {
         popUp.show();
     }
     
-    public void hidePopup() {
+    public void hidePopUp() {
         popUp.hide();
         popUp = null;
     }

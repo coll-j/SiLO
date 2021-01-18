@@ -29,7 +29,7 @@ public class InvoicePanel extends javax.swing.JPanel {
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel11.setText("Tagihan");
 
-        parent.getInvoiceTable().setTable(parent.getInvoiceCtrl().getAllInvoice(), parent.getInvoiceTableCol());
+        parent.getInvoiceTable().setTable(parent.getInvoiceCtrl().getInvoices(), parent.getInvoiceTableCol());
    
     }
 

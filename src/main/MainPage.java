@@ -5,64 +5,152 @@
  */
 package main;
 
+import java.util.Vector;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import controller.*;
+import database.DbHandler;
 
 public class MainPage extends JFrame {
 	
-    private final String[] itemTableCol = new String[] { "ID", "Title", "Manufacturer", "Stocks", ""};
-    private final String[] dnTableCol = new String [] { "Invoice Number", "Delivery Notes Number", "Customer Name",
-    													"Order Date", "Delivery Date", "Status", "" };
-    private final String[] invoiceTableCol = new String [] { "Invoice Number", "PO Number", "Supplier Name", "Order Date",
-    														"Delivery Date", "Status" };
-    
-	private javax.swing.JButton CreateDNBtn;
-    private javax.swing.JButton InvoiceBtn;
-    private javax.swing.JButton ItemBtn;
-    private javax.swing.JPanel MainPanel;
-    private javax.swing.JPanel MenuPanel;
-    private javax.swing.JPanel WelcomePanel;
-    private javax.swing.JButton deliveryNoteBtn;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
+	private static Vector<String> itemTableCol,
+								  dnTableCol,
+								  invoiceTableCol;
 
-    private ItemPanel itemPanel;
-    private InvoicePanel invoicePanel;
-    private CreateDNPanel createDNPanel;
-    private DeliveryNotePanel deliveryNotePanel;
+    private static DbHandler db; 
     
-    private Table itemTable;
-    private Table dnTable;
-    private Table invoiceTable;
+	private static ItemCtrl itemCtrl;
+	private static DeliveryNoteCtrl dnCtrl;
+	private static InvoiceCtrl invoiceCtrl;
+	
+	private static CreateDNCtrl createDNCtrl;
     
-    private CreateDNCtrl createDNCtrl;
-	private ItemCtrl itemCtrl;
-	private DeliveryNoteCtrl dnCtrl;
-	private InvoiceCtrl invoiceCtrl;    
+	private static javax.swing.JButton CreateDNBtn;
+    private static javax.swing.JButton InvoiceBtn;
+    private static javax.swing.JButton ItemBtn;
+    private static javax.swing.JPanel MainPanel;
+    private static javax.swing.JPanel MenuPanel;
+    private static javax.swing.JPanel WelcomePanel;
+    private static javax.swing.JButton deliveryNoteBtn;
+    private static javax.swing.JLabel jLabel1;
+    private static javax.swing.JLabel jLabel10;
+
+    private static ItemPanel itemPanel;
+    private static InvoicePanel invoicePanel;
+    private static CreateDNPanel createDNPanel;
+    private static DeliveryNotePanel deliveryNotePanel;
     
-    private PopUp addItemPopUp;
-    private AddItemPanel addItemPanel;
-    private PopUp editItemPopUp;
-    private EditItemPanel editItemPanel;
-    private PopUp viewDNPopUp;
-    private ViewDNPanel viewDNPanel;
+    private static Table table;
+    
+    private static PopUp addItemPopUp;
+    private static AddItemPanel addItemPanel;
+    private static PopUp editItemPopUp;
+    private static EditItemPanel editItemPanel;
+    private static PopUp viewDNPopUp;
+    private static ViewDNPanel viewDNPanel;
     
     public MainPage() {
+    	initTableCol();
         initComponents();
         initCode();
     }
+        
+    public void paintPanel(JPanel panel){
+        MainPanel.removeAll();
+        MainPanel.repaint();
+        MainPanel.revalidate();
+        
+        MainPanel.add(panel);
+        MainPanel.repaint();
+        MainPanel.revalidate();
+    }
+    
+    public void setTable( String keyword, String name) {
+		if(name.equals("item"))
+    		table.setTable(itemCtrl.searchItem(keyword), itemTableCol );
+    	else if(name.equals("invoice"))
+    		table.setTable(invoiceCtrl.searchInvoice(keyword), invoiceTableCol );
+    	else if(name.equals("deliveryNote"))
+    		table.setTable(dnCtrl.searchDN(keyword), dnTableCol );    	
+    }
+    
+    public void setTable(String name) {
+    	if(name.equals("item"))
+    		table.setTable(itemCtrl.getItems(), itemTableCol );
+    	else if(name.equals("invoice"))
+    		table.setTable(invoiceCtrl.getInvoices(), invoiceTableCol );
+    	else if(name.equals("deliveryNote"))
+    		table.setTable(dnCtrl.getDelivNotes(), dnTableCol );
+    }
+    
+    public void createItem( String id, String barcode, String title, String description, String manufacturer, String url, String stocks) {
+    	itemCtrl.addItem(id, barcode, title, description, manufacturer, url, stocks);
+    }
+    
+    public String[] getItem(String id) {
+    	return itemCtrl.getItem(id);
+    }
+
+    public void editItem(String id, String barcode, String title, String description, String manufacturer, String url, String stocks) {
+    	itemCtrl.editItem(id, barcode, title, description, manufacturer, url, stocks);
+    }
+    
+    public JScrollPane getTableScrPane() {
+    	return table.getScrPane();
+    }
+    
+
+    public void showAddItemPopUp() {
+    	addItemPopUp.showPopUp(addItemPanel);
+    }
+    
+    public void hideAddItemPopUp() {
+    	addItemPopUp.hidePopUp();
+    }
+    
+    public void showEditItemPopUp(String id) {
+    	editItemPanel.fill(id);
+    	editItemPopUp.showPopUp(editItemPanel);
+    }
+    
+    public void hideEditItemPopUp() {
+    	editItemPopUp.hidePopUp();
+    }
+    
+    public void showDNPopUp(String id) {
+    	viewDNPopUp.showPopUp(viewDNPanel);
+    	viewDNPanel.fill(id);
+    }
+    
+    private void ItemBtnActionPerformed(java.awt.event.ActionEvent evt) {
+        paintPanel(itemPanel);
+    }
+
+    private void deliveryNoteBtnActionPerformed(java.awt.event.ActionEvent evt) {
+        paintPanel(deliveryNotePanel);
+    }
+    
+    private void CreateDNBtnActionPerformed(java.awt.event.ActionEvent evt) {        
+    	paintPanel(createDNPanel);
+    }
+    
+    private void InvoiceBtnActionPerformed(java.awt.event.ActionEvent evt) {
+    	paintPanel(invoicePanel);
+    }
     
     private void initComponents() {
-    	itemCtrl = new ItemCtrl();
-    	createDNCtrl = new CreateDNCtrl();
-    	dnCtrl = new DeliveryNoteCtrl();
-    	invoiceCtrl = new InvoiceCtrl();
+    	db = new DbHandler();
+    	
+    	itemCtrl = new ItemCtrl(db);
+    	dnCtrl = new DeliveryNoteCtrl(db);
+    	invoiceCtrl = new InvoiceCtrl(db);
+    	
+    	createDNCtrl = new CreateDNCtrl(dnCtrl, invoiceCtrl);
     	        
-    	itemTable = new Table(this);
-    	dnTable = new Table(this);
-    	invoiceTable = new Table(this);
+    	table = new Table(this);
         
         itemPanel = new ItemPanel(this);
         createDNPanel = new CreateDNPanel(this);
@@ -87,200 +175,7 @@ public class MainPage extends JFrame {
         MainPanel = new javax.swing.JPanel();
         WelcomePanel = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
-        
     }
-        
-    public void paintPanel(JPanel panel){
-        MainPanel.removeAll();
-        MainPanel.repaint();
-        MainPanel.revalidate();
-        
-        MainPanel.add(panel);
-        MainPanel.repaint();
-        MainPanel.revalidate();
-        resetTable();
-    }
-    
-    public void showEditPopUp(String id) {
-    	editItemPopUp.showPopUp(editItemPanel);
-    	editItemPanel.fill(id);
-    }
-    
-    public void showDNPopUp(String id) {
-    	viewDNPopUp.showPopUp(viewDNPanel);
-    	viewDNPanel.fill(id);
-    }
-    
-    private void resetTable() {
-    	dnTable.setTable(dnCtrl.getDNShort(), dnTableCol);
-    	invoiceTable.setTable(invoiceCtrl.getAllInvoice(), invoiceTableCol);
-    	itemTable.setTable(itemCtrl.getAllItem(), itemTableCol);
-    	
-    }
-    
-    private void ItemBtnActionPerformed(java.awt.event.ActionEvent evt) {
-        paintPanel(this.itemPanel);
-    }
-
-    private void deliveryNoteBtnActionPerformed(java.awt.event.ActionEvent evt) {
-        paintPanel(this.deliveryNotePanel);
-    }
-
-    public EditItemPanel getEditItemPanel() {
-		return editItemPanel;
-	}
-
-	public PopUp getViewDNPopUp() {
-		return viewDNPopUp;
-	}
-
-	public void setViewDNPopUp(PopUp viewDNPopUp) {
-		this.viewDNPopUp = viewDNPopUp;
-	}
-
-	public ViewDNPanel getViewDNPanel() {
-		return viewDNPanel;
-	}
-
-	public void setViewDNPanel(ViewDNPanel viewDNPanel) {
-		this.viewDNPanel = viewDNPanel;
-	}
-
-	public void setEditItemPanel(EditItemPanel editItemPanel) {
-		this.editItemPanel = editItemPanel;
-	}
-
-	public PopUp getEditItemPopUp() {
-		return editItemPopUp;
-	}
-
-	public void setEditItemPopUp(PopUp editItemPopUp) {
-		this.editItemPopUp = editItemPopUp;
-	}
-
-	private void InvoiceBtnActionPerformed(java.awt.event.ActionEvent evt) {
-    	paintPanel(this.invoicePanel);
-    }
-
-    public DeliveryNoteCtrl getDnCtrl() {
-		return dnCtrl;
-	}
-
-	public void setDnCtrl(DeliveryNoteCtrl dnCtrl) {
-		this.dnCtrl = dnCtrl;
-	}
-
-	private void CreateDNBtnActionPerformed(java.awt.event.ActionEvent evt) {        
-    	paintPanel(this.createDNPanel);
-    }
-    
-    public CreateDNCtrl getCreateDNCtrl() {
-		return createDNCtrl;
-	}
-
-	public Table getInvoiceTable() {
-		return invoiceTable;
-	}
-
-	public void setInvoiceTable(Table invoiceTable) {
-		this.invoiceTable = invoiceTable;
-	}
-
-	public InvoiceCtrl getInvoiceCtrl() {
-		return invoiceCtrl;
-	}
-
-	public void setInvoiceCtrl(InvoiceCtrl invoiceCtrl) {
-		this.invoiceCtrl = invoiceCtrl;
-	}
-
-	public String[] getInvoiceTableCol() {
-		return invoiceTableCol;
-	}
-
-	public void setCreateDNCtrl(CreateDNCtrl createDNCtrl) {
-		this.createDNCtrl = createDNCtrl;
-	}
-
-	public ItemPanel getItemPanel() {
-		return itemPanel;
-	}
-	
-	public void setItemPanel(ItemPanel itemPanel) {
-		this.itemPanel = itemPanel;
-	}
-	
-	public AddItemPanel getAddItemPanel() {
-		return addItemPanel;
-	}
-
-	public void setAddItemPanel(AddItemPanel addItemPanel) {
-		this.addItemPanel = addItemPanel;
-	}
-
-	public PopUp getAddItemPopUp() {
-		return addItemPopUp;
-	}
-
-	public String[] getItemTableCol() {
-		return itemTableCol;
-	}
-
-	public Table getDnTable() {
-		return dnTable;
-	}
-
-	public void setDnTable(Table dnTable) {
-		this.dnTable = dnTable;
-	}
-
-	public String[] getDnTableCol() {
-		return dnTableCol;
-	}
-
-	public void setAddItemPopUp(PopUp addItemPopUp) {
-		this.addItemPopUp = addItemPopUp;
-	}
-
-	public Table getItemTable() {
-		return itemTable;
-	}
-
-	public void setItemTable(Table itemTable) {
-		this.itemTable = itemTable;
-	}
-
-	public ItemCtrl getItemCtrl() {
-		return itemCtrl;
-	}
-
-	public void setItemCtrl(ItemCtrl itemCtrl) {
-		this.itemCtrl = itemCtrl;
-	}
-
-	public InvoicePanel getTagihanPanel() {
-		return invoicePanel;
-	}
-	
-	public void setTagihanPanel(InvoicePanel invoicePanel) {
-		this.invoicePanel = invoicePanel;
-	}
-	
-	public CreateDNPanel getCreateDNPanel() {
-		return createDNPanel;
-	}
-	
-	public void setCreateDNPanel(CreateDNPanel createDNPanel) {
-		this.createDNPanel = createDNPanel;
-	}
-	
-	public DeliveryNotePanel getDeliveryNotePanel() {
-		return deliveryNotePanel;
-	}
-	
-	public void setDeliveryNotePanel(DeliveryNotePanel deliveryNotePanel) {
-		this.deliveryNotePanel = deliveryNotePanel;
-	}
 
 	public static void main(String args[]) {
         try {
@@ -305,6 +200,32 @@ public class MainPage extends JFrame {
                 new MainPage().setVisible(true);
             }
         });
+    }
+    
+    private void initTableCol() {
+    	itemTableCol = new Vector<String>();
+    	itemTableCol.add("ID");
+    	itemTableCol.add("Title");
+    	itemTableCol.add("Manufacturer");
+    	itemTableCol.add("Stocks");
+    	itemTableCol.add("");
+    	
+    	invoiceTableCol = new Vector<String>();
+    	invoiceTableCol.add("Invoice Number");
+    	invoiceTableCol.add("Delivery Notes Number");
+    	invoiceTableCol.add("Customer Name");
+    	invoiceTableCol.add("Order Date");
+    	invoiceTableCol.add("Delivery Date");
+    	invoiceTableCol.add("Status");
+    	invoiceTableCol.add("");
+    	
+    	dnTableCol = new Vector<String>();
+    	dnTableCol.add("Invoice Number");
+    	dnTableCol.add("PO Number");
+    	dnTableCol.add("Supplier Name");
+    	dnTableCol.add("Order Date");
+    	dnTableCol.add("Delivery Date");
+    	dnTableCol.add("Status");
     }
 	
 	private void initCode() {

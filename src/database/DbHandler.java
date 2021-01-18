@@ -1,12 +1,13 @@
 package database;
 
 import java.sql.*;
-import java.util.List; 
+import java.util.List;
+import java.util.Vector;
+
 import java.util.ArrayList;
 
 public class DbHandler {
 	
-	/* add item */
 	public void addItem(Item item) {
 		try {
 			Connection conn = new DbConnection().getConn();
@@ -30,29 +31,102 @@ public class DbHandler {
 			 System.out.println(e);	}
 	}
 	
-	/* Get All Item */
-	public List<Item> getAllItem() {
-		List<Item> items = new ArrayList<Item>();
+	public Vector<Vector<Object>> getItems() {
 		try {
 			Connection conn = new DbConnection().getConn();
 			    
 			Statement stmt=conn.createStatement();
-			ResultSet rs=stmt.executeQuery("select * from item");
+			ResultSet rs=stmt.executeQuery("select id, title, manufacturer, stocks from item");
+			ResultSetMetaData metaData = rs.getMetaData();
+			int columnCount = metaData.getColumnCount();
+
+            Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+            while (rs.next()) {
+                Vector<Object> vector = new Vector<Object>();
+                for (int i = 1; i <= columnCount; i++) {
+                    vector.add(rs.getObject(i));
+                }
+                vector.add("  Edit  ");
+                data.add(vector);
+            }
 			
-			while(rs.next()){
-				Item temp = new Item(rs.getString("id"), rs.getString("barcode"), rs.getString("title"), rs.getString("description"),
-						rs.getString("manufacturer"), rs.getString("url"), rs.getInt("stocks") ); 
-				items.add(temp);
-			}
 			conn.close();
+			return data;
 			
 		} catch(Exception e) {
 			 System.out.println(e);	}
 			    
-	    return items;
+	    return null;
 	}
 	
-	/* Edit Item */
+	public Vector<Vector<Object>> searchItems(String keyword) {
+		try {
+			Connection conn = new DbConnection().getConn();
+			    
+			String sql = "select id, title, manufacturer, stocks from item where "
+					+ "id LIKE concat('%',? , '%')"
+					+ "title LIKE concat('%',? , '%')"
+					+ "manufacturer LIKE concat('%',? , '%')" ;
+			
+			PreparedStatement ps = conn.prepareStatement(sql);
+			
+			int j = 0;
+			ps.setString(++j, keyword);
+			ps.setString(++j, keyword);
+			ps.setString(++j, keyword);
+			
+			ResultSet rs=ps.executeQuery();
+			ResultSetMetaData metaData = rs.getMetaData();
+			int columnCount = metaData.getColumnCount();
+
+            Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+            while (rs.next()) {
+                Vector<Object> vector = new Vector<Object>();
+                for (int i = 1; i <= columnCount; i++) {
+                    vector.add(rs.getObject(i));
+                }
+                vector.add("  Edit  ");
+                data.add(vector);
+            }
+			
+			conn.close();
+			return data;
+			
+		} catch(Exception e) {
+			 System.out.println(e);	}
+			    
+	    return null;
+	}
+	
+	public Item getItem(String keyword) {
+		try {
+			Connection conn = new DbConnection().getConn();
+			
+			String sql = "select * from item where id = ?";
+			
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, keyword);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+            
+            Item item = new Item( rs.getString("id"),
+            					  rs.getString("barcode"),
+            					  rs.getString("title"),
+            					  rs.getString("description"),
+            					  rs.getString("manufacturer"),
+            					  rs.getString("url"),
+            					  rs.getInt("stocks")
+            					  );
+			
+			conn.close();
+			return item;
+			
+		} catch(Exception e) {
+			 System.out.println(e);	}
+			    
+	    return null;
+	}
+	
 	public void EditItem(Item item) {
 		try {
 			Connection conn = new DbConnection().getConn();
@@ -60,13 +134,13 @@ public class DbHandler {
 			String sql = "UPDATE ITEM SET barcode = ?, title = ?, description = ?, manufacturer = ?, url = ?, stocks = ?  WHERE id = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			
-			ps.setString(7, item.getId());
 			ps.setString(1, item.getBarcode());
 			ps.setString(2, item.getTitle());
 			ps.setString(3, item.getDescription());
 			ps.setString(4, item.getManufacturer());
 			ps.setString(5, item.getUrl());
 			ps.setInt(6, item.getStocks());
+			ps.setString(7, item.getId());
 			
 			ps.executeUpdate();
 			conn.close();
@@ -77,7 +151,7 @@ public class DbHandler {
 	}
 	
 	
-	/* add Invoice */
+	
 	public void addInvoice(Invoice invoice) {		
 		try {
 			Connection conn = new DbConnection().getConn();
@@ -101,29 +175,35 @@ public class DbHandler {
 			 System.out.println(e);	}
 	}
 	
-	/* Get All Invoice */
-	public List<Invoice> getAllInvoice() {
-		List<Invoice> invoices = new ArrayList<Invoice>();
+	public Vector<Vector<Object>> getInvoices() {
 		try {
 			Connection conn = new DbConnection().getConn();
 			    
 			Statement stmt=conn.createStatement();
-			ResultSet rs=stmt.executeQuery("select * from invoice");
+			ResultSet rs=stmt.executeQuery("select invoiceNumber, poNumber, supplierName, status, orderDate, deliveryDate  from invoice");
 			
-			while(rs.next()){
-				Invoice temp = new Invoice(rs.getString("invoiceNumber"), rs.getString("poNumber"), rs.getString("supplierName"),
-											rs.getString("status"), rs.getDate("orderDate"), rs.getDate("deliveryDate") ); 
-				invoices.add(temp);
-			}
+			ResultSetMetaData metaData = rs.getMetaData();
+			int columnCount = metaData.getColumnCount();
+
+            Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+            while (rs.next()) {
+                Vector<Object> vector = new Vector<Object>();
+                for (int i = 1; i <= columnCount; i++) {
+                    vector.add(rs.getObject(i));
+                }
+                vector.add("  View  ");
+                data.add(vector);
+            }
+			
 			conn.close();
+			return data;
 			
 		} catch(Exception e) {
 			 System.out.println(e);	}
 		
-		return invoices;
+		return null;
 	}
 	
-	/* Edit Invoice */
 	public void EditInvoice(Invoice invoice) {
 		try {
 			Connection conn = new DbConnection().getConn();
@@ -150,7 +230,7 @@ public class DbHandler {
 	}
 	
 	
-	/* add DeliveryNote */
+	
 	public void addDeliveryNote(DeliveryNote deliveryNote) {
 		try {
 			Connection conn = new DbConnection().getConn();
@@ -176,30 +256,35 @@ public class DbHandler {
 			 System.out.println(e);	}
 	}
 	
-	/* Get All DeliveryNote */
-	public List<DeliveryNote> getAllDeliveryNote() {
-		List<DeliveryNote> deliveryNotes = new ArrayList<DeliveryNote>();
+	public Vector<Vector<Object>> getDelivNotes() {
 		try {
 			Connection conn = new DbConnection().getConn();
 			    
 			Statement stmt=conn.createStatement();
-			ResultSet rs=stmt.executeQuery("select * from deliverynote");
+			ResultSet rs=stmt.executeQuery("select invoiceNumber, deliveryNoteNumber, customerName, status, orderDate, deliveryDate from deliverynote");
 			
-			while(rs.next()){
-				DeliveryNote temp = new DeliveryNote(rs.getString("deliveryNoteNumber"), rs.getString("customerName"), 
-						rs.getString("customerEmail"), rs.getString("requestedItem"), rs.getString("status"), rs.getString("invoiceNumber"),
-						rs.getDate("orderDate"), rs.getDate("deliveryDate"), rs.getString("sign") ); 
-				deliveryNotes.add(temp);
-			}
+			ResultSetMetaData metaData = rs.getMetaData();
+			int columnCount = metaData.getColumnCount();
+
+            Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+            while (rs.next()) {
+                Vector<Object> vector = new Vector<Object>();
+                for (int i = 1; i <= columnCount; i++) {
+                    vector.add(rs.getObject(i));
+                }
+                vector.add("  View  ");
+                data.add(vector);
+            }
+			
 			conn.close();
+			return data;
 			
 		} catch(Exception e) {
 			 System.out.println(e);	}
 		
-		return deliveryNotes;
+		return null;
 	}
 	
-	/* Edit DeliveryNote */
 	public void EditDeliveryNote(DeliveryNote deliveryNote) {
 		try {
 			Connection conn = new DbConnection().getConn();

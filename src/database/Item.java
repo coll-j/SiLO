@@ -18,83 +18,39 @@ public class Item {
 		this.url = url;
 		this.stocks = stocks;
 	}
-	
+
 	public String getId() {
 		return id;
 	}
-	public void setId(String id) {
-		this.id = id;
-	}
+
 	public String getBarcode() {
 		return barcode;
 	}
-	public void setBarcode(String barcode) {
-		this.barcode = barcode;
-	}
+
 	public String getTitle() {
 		return title;
 	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
+
 	public String getDescription() {
 		return description;
 	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
+
 	public String getManufacturer() {
 		return manufacturer;
 	}
-	public void setManufacturer(String manufacturer) {
-		this.manufacturer = manufacturer;
-	}
+
 	public String getUrl() {
 		return url;
 	}
-	public void setUrl(String url) {
-		this.url = url;
-	}
+
 	public int getStocks() {
 		return stocks;
 	}
-	public void setStocks(int stocks) {
-		this.stocks = stocks;
-	}
-
-	@Override
-	public String toString() {
-		return "Item [id=" + id + ", barcode=" + barcode + ", title=" + title + ", description=" + description
-				+ ", manufacturer=" + manufacturer + ", url=" + url + ", stocks=" + stocks + "]";
+	
+	public String getStocksStr() {
+		return "" + stocks;
 	}
 	
-	public Object[] toObject() {
-		int i = 0;
-		Object[] obj = new Object[7];
-		obj[i++] = this.id;
-		obj[i++] = this.title;
-		obj[i++] = this.manufacturer;
-		obj[i++] = this.stocks;
-		obj[i++] = "  Edit  ";
-		
-		return obj;
-	}
-	
-	public String[] toArray() {
-		int i = 0;
-		String stock = String.valueOf(this.stocks);
-		
-		String[] obj = new String[10];
-		obj[i++] = this.id;
-		obj[i++] = this.barcode;
-		obj[i++] = this.title;
-		obj[i++] = this.description;
-		obj[i++] = this.manufacturer;
-		obj[i++] = this.url;
-		obj[i++] = stock;
-		
-		return obj;
-	}
 	
     
 }

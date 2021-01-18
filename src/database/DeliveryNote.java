@@ -98,44 +98,4 @@ public class DeliveryNote {
 		this.sign = sign;
 	}
 
-
-	@Override
-	public String toString() {
-		return "DeliveryNote [deliveryNoteNumber=" + deliveryNoteNumber + ", customerName=" + customerName
-				+ ", customerEmail=" + customerEmail + ", requestedItem=" + requestedItem + ", status=" + status
-				+ ", invoiceNumber=" + invoiceNumber + ", sign=" + sign + ", orderDate=" + orderDate + ", deliveryDate="
-				+ deliveryDate + "]";
-	}
-
-	public Object[] toObject() {
-		int i = 0;
-		Object[] obj = new Object[10];
-		
-		obj[i++] = this.deliveryNoteNumber;
-		obj[i++] = this.customerName;
-		obj[i++] = this.customerEmail;
-		obj[i++] = this.requestedItem;
-		obj[i++] = this.status;
-		obj[i++] = this.invoiceNumber;
-		obj[i++] = this.sign;
-		obj[i++] = this.orderDate;
-		obj[i++] = this.deliveryDate;
-		
-		return obj;
-	}
-	
-	public Object[] toObjectShort() {
-		int i = 0;
-		Object[] obj = new Object[7];
-		
-		obj[i++] = this.invoiceNumber;
-		obj[i++] = this.deliveryNoteNumber;
-		obj[i++] = this.customerName;
-		obj[i++] = this.orderDate;
-		obj[i++] = this.deliveryDate;
-		obj[i++] = this.status;
-		obj[i++] = "  View  ";
-		
-		return obj;
-	}
 }

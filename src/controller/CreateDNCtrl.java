@@ -7,9 +7,9 @@ public class CreateDNCtrl {
 	private DeliveryNoteCtrl dnCtrl;
 	private InvoiceCtrl invoiceCtrl;
 	
-	public CreateDNCtrl() {
-		dnCtrl = new DeliveryNoteCtrl();
-		invoiceCtrl = new InvoiceCtrl();
+	public CreateDNCtrl(DeliveryNoteCtrl dnCtrl, InvoiceCtrl invoiceCtrl) {
+		this.dnCtrl = dnCtrl;
+		this.invoiceCtrl = invoiceCtrl;
 	}
 	
 	public void CreateDN(String deliveryNoteNumber, String customerName, String customerEmail, String requestedItem,
@@ -19,12 +19,5 @@ public class CreateDNCtrl {
 		dnCtrl.addDeliveryNote(deliveryNoteNumber, customerName, customerEmail, requestedItem, invoiceNumber, orderDate);
 		invoiceCtrl.addInvoice(invoiceNumber, orderDate);
 	}
-	
-	public Object[][] getDeliveryNote(){
-		return dnCtrl.getAllDeliveryNote();
-	}
-	
-	public Object[][] getInvoice(){
-		return invoiceCtrl.getAllInvoice();
-	}
+
 }

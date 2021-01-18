@@ -17,7 +17,6 @@ public class ItemPanel extends JPanel {
         initCode();
     }
     
-    
     private void initComponents() {
 
         ItemPanel = new javax.swing.JPanel();
@@ -31,18 +30,16 @@ public class ItemPanel extends JPanel {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel2.setText("Item List");
-
-        parent.getItemTable().setTable(parent.getItemCtrl().getAllItem(), parent.getItemTableCol());
         
     }
 
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
-        parent.getItemTable().setTable(parent.getItemCtrl().searchItem(searchTF.getText()), parent.getItemTableCol());
+        parent.setTable(searchTF.getText(), "item");
     }
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
-    	parent.getAddItemPopUp().showPopUp(parent.getAddItemPanel());
+    	parent.showAddItemPopUp();
     }
     
     private javax.swing.JPanel ItemPanel;
@@ -81,7 +78,7 @@ public class ItemPanel extends JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(searchButton))
                     .addGroup(ItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent( parent.getItemTable().getScrPane() , javax.swing.GroupLayout.PREFERRED_SIZE, 638, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent( parent.getTableScrPane() , javax.swing.GroupLayout.PREFERRED_SIZE, 638, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel2)))
                 .addContainerGap(111, Short.MAX_VALUE))
         );
@@ -96,7 +93,7 @@ public class ItemPanel extends JPanel {
                     .addComponent(searchButton)
                     .addComponent(addButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(parent.getItemTable().getScrPane(), javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(parent.getTableScrPane(), javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
