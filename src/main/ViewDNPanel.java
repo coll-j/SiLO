@@ -11,7 +11,7 @@ public class ViewDNPanel extends JPanel {
     public ViewDNPanel(MainPage Main) {
         parent = Main;
         initComponents();
-        initCode();        
+        initCode();
     }
     
     public void fill( String id) {
@@ -30,6 +30,25 @@ public class ViewDNPanel extends JPanel {
         	delivDateTF.setText("");
         else
         	delivDateTF.setText(delivNote[5]);
+        
+        if(delivNote[6].equals("completed")) {
+        	pBtn.hide();
+        	signBtn.setEnabled(false);
+        }
+        else {
+        	pBtn.show();
+        	
+        	if(delivNote[6].equals("pending")) {
+        		pBtn.setText("Preparing");        		
+        		signBtn.setEnabled(false);
+        	}
+        	else {
+        		pBtn.setText("Pending");
+        		signBtn.setEnabled(true);
+        	}
+        }
+        
+        
     }
 
     private void initComponents() {
@@ -55,10 +74,22 @@ public class ViewDNPanel extends JPanel {
         signTF = new javax.swing.JTextField();
         label9 = new java.awt.Label();
         signBtn = new javax.swing.JButton();
+        
     }
     
     private void pBtnActionPerformed(java.awt.event.ActionEvent evt) {
-    	
+    	if(statusTF.getText().equals("pending")) {
+    		pBtn.setText("Pending");
+    		parent.editStatusDN(delivNote[0], "preparing");
+    		statusTF.setText("preparing");
+    		signBtn.setEnabled(true);
+    	}
+    	else {
+    		pBtn.setText("Preparing");
+    		parent.editStatusDN(delivNote[0], "pending");
+    		statusTF.setText("pending");
+    		signBtn.setEnabled(false);
+    	}
     }
     
     private void signBtnActionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,10 +98,13 @@ public class ViewDNPanel extends JPanel {
         signTF.setEnabled(true);
         
         parent.completeDN(delivNote[0], "Signed");
+        fill(delivNote[0]);
+        pBtn.hide();
     }
     
     private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {
      	parent.hideDNPopUp();
+     	parent.setDNTable();
     }
 
     private javax.swing.JButton closeBtn;
@@ -125,7 +159,6 @@ public class ViewDNPanel extends JPanel {
         label9.setForeground(new java.awt.Color(255, 255, 255));
         label9.setText("Sign");
 
-        pBtn.setText("Preparing");
         pBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pBtnActionPerformed(evt);

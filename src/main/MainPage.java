@@ -129,6 +129,10 @@ public class MainPage extends JFrame {
     	return dnCtrl.getDelivNote(id);
     }
     
+    public void editStatusDN(String id, String status) {
+    	dnCtrl.editStatusDN(id, status);
+    }
+    
     public void completeDN(String id, String sign) {
     	dnCtrl.completeDN(id, sign);
     }
