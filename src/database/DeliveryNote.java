@@ -26,76 +26,48 @@ public class DeliveryNote {
 		this.sign = sign;
 	}
 
-	public String getRequestedItem() {
-		return requestedItem;
-	}
-
-	public void setRequestedItem(String requestedItem) {
-		this.requestedItem = requestedItem;
-	}
-
 	public String getDeliveryNoteNumber() {
 		return deliveryNoteNumber;
-	}
-
-	public void setDeliveryNoteNumber(String deliveryNoteNumber) {
-		this.deliveryNoteNumber = deliveryNoteNumber;
 	}
 
 	public String getCustomerName() {
 		return customerName;
 	}
 
-	public void setCustomerName(String customerName) {
-		this.customerName = customerName;
-	}
-
 	public String getCustomerEmail() {
 		return customerEmail;
 	}
 
-	public void setCustomerEmail(String customerEmail) {
-		this.customerEmail = customerEmail;
+	public String getRequestedItem() {
+		return requestedItem;
 	}
 
 	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
 	public String getInvoiceNumber() {
 		return invoiceNumber;
 	}
 
-	public void setInvoiceNumber(String invoiceNumber) {
-		this.invoiceNumber = invoiceNumber;
+	public String getSign() {
+		return sign;
 	}
 
 	public Date getOrderDate() {
 		return orderDate;
 	}
 
-	public void setOrderDate(Date orderDate) {
-		this.orderDate = orderDate;
-	}
-
 	public Date getDeliveryDate() {
 		return deliveryDate;
 	}
-
-	public void setDeliveryDate(Date deliveryDate) {
-		this.deliveryDate = deliveryDate;
-	}
 	
-	public String getSign() {
-		return sign;
+	public String getOrderDateStr() {
+		return "" + orderDate;
 	}
 
-	public void setSign(String sign) {
-		this.sign = sign;
+	public String getDeliveryDateStr() {
+		return "" + deliveryDate;
 	}
 
 }

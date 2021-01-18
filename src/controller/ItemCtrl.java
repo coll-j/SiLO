@@ -13,8 +13,7 @@ public class ItemCtrl {
 	}
 	
 	public void addItem(String id, String barcode, String title, String description, String manufacturer, String url, String stocks) {
-		Item item = new Item(id, barcode, title, description, manufacturer, url, Integer.parseInt(stocks));
-		db.addItem(item);
+		db.addItem(new Item(id, barcode, title, description, manufacturer, url, Integer.parseInt(stocks)));
 	}
 	
 	public Vector<Vector<Object>> getItems() {
@@ -25,16 +24,16 @@ public class ItemCtrl {
 		return db.searchItems(keyword);
 	}
 	
-	public String[] getItem(String itemId) {
-		Item item = db.getItem(itemId);
+	public String[] getItem(String id) {
+		Item data = db.getItem(id);
 		
-		return new String [] { item.getId(),
-							   item.getBarcode(),
-							   item.getTitle(),
-							   item.getDescription(),
-							   item.getManufacturer(),
-							   item.getUrl(),
-							   item.getStocksStr()
+		return new String [] { data.getId(),
+							   data.getBarcode(),
+							   data.getTitle(),
+							   data.getDescription(),
+							   data.getManufacturer(),
+							   data.getUrl(),
+							   data.getStocksStr()
             };
 	}
 	

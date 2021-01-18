@@ -180,7 +180,7 @@ public class DbHandler {
 			Connection conn = new DbConnection().getConn();
 			    
 			Statement stmt=conn.createStatement();
-			ResultSet rs=stmt.executeQuery("select invoiceNumber, poNumber, supplierName, status, orderDate, deliveryDate  from invoice");
+			ResultSet rs=stmt.executeQuery("select invoiceNumber, poNumber, supplierName, orderDate, deliveryDate, status  from invoice");
 			
 			ResultSetMetaData metaData = rs.getMetaData();
 			int columnCount = metaData.getColumnCount();
@@ -204,22 +204,103 @@ public class DbHandler {
 		return null;
 	}
 	
-	public void EditInvoice(Invoice invoice) {
+	public Vector<Vector<Object>> searchInvoices(String keyword) {
+		try {
+			Connection conn = new DbConnection().getConn();
+			    
+			String sql = "select invoiceNumber, poNumber, supplierName, orderDate, deliveryDate, status from invoice where "
+					+ "invoiceNumber LIKE concat('%',? , '%')"
+					+ "poNumber LIKE concat('%',? , '%')"
+					+ "supplierName LIKE concat('%',? , '%')"
+					+ "status LIKE concat('%',? , '%')";
+			
+			PreparedStatement ps = conn.prepareStatement(sql);
+			
+			int j = 0;
+			ps.setString(++j, keyword);
+			ps.setString(++j, keyword);
+			ps.setString(++j, keyword);
+			ps.setString(++j, keyword);
+			
+			ResultSet rs=ps.executeQuery();
+			ResultSetMetaData metaData = rs.getMetaData();
+			int columnCount = metaData.getColumnCount();
+
+            Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+            while (rs.next()) {
+                Vector<Object> vector = new Vector<Object>();
+                for (int i = 1; i <= columnCount; i++) {
+                    vector.add(rs.getObject(i));
+                }
+                vector.add("  Edit  ");
+                data.add(vector);
+            }
+			
+			conn.close();
+			return data;
+			
+		} catch(Exception e) {
+			 System.out.println(e);	}
+			    
+	    return null;
+	}
+	
+	public Invoice getInvoice(String keyword) {
 		try {
 			Connection conn = new DbConnection().getConn();
 			
-			String sql = "UPDATE invoice SET PoNumber = ?, SupplierName = ?, Status = ?, OrderDate = ?, DeliveryDate = ?  WHERE InvoiceNumber = ?";
+			String sql = "select * from invoice where invoiceNumber = ?";
+			
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, keyword);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+            
+            Invoice invoice = new Invoice( rs.getString("invoiceNumber"),
+            					  rs.getString("poNumber"),
+            					  rs.getString("supplierName"),
+            					  rs.getString("status"),
+            					  rs.getDate("orderDate"),
+            					  rs.getDate("deliveryDate")
+            					  );
+			
+			conn.close();
+			return invoice;
+			
+		} catch(Exception e) {
+			 System.out.println(e);	}
+			    
+	    return null;
+	}
+	
+	public void editStatusInvoice(String invoiceNumber, String status) {
+		try {
+			Connection conn = new DbConnection().getConn();
+			
+			String sql = "UPDATE invoice SET Status = ? WHERE InvoiceNumber = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			
-			java.sql.Date sqlOrderDate=new java.sql.Date(invoice.getOrderDate().getTime());
-			java.sql.Date sqlDeliveryDate=new java.sql.Date(invoice.getDeliveryDate().getTime());
+			ps.setString(1, status);
+			ps.setString(2, invoiceNumber);
 			
-			ps.setString(6, invoice.getInvoiceNumber());
-			ps.setString(1, invoice.getPoNumber());
-			ps.setString(2, invoice.getSupplierName());
-			ps.setString(3, invoice.getStatus());
-			ps.setDate(4, (java.sql.Date) sqlOrderDate);
-			ps.setDate(5, (java.sql.Date) sqlDeliveryDate);
+			ps.executeUpdate();
+			conn.close();
+			
+		}	catch(Exception e) {
+			 System.out.println(e);	}
+		
+	}
+	
+	public void completeInvoice(String invoiceNumber, String status, Date deliveryDate) {
+		try {
+			Connection conn = new DbConnection().getConn();
+			
+			String sql = "UPDATE invoice Status = ?, DeliveryDate = ?  WHERE InvoiceNumber = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, status);
+			ps.setDate(2, deliveryDate);
+			ps.setString(3, invoiceNumber);
 			
 			ps.executeUpdate();
 			conn.close();
@@ -261,7 +342,7 @@ public class DbHandler {
 			Connection conn = new DbConnection().getConn();
 			    
 			Statement stmt=conn.createStatement();
-			ResultSet rs=stmt.executeQuery("select invoiceNumber, deliveryNoteNumber, customerName, status, orderDate, deliveryDate from deliverynote");
+			ResultSet rs=stmt.executeQuery("select invoiceNumber, deliveryNoteNumber, customerName, orderDate, deliveryDate, status from deliverynote");
 			
 			ResultSetMetaData metaData = rs.getMetaData();
 			int columnCount = metaData.getColumnCount();
@@ -285,19 +366,88 @@ public class DbHandler {
 		return null;
 	}
 	
-	public void EditDeliveryNote(DeliveryNote deliveryNote) {
+	public Vector<Vector<Object>> searchDelivNotes(String keyword) {
+		try {
+			Connection conn = new DbConnection().getConn();
+			    
+			String sql = "select invoiceNumber, deliveryNoteNumber, customerName, orderDate, deliveryDate, status from deliverynote where "
+					+ "invoiceNumber LIKE concat('%',? , '%')"
+					+ "deliveryNoteNumber LIKE concat('%',? , '%')"
+					+ "customerName LIKE concat('%',? , '%')"
+					+ "status LIKE concat('%',? , '%')";
+			
+			PreparedStatement ps = conn.prepareStatement(sql);
+			
+			int j = 0;
+			ps.setString(++j, keyword);
+			ps.setString(++j, keyword);
+			ps.setString(++j, keyword);
+			ps.setString(++j, keyword);
+			
+			ResultSet rs=ps.executeQuery();
+			ResultSetMetaData metaData = rs.getMetaData();
+			int columnCount = metaData.getColumnCount();
+
+            Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+            while (rs.next()) {
+                Vector<Object> vector = new Vector<Object>();
+                for (int i = 1; i <= columnCount; i++) {
+                    vector.add(rs.getObject(i));
+                }
+                vector.add("  Edit  ");
+                data.add(vector);
+            }
+			
+			conn.close();
+			return data;
+			
+		} catch(Exception e) {
+			 System.out.println(e);	}
+			    
+	    return null;
+	}
+	
+	public DeliveryNote getDelivNote(String keyword) {
 		try {
 			Connection conn = new DbConnection().getConn();
 			
-			String sql = "UPDATE DeliveryNote SET Status = ?, DeliveryDate = ?, Sign = ?   WHERE deliveryNoteNumber = ?";
+			String sql = "select * from deliveryNote where deliveryNoteNumber = ?";
+			
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, keyword);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+            
+            DeliveryNote deliveryNote = new DeliveryNote( rs.getString("deliveryNoteNumber"),
+						            					  rs.getString("customerName"),
+						            					  rs.getString("customerEmail"),
+						            					  rs.getString("requestedItem"),
+						            					  rs.getString("status"),
+						            					  rs.getString("invoiceNumber"),
+						            					  rs.getDate("oderDate"),
+						            					  rs.getDate("deliveryDate"),
+						            					  rs.getString("sign")
+						            					  );
+			
+			conn.close();
+			return deliveryNote;
+			
+		} catch(Exception e) {
+			 System.out.println(e);	}
+			    
+	    return null;
+	}
+	
+	
+	public void editStatusDN(String dnNumber, String status) {
+		try {
+			Connection conn = new DbConnection().getConn();
+			
+			String sql = "UPDATE DeliveryNote SET Status = ? WHERE deliveryNoteNumber = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			
-			java.sql.Date sqlDeliveryDate=new java.sql.Date(deliveryNote.getDeliveryDate().getTime());
-			
-			ps.setString(1, deliveryNote.getStatus());
-			ps.setDate(2, (java.sql.Date) sqlDeliveryDate);
-			ps.setString(3, deliveryNote.getSign());
-			ps.setString(4, deliveryNote.getDeliveryNoteNumber());
+			ps.setString(1, status);
+			ps.setString(2, dnNumber);
 						
 			ps.executeUpdate();
 			conn.close();
@@ -307,5 +457,24 @@ public class DbHandler {
 		
 	}
 	
+	public void completeDN(String dnNumber, String status, Date deliveryDate, String sign) {
+		try {
+			Connection conn = new DbConnection().getConn();
+			
+			String sql = "UPDATE DeliveryNote SET Status = ?, DeliveryDate = ?, Sign = ?   WHERE deliveryNoteNumber = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, status);
+			ps.setDate(2, deliveryDate);
+			ps.setString(3, sign);
+			ps.setString(4, dnNumber);
+						
+			ps.executeUpdate();
+			conn.close();
+			
+		}	catch(Exception e) {
+			 System.out.println(e);	}
+		
+	}
 	
 }
