@@ -72,10 +72,13 @@ public class CreateDNPanel extends javax.swing.JPanel {
 			invoiceNumTF.getText().isEmpty()
 			) {
     		JOptionPane.showOptionDialog(this, 
-                    "Please fill the empty field", 
-                    "Empty Field", 
-                    JOptionPane.ERROR_MESSAGE,
-                    JOptionPane.ERROR_MESSAGE, null, null, null);
+    				"Please fill the empty field", 
+	                "Empty Field", 
+	                JOptionPane.PLAIN_MESSAGE,
+	                   JOptionPane.ERROR_MESSAGE,
+	                   null,
+	                   null,
+	                   "OK");
     	}    	
     	else {    		
     		int jawab = JOptionPane.showOptionDialog(this, 

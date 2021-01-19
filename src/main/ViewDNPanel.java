@@ -19,19 +19,18 @@ public class ViewDNPanel extends JPanel {
         
         dnNumTF.setText(delivNote[0]);
         cusNameTF.setText(delivNote[1]);
-        cusEmailTF.setText(delivNote[2]);
-        invoiceNumTF.setText(delivNote[3]);
-        orderDateTF.setText(delivNote[4]);
-        statusTF.setText(delivNote[6]);
-        reqItemTF.setText(delivNote[7]);
-        signTF.setText(delivNote[8]);
+        invoiceNumTF.setText(delivNote[2]);
+        orderDateTF.setText(delivNote[3]);
+        statusTF.setText(delivNote[5]);
+        reqItemTF.setText(delivNote[6]);
+        signTF.setText(delivNote[7]);
         
         if(delivNote[5].equals("null"))
         	delivDateTF.setText("");
         else
-        	delivDateTF.setText(delivNote[5]);
+        	delivDateTF.setText(delivNote[4]);
         
-        if(delivNote[6].equals("completed")) {
+        if(delivNote[5].equals("completed")) {
         	pBtn.hide();
         	signBtn.setEnabled(false);
         }
@@ -39,7 +38,7 @@ public class ViewDNPanel extends JPanel {
         	pBtn.show();
         	signBtn.setEnabled(true);
         	
-        	if(delivNote[6].equals("preparing")) {
+        	if(delivNote[5].equals("preparing")) {
         		pBtn.setText("Pending");
         	}
         	else {

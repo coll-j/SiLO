@@ -47,6 +47,8 @@ public class MainPage extends JFrame {
     private static ViewDNPanel viewDNPanel;
     private static PopUp newDNPopUp;
     private static NewDNPanel newDNPanel;
+    private static PopUp sendEmailPopUp;
+    private static SendEmailPanel sendEmailPanel;
     
     public MainPage() {
     	initTableCol();
@@ -55,11 +57,14 @@ public class MainPage extends JFrame {
     }
         
     public void paintPanel(JPanel panel){
-        MainPanel.removeAll();
+        clear();
+    	MainPanel.add(panel);
         MainPanel.repaint();
         MainPanel.revalidate();
-        
-        MainPanel.add(panel);
+    }
+    
+    public void clear() {
+    	MainPanel.removeAll();
         MainPanel.repaint();
         MainPanel.revalidate();
     }
@@ -184,7 +189,17 @@ public class MainPage extends JFrame {
     
     public void hideNewDNPopUp() {
     	newDNPopUp.hidePopUp();
-    }    
+    }
+    
+    public void showSendEmailPopUp(String id) {
+    	sendEmailPanel.fill(id);
+    	sendEmailPopUp.showPopUp(sendEmailPanel);
+    }
+    
+    public void hideSendEmailPopUp() {
+    	sendEmailPopUp.hidePopUp();
+    }
+    
     
     
     private void ItemBtnActionPerformed(java.awt.event.ActionEvent evt) {
@@ -238,6 +253,9 @@ public class MainPage extends JFrame {
     	
     	newDNPanel = new NewDNPanel(this);
     	newDNPopUp = new PopUp(createDNPanel);
+    	
+    	sendEmailPanel = new SendEmailPanel(this);
+    	sendEmailPopUp = new PopUp(createDNPanel);
         
     	MenuPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();

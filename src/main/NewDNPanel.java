@@ -19,12 +19,11 @@ public class NewDNPanel extends JPanel {
         
         dnNumberTF.setText(delivNote[0]);
         cusNameTF.setText(delivNote[1]);
-//        cusEmailTF.setText(delivNote[2]);
-        invoiceNumTF.setText(delivNote[3]);
-        orderDateTF.setText(delivNote[4]);
-        statusTF.setText(delivNote[6]);
-        reqItemTF.setText(delivNote[7]);
-        signTF.setText(delivNote[8]);
+        invoiceNumTF.setText(delivNote[2]);
+        orderDateTF.setText(delivNote[3]);
+        statusTF.setText(delivNote[5]);
+        reqItemTF.setText(delivNote[6]);
+        signTF.setText(delivNote[7]);
         
         delivDateTF.setText("");
            
@@ -65,7 +64,8 @@ public class NewDNPanel extends JPanel {
     }
     
     private void emailBtnActionPerformed(java.awt.event.ActionEvent evt) {
-    	
+    	parent.hideNewDNPopUp();
+    	parent.showSendEmailPopUp(delivNote[0]);
     }
 
     private void printBtnActionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,7 +73,6 @@ public class NewDNPanel extends JPanel {
     }
 
     private javax.swing.JButton closeBtn;
-//    private javax.swing.JTextField cusEmailTF;
     private javax.swing.JTextField cusNameTF;
     private javax.swing.JTextField delivDateTF;
     private javax.swing.JTextField dnNumberTF;
@@ -81,7 +80,6 @@ public class NewDNPanel extends JPanel {
     private javax.swing.JTextField invoiceNumTF;
     private java.awt.Label label10;
     private java.awt.Label label2;
-//    private java.awt.Label label3;
     private java.awt.Label label4;
     private java.awt.Label label5;
     private java.awt.Label label6;
@@ -100,9 +98,6 @@ public class NewDNPanel extends JPanel {
         
     	label2.setForeground(new java.awt.Color(255, 255, 255));
         label2.setText("Customer Name");
-
-//        label3.setForeground(new java.awt.Color(255, 255, 255));
-//        label3.setText("Customer Email");
 
         label4.setForeground(new java.awt.Color(255, 255, 255));
         label4.setText("Invoice Number");
