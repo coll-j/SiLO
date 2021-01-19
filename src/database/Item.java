@@ -50,13 +50,5 @@ public class Item {
 	public String getStocksStr() {
 		return "" + stocks;
 	}
-
-	@Override
-	public String toString() {
-		return "Item [id=" + id + ", barcode=" + barcode + ", title=" + title + ", description=" + description
-				+ ", manufacturer=" + manufacturer + ", url=" + url + ", stocks=" + stocks + "]";
-	}
-	
-	
     
 }
