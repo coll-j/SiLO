@@ -37,14 +37,13 @@ public class ViewDNPanel extends JPanel {
         }
         else {
         	pBtn.show();
+        	signBtn.setEnabled(true);
         	
-        	if(delivNote[6].equals("pending")) {
-        		pBtn.setText("Preparing");        		
-        		signBtn.setEnabled(false);
+        	if(delivNote[6].equals("preparing")) {
+        		pBtn.setText("Pending");
         	}
         	else {
-        		pBtn.setText("Pending");
-        		signBtn.setEnabled(true);
+        		pBtn.setText("Preparing");
         	}
         }
         
@@ -82,13 +81,11 @@ public class ViewDNPanel extends JPanel {
     		pBtn.setText("Pending");
     		parent.editStatusDN(delivNote[0], "preparing");
     		statusTF.setText("preparing");
-    		signBtn.setEnabled(true);
     	}
     	else {
     		pBtn.setText("Preparing");
     		parent.editStatusDN(delivNote[0], "pending");
     		statusTF.setText("pending");
-    		signBtn.setEnabled(false);
     	}
     }
     

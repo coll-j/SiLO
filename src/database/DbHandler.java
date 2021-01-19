@@ -276,15 +276,16 @@ public class DbHandler {
 		
 	}
 	
-	public void completeInvoice(String invoiceNumber, String status, java.util.Date deliveryDate) {
+	public void completeInvoice(String invoiceNumber, String status) {
 		try {
 			Connection conn = new DbConnection().getConn();
-			
-			String sql = "UPDATE invoice Status = ?, DeliveryDate = ?  WHERE InvoiceNumber = ?";
+			String sql = "UPDATE invoice SET Status = ?, DeliveryDate = ?  WHERE InvoiceNumber = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			
+			Date date = new java.sql.Date(new java.util.Date().getTime());
+			
 			ps.setString(1, status);
-			ps.setDate(2, (java.sql.Date) deliveryDate);
+			ps.setDate(2, date);
 			ps.setString(3, invoiceNumber);
 			
 			ps.executeUpdate();

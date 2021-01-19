@@ -35,17 +35,17 @@ public class InvoiceCtrl {
 		return new String [] { data.getInvoiceNumber(),
 								data.getPoNumber(),
 								data.getSupplierName(),
-								data.getStatus(),
 								data.getOrderDateStr(),
-								data.getDeliveryDateStr()
+								data.getDeliveryDateStr(),
+								data.getStatus()
             };
 	}
 	
-	public void editStatusInvoice(String invoiceNumber, String status) {
-		db.editStatusInvoice( invoiceNumber, status);
+	public void editStatusInvoice(String invoiceNumber) {
+		db.editStatusInvoice( invoiceNumber, "pending");
 	}
 	
 	public void completeInvoice(String invoiceNumber) {
-		db.completeInvoice( invoiceNumber, "completed", (java.sql.Date) new Date());
+		db.completeInvoice( invoiceNumber, "completed");
 	}
 }

@@ -41,8 +41,8 @@ public class MainPage extends JFrame {
     private static AddItemPanel addItemPanel;
     private static PopUp editItemPopUp;
     private static EditItemPanel editItemPanel;
-//    private static PopUp viewInvoicePopUp;
-//    private static ViewInvoicePanel viewInvoicePanel;
+    private static PopUp viewInvoicePopUp;
+    private static ViewInvoicePanel viewInvoicePanel;
     private static PopUp viewDNPopUp;
     private static ViewDNPanel viewDNPanel;
     
@@ -131,6 +131,14 @@ public class MainPage extends JFrame {
     	return invoiceCtrl.getInvoice(id);
     }
     
+    public void editStatusInvoice(String id) {
+    	invoiceCtrl.editStatusInvoice(id);
+    }
+    
+    public void completeInvoice(String id) {
+    	invoiceCtrl.completeInvoice(id);
+    }
+    
 
     public void showAddItemPopUp() {
     	addItemPopUp.showPopUp(addItemPanel);
@@ -149,14 +157,14 @@ public class MainPage extends JFrame {
     	editItemPopUp.hidePopUp();
     }
     
-//    public void showInvoicePopUp(String id) {
-//    	viewInvoicePanel.fill(id);
-//    	viewInvoicePopUp.showPopUp(viewInvoicePanel);
-//    }
-//    
-//    public void hideInvoicePopUp() {
-//    	viewInvoicePopUp.hidePopUp();
-//    }
+    public void showInvoicePopUp(String id) {
+    	viewInvoicePanel.fill(id);
+    	viewInvoicePopUp.showPopUp(viewInvoicePanel);
+    }
+    
+    public void hideInvoicePopUp() {
+    	viewInvoicePopUp.hidePopUp();
+    }
     
     public void showDNPopUp(String id) {
     	viewDNPanel.fill(id);
@@ -209,8 +217,8 @@ public class MainPage extends JFrame {
         editItemPanel = new EditItemPanel(this);
     	editItemPopUp = new PopUp(itemPanel);
     	
-//    	viewInvoicePanel = new ViewInvoicePanel(this);
-//    	viewInvoicePopUp = new PopUp(invoicePanel);
+    	viewInvoicePanel = new ViewInvoicePanel(this);
+    	viewInvoicePopUp = new PopUp(invoicePanel);
     	
     	viewDNPanel = new ViewDNPanel(this);
     	viewDNPopUp = new PopUp(deliveryNotePanel);

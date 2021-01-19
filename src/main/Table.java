@@ -40,6 +40,9 @@ public class Table {
 				  else if(table.getValueAt(row,col).toString().equals("  View  ")) {
 					  parent.showDNPopUp(table.getValueAt(row,1).toString());
 				  }
+				  else if(table.getValueAt(row,col).toString().equals("  View   ")) {
+					  parent.showInvoicePopUp(table.getValueAt(row,0).toString());
+				  }
 		} } );
 	}
 	public void setTable(Vector<Vector<Object>> data, Vector<String> str) {
