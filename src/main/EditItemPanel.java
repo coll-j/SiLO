@@ -101,7 +101,7 @@ public class EditItemPanel extends JPanel {
         labelDesc.setForeground(new java.awt.Color(255, 255, 255));
         labelDesc.setText("description");
 
-        jButton1.setText("Edit");
+        jButton1.setText("Update");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);

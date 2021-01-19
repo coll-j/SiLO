@@ -33,12 +33,13 @@ public class ViewDNPanel extends JPanel {
         	delivDateTF.setText(delivNote[4]);
         
         if(delivNote[5].equals("completed")) {
-        	pBtn.hide();
-        	signBtn.hide();
+        	pBtn.setEnabled(false);
+        	signBtn.setEnabled(false);
+        	signTF.setEditable(false);
         }
         else {
-        	pBtn.show();
-        	signBtn.show();
+        	pBtn.setEnabled(true);
+        	signBtn.setEnabled(true);
         	
         	if(delivNote[5].equals("preparing")) {
         		pBtn.setText("Pending");
@@ -97,16 +98,26 @@ public class ViewDNPanel extends JPanel {
     
     private void signBtnActionPerformed(java.awt.event.ActionEvent evt) {
     	signTF.setEditable(false);
-        signTF.hide();
+    	signBtn.setEnabled(false);
+    	pBtn.setEnabled(false);
         
         parent.completeDN(delivNote[0], signTF.getText());
         fill(delivNote[0]);
-        pBtn.hide();
     }
     
     private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {
      	parent.hideViewDNPopUp();
      	parent.setDNTable();
+    }
+    
+    public void hideStatusBtn() {
+    	signBtn.hide();
+    	pBtn.hide();
+    }
+    
+    public void showStatusBtn() {
+    	signBtn.show();
+    	pBtn.show();
     }
 
     private javax.swing.JButton closeBtn;

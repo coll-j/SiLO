@@ -17,8 +17,6 @@ import database.DbHandler;
 
 public class MainPage extends JFrame {
 	
-	private static String user;
-	
 	private static Vector<String> itemTableCol,
 								  dnTableCol,
 								  invoiceTableCol;
@@ -87,11 +85,12 @@ public class MainPage extends JFrame {
     
     private void login() {
     	
-//    	deliveryNoteBtn.hide();	change stats
-//        InvoiceBtn.hide();	change stats
+    	viewDNPanel.hideStatusBtn();
+    	viewInvoicePanel.hideStatusBtn();
         CreateDNBtn.hide();
-//        ItemBtn.hide();		create
-    	int acc =  JOptionPane.showOptionDialog(this,
+        itemPanel.hideAddBtn();
+        
+    	int user =  JOptionPane.showOptionDialog(this,
 		    		"Who are you?",
 		    		"Login",
 		            JOptionPane.PLAIN_MESSAGE,
@@ -100,21 +99,15 @@ public class MainPage extends JFrame {
 	                new String[] {"Booker", "Cashier", "Warehouse"},
 	                null
 	                );
-		if(acc == 0) {
-			user = "booker";
-			
-//	        ItemBtn.show();		create	
+		if(user == 0) {
+	        itemPanel.showAddBtn();	
 		}
-		else if(acc == 1) {
-			user = "cashier";
-			
+		else if(user == 1) {
 	        CreateDNBtn.show();
 		}
 		else {
-			user = "warehouse";
-			
-//			deliveryNoteBtn.show();	change stat
-//			InvoiceBtn.show();	change stat
+			viewDNPanel.showStatusBtn();
+			viewInvoicePanel.showStatusBtn();
 		}
 		rePaint();
     }

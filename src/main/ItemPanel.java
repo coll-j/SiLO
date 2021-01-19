@@ -42,6 +42,14 @@ public class ItemPanel extends JPanel {
     	parent.showAddItemPopUp();
     }
     
+    public void hideAddBtn() {
+    	addButton.hide();
+    }
+    
+    public void showAddBtn() {
+    	addButton.show();
+    }
+    
     private javax.swing.JPanel ItemPanel;
     private javax.swing.JButton addButton;
     private javax.swing.JLabel jLabel2;
