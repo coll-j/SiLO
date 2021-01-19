@@ -28,16 +28,6 @@ public class MainPage extends JFrame {
 	
 	private static CreateDNCtrl createDNCtrl;
     
-	private static javax.swing.JButton CreateDNBtn;
-    private static javax.swing.JButton InvoiceBtn;
-    private static javax.swing.JButton ItemBtn;
-    private static javax.swing.JPanel MainPanel;
-    private static javax.swing.JPanel MenuPanel;
-    private static javax.swing.JPanel WelcomePanel;
-    private static javax.swing.JButton deliveryNoteBtn;
-    private static javax.swing.JLabel jLabel1;
-    private static javax.swing.JLabel jLabel10;
-
     private static ItemPanel itemPanel;
     private static InvoicePanel invoicePanel;
     private static CreateDNPanel createDNPanel;
@@ -287,6 +277,17 @@ public class MainPage extends JFrame {
     	invoiceTableCol.add("Status");
     	invoiceTableCol.add("");
     }
+    
+
+	private static javax.swing.JButton CreateDNBtn;
+    private static javax.swing.JButton InvoiceBtn;
+    private static javax.swing.JButton ItemBtn;
+    private static javax.swing.JPanel MainPanel;
+    private static javax.swing.JPanel MenuPanel;
+    private static javax.swing.JPanel WelcomePanel;
+    private static javax.swing.JButton deliveryNoteBtn;
+    private static javax.swing.JLabel jLabel1;
+    private static javax.swing.JLabel jLabel10;
 	
 	private void initCode() {
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);

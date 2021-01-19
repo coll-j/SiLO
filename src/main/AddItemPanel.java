@@ -6,6 +6,8 @@
 package main;
 
 import java.awt.Color;
+
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -41,6 +43,92 @@ public class AddItemPanel extends JPanel {
         labelManu = new java.awt.Label();
         labelUrl = new java.awt.Label();
         labelStock = new java.awt.Label();
+        
+    }
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
+    	parent.hideAddItemPopUp();
+    	empty();
+    }
+    
+    private void empty() {
+    	idTextField.setText(""); 
+		barcodeTextField.setText(""); 
+		titleTextField.setText(""); 
+		descriptionTextField.setText(""); 
+		manuTextField.setText(""); 
+		urlTextField.setText("");
+		stockTextField.setText("");
+    }
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+    	try {
+    		if( !idTextField.getText().isEmpty() &&
+    				!barcodeTextField.getText().isEmpty() && 
+                    !titleTextField.getText().isEmpty() &&
+                    !descriptionTextField.getText().isEmpty() && 
+                    !manuTextField.getText().isEmpty() &&
+                    !urlTextField.getText().isEmpty()
+                    ) {
+    			parent.createItem(
+                        idTextField.getText(), 
+                        barcodeTextField.getText(), 
+                        titleTextField.getText(), 
+                        descriptionTextField.getText(), 
+                        manuTextField.getText(), 
+                        urlTextField.getText(),
+                        stockTextField.getText()
+                        );
+                
+                parent.hideAddItemPopUp();
+        		parent.setItemTable();
+        		empty();
+    		}
+    		else {
+    			int jawab = JOptionPane.showOptionDialog(this, 
+                        "Require field is empty. Try Again?", 
+                        "Create Item Error", 
+                        JOptionPane.WARNING_MESSAGE, 
+                        JOptionPane.QUESTION_MESSAGE, null, null, null);
+
+        		if(jawab == JOptionPane.CANCEL_OPTION){
+        		    parent.hideAddItemPopUp();
+        		    empty();
+        		}
+    		}
+    		
+    	} catch (Exception e) {
+    		int jawab = JOptionPane.showOptionDialog(this, 
+                    "Stock must be a Number. Try Again?", 
+                    "Create Item Error", 
+                    JOptionPane.WARNING_MESSAGE, 
+                    JOptionPane.QUESTION_MESSAGE, null, null, null);
+
+    		if(jawab == JOptionPane.CANCEL_OPTION){
+    		    parent.hideAddItemPopUp();
+    		    empty();
+    		}
+    	};
+    }
+
+    private javax.swing.JTextField barcodeTextField;
+    private javax.swing.JTextField descriptionTextField;
+    private javax.swing.JTextField idTextField;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private java.awt.Label labelBarcode;
+    private java.awt.Label labelDesc;
+    private java.awt.Label labelId;
+    private java.awt.Label labelManu;
+    private java.awt.Label labelStock;
+    private java.awt.Label labelTitle;
+    private java.awt.Label labelUrl;
+    private javax.swing.JTextField manuTextField;
+    private javax.swing.JTextField stockTextField;
+    private javax.swing.JTextField titleTextField;
+    private javax.swing.JTextField urlTextField;
+    
+    private void initCode() {
 
         labelId.setForeground(new java.awt.Color(255, 255, 255));
         labelId.setText("Id");
@@ -77,53 +165,6 @@ public class AddItemPanel extends JPanel {
         labelStock.setForeground(new java.awt.Color(255, 255, 255));
         labelStock.setText("stock");
         
-    }
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-    	parent.hideAddItemPopUp();
-    }
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-        parent.createItem(
-                idTextField.getText(), 
-                barcodeTextField.getText(), 
-                titleTextField.getText(), 
-                descriptionTextField.getText(), 
-                manuTextField.getText(), 
-                urlTextField.getText(),
-                stockTextField.getText()
-                );
-        
-        parent.hideAddItemPopUp();
-		parent.setItemTable();
-		
-		idTextField.setText(""); 
-		barcodeTextField.setText(""); 
-		titleTextField.setText(""); 
-		descriptionTextField.setText(""); 
-		manuTextField.setText(""); 
-		urlTextField.setText("");
-		stockTextField.setText("");
-    }
-
-    private javax.swing.JTextField barcodeTextField;
-    private javax.swing.JTextField descriptionTextField;
-    private javax.swing.JTextField idTextField;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private java.awt.Label labelBarcode;
-    private java.awt.Label labelDesc;
-    private java.awt.Label labelId;
-    private java.awt.Label labelManu;
-    private java.awt.Label labelStock;
-    private java.awt.Label labelTitle;
-    private java.awt.Label labelUrl;
-    private javax.swing.JTextField manuTextField;
-    private javax.swing.JTextField stockTextField;
-    private javax.swing.JTextField titleTextField;
-    private javax.swing.JTextField urlTextField;
-    
-    private void initCode() {
     	javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
