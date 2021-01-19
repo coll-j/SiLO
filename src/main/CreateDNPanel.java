@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package main;
 
 import javax.swing.JOptionPane;
 
 import controller.CreateDNCtrl;
 
-/**
- *
- * @author ZK
- */
 public class CreateDNPanel extends javax.swing.JPanel {
 
 	private MainPage parent;
@@ -72,7 +63,7 @@ public class CreateDNPanel extends javax.swing.JPanel {
 			invoiceNumTF.getText().isEmpty()
 			) {
     		JOptionPane.showOptionDialog(this, 
-    				"Please fill the empty field", 
+    				"Please fill the empty field",
 	                "Empty Field", 
 	                JOptionPane.PLAIN_MESSAGE,
 	                   JOptionPane.ERROR_MESSAGE,

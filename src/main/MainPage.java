@@ -8,6 +8,7 @@ package main;
 import java.util.Vector;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -15,6 +16,8 @@ import controller.*;
 import database.DbHandler;
 
 public class MainPage extends JFrame {
+	
+	private static String user;
 	
 	private static Vector<String> itemTableCol,
 								  dnTableCol,
@@ -56,19 +59,64 @@ public class MainPage extends JFrame {
     	initTableCol();
         initComponents();
         initCode();
+        login();
     }
         
     public void paintPanel(JPanel panel){
-        clear();
+    	MainPanel.removeAll();
+        MainPanel.repaint();
+        MainPanel.revalidate();
+        
     	MainPanel.add(panel);
         MainPanel.repaint();
         MainPanel.revalidate();
     }
     
-    public void clear() {
+    public void home() {
     	MainPanel.removeAll();
-        MainPanel.repaint();
+    	rePaint();
+        
+        MainPanel.add(WelcomePanel);
+        rePaint();
+    }
+    
+    private void rePaint() {
+    	MainPanel.repaint();
         MainPanel.revalidate();
+    }
+    
+    private void login() {
+    	
+//    	deliveryNoteBtn.hide();	change stats
+//        InvoiceBtn.hide();	change stats
+        CreateDNBtn.hide();
+//        ItemBtn.hide();		create
+    	int acc =  JOptionPane.showOptionDialog(this,
+		    		"Who are you?",
+		    		"Login",
+		            JOptionPane.PLAIN_MESSAGE,
+	                JOptionPane.QUESTION_MESSAGE,
+	                null,
+	                new String[] {"Booker", "Cashier", "Warehouse"},
+	                null
+	                );
+		if(acc == 0) {
+			user = "booker";
+			
+//	        ItemBtn.show();		create	
+		}
+		else if(acc == 1) {
+			user = "cashier";
+			
+	        CreateDNBtn.show();
+		}
+		else {
+			user = "warehouse";
+			
+//			deliveryNoteBtn.show();	change stat
+//			InvoiceBtn.show();	change stat
+		}
+		rePaint();
     }
     
     public void setItemTable( String keyword) {
@@ -211,6 +259,11 @@ public class MainPage extends JFrame {
     }
     
     
+
+    private void accountLblMouseClicked(java.awt.event.MouseEvent evt) {                                        
+       home();
+       login();
+	}
     
     private void ItemBtnActionPerformed(java.awt.event.ActionEvent evt) {
     	setItemTable();
@@ -279,6 +332,8 @@ public class MainPage extends JFrame {
         MainPanel = new javax.swing.JPanel();
         WelcomePanel = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
+        accountLbl = new javax.swing.JLabel();
+        
     }
 
 	public static void main(String args[]) {
@@ -343,6 +398,7 @@ public class MainPage extends JFrame {
     private static javax.swing.JButton deliveryNoteBtn;
     private static javax.swing.JLabel jLabel1;
     private static javax.swing.JLabel jLabel10;
+    private static javax.swing.JLabel accountLbl;
 	
 	private void initCode() {
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -382,6 +438,15 @@ public class MainPage extends JFrame {
                 CreateDNBtnActionPerformed(evt);
             }
         });
+        
+        accountLbl.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
+        accountLbl.setForeground(new java.awt.Color(153, 153, 153));
+        accountLbl.setText("Change Account");
+        accountLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                accountLblMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout MenuPanelLayout = new javax.swing.GroupLayout(MenuPanel);
         MenuPanel.setLayout(MenuPanelLayout);
@@ -395,12 +460,16 @@ public class MainPage extends JFrame {
                     .addGroup(MenuPanelLayout.createSequentialGroup()
                         .addGap(55, 55, 55)
                         .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(deliveryNoteBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ItemBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(InvoiceBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(CreateDNBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(deliveryNoteBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(ItemBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(InvoiceBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(CreateDNBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(MenuPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(accountLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         MenuPanelLayout.setVerticalGroup(
             MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -415,7 +484,9 @@ public class MainPage extends JFrame {
                 .addComponent(InvoiceBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(CreateDNBtn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(accountLbl)
+                .addContainerGap() )
         );
 
         MainPanel.setBackground(new java.awt.Color(0, 0, 0));

@@ -59,7 +59,7 @@ public class SendEmailPanel extends javax.swing.JPanel {
     	else {
     		parent.hideSendEmailPopUp();
     		parent.hideNewDNPopUp();
-    		parent.clear();
+    		parent.home();
     		JOptionPane.showOptionDialog(this, 
 	                "Softcopy has been sent", 
 	                "Empty Field", 
