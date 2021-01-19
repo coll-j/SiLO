@@ -49,6 +49,8 @@ public class MainPage extends JFrame {
     private static NewDNPanel newDNPanel;
     private static PopUp sendEmailPopUp;
     private static SendEmailPanel sendEmailPanel;
+    private static PopUp printPopUp;
+    private static PrintPanel printPanel;
     
     public MainPage() {
     	initTableCol();
@@ -200,6 +202,14 @@ public class MainPage extends JFrame {
     	sendEmailPopUp.hidePopUp();
     }
     
+    public void showPrintPopUp() {
+    	printPopUp.showPopUp(printPanel);
+    }
+    
+    public void hidePrintPopUp() {
+    	printPopUp.hidePopUp();
+    }
+    
     
     
     private void ItemBtnActionPerformed(java.awt.event.ActionEvent evt) {
@@ -256,6 +266,9 @@ public class MainPage extends JFrame {
     	
     	sendEmailPanel = new SendEmailPanel(this);
     	sendEmailPopUp = new PopUp(createDNPanel);
+    	
+    	printPanel = new PrintPanel(this);
+    	printPopUp = new PopUp(createDNPanel);
         
     	MenuPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();

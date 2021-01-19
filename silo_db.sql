@@ -46,7 +46,7 @@ INSERT INTO `deliverynote` (`deliveryNoteNumber`, `customerName`, `requestedItem
 ('DN1', 'Customer 1', 'IT1$1;', 'completed', 'OUT1', '2021-01-01', '2021-01-19', 'Signed'),
 ('DN2', 'Cusname 2', 'IT2$2; IT3$1;', 'completed', 'OUT2', '2021-01-02', '2021-01-19', 'Signed'),
 ('DN3', 'Customer 3', 'IT4$1;', 'completed', 'OUT3', '2021-01-03', '2021-01-19', 'Signed'),
-('DN4', 'Person 4', 'IT1$2;', 'new', 'OUT4', '2021-01-14', '2021-01-19', NULL);
+('DN4', 'Person 4', 'IT1$2;', 'new', 'OUT4', '2021-01-14', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -68,8 +68,6 @@ CREATE TABLE `invoice` (
 --
 
 INSERT INTO `invoice` (`invoiceNumber`, `poNumber`, `supplierName`, `status`, `orderDate`, `deliveryDate`) VALUES
-('a', NULL, NULL, 'completed', '2021-01-19', NULL),
-('aa', NULL, NULL, 'completed', '2021-01-19', NULL),
 ('IN1', 'PN1', 'supplier 1', 'completed', '2021-01-04', '2021-01-03'),
 ('IN2', 'PN2', 'supplier 2', 'completed', '2021-01-13', '2021-01-13'),
 ('IN3', 'PN3', 'supplier 3', 'new', '2021-01-01', NULL),
