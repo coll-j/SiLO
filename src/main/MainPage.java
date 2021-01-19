@@ -20,7 +20,7 @@ public class MainPage extends JFrame {
 								  dnTableCol,
 								  invoiceTableCol;
 
-    private static DbHandler db; 
+    private static DbHandler db;
     
 	private static ItemCtrl itemCtrl;
 	private static DeliveryNoteCtrl dnCtrl;
@@ -45,6 +45,8 @@ public class MainPage extends JFrame {
     private static ViewInvoicePanel viewInvoicePanel;
     private static PopUp viewDNPopUp;
     private static ViewDNPanel viewDNPanel;
+    private static PopUp newDNPopUp;
+    private static NewDNPanel newDNPanel;
     
     public MainPage() {
     	initTableCol();
@@ -111,8 +113,8 @@ public class MainPage extends JFrame {
     	itemCtrl.editItem(id, barcode, title, description, manufacturer, url, stocks);
     }
     
-    public void createDN(String deliveryNoteNumber, String customerName, String customerEmail, String requestedItem, String invoiceNumber) {
-    	createDNCtrl.createDN(deliveryNoteNumber, customerName, customerEmail, requestedItem, invoiceNumber);
+    public void createDN(String deliveryNoteNumber, String customerName, String requestedItem, String invoiceNumber) {
+    	createDNCtrl.createDN(deliveryNoteNumber, customerName, requestedItem, invoiceNumber);
     }
     
     public String[] getDelivNote(String id) {
@@ -166,14 +168,25 @@ public class MainPage extends JFrame {
     	viewInvoicePopUp.hidePopUp();
     }
     
-    public void showDNPopUp(String id) {
+    public void showViewDNPopUp(String id) {
     	viewDNPanel.fill(id);
     	viewDNPopUp.showPopUp(viewDNPanel);
     }
     
-    public void hideDNPopUp() {
+    public void hideViewDNPopUp() {
     	viewDNPopUp.hidePopUp();
     }
+    
+    public void showNewDNPopUp(String id) {
+    	newDNPanel.fill(id);
+    	newDNPopUp.showPopUp(newDNPanel);
+    }
+    
+    public void hideNewDNPopUp() {
+    	newDNPopUp.hidePopUp();
+    }    
+    
+    
     private void ItemBtnActionPerformed(java.awt.event.ActionEvent evt) {
     	setItemTable();
         paintPanel(itemPanel);
@@ -222,6 +235,9 @@ public class MainPage extends JFrame {
     	
     	viewDNPanel = new ViewDNPanel(this);
     	viewDNPopUp = new PopUp(deliveryNotePanel);
+    	
+    	newDNPanel = new NewDNPanel(this);
+    	newDNPopUp = new PopUp(createDNPanel);
         
     	MenuPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();

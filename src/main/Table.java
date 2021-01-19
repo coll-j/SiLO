@@ -38,7 +38,7 @@ public class Table {
 					  parent.showEditItemPopUp(table.getValueAt(row,0).toString());
 				  }
 				  else if(table.getValueAt(row,col).toString().equals("  View  ")) {
-					  parent.showDNPopUp(table.getValueAt(row,1).toString());
+					  parent.showViewDNPopUp(table.getValueAt(row,1).toString());
 				  }
 				  else if(table.getValueAt(row,col).toString().equals("  View   ")) {
 					  parent.showInvoicePopUp(table.getValueAt(row,0).toString());

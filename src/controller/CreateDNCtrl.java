@@ -12,11 +12,11 @@ public class CreateDNCtrl {
 		this.invoiceCtrl = invoiceCtrl;
 	}
 	
-	public void createDN(String deliveryNoteNumber, String customerName, String customerEmail, String requestedItem,
+	public void createDN(String deliveryNoteNumber, String customerName, String requestedItem,
 						String invoiceNumber) {
 		
 		Date orderDate = new Date();
-		dnCtrl.addDeliveryNote(deliveryNoteNumber, customerName, customerEmail, requestedItem, invoiceNumber, orderDate);
+		dnCtrl.addDeliveryNote(deliveryNoteNumber, customerName, requestedItem, invoiceNumber, orderDate);
 		invoiceCtrl.addInvoice(invoiceNumber, orderDate);
 	}
 

@@ -18,7 +18,7 @@ public class InvoiceCtrl {
 	}
 	
 	public void addInvoice(String invoiceNumber, Date orderDate) {
-		db.addInvoice(new Invoice(invoiceNumber, null, null, "new", orderDate, null));
+		db.addInvoice(new Invoice(invoiceNumber, null, null, "completed", orderDate, null));
 	}
 	
 	public Vector<Vector<Object>> getInvoices() {

@@ -5,6 +5,8 @@
  */
 package main;
 
+import javax.swing.JOptionPane;
+
 import controller.CreateDNCtrl;
 
 /**
@@ -30,8 +32,6 @@ public class CreateDNPanel extends javax.swing.JPanel {
         invoiceNumLabel = new javax.swing.JLabel();
         dnNumLabel = new javax.swing.JLabel();
         cusNameLabel = new javax.swing.JLabel();
-        cusEmailLabel = new javax.swing.JLabel();
-        cusEmailTF = new javax.swing.JTextField();
         cusNameTF = new javax.swing.JTextField();
         createBtn = new javax.swing.JButton();
         reqItemLabel = new javax.swing.JLabel();
@@ -51,9 +51,6 @@ public class CreateDNPanel extends javax.swing.JPanel {
         cusNameLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         cusNameLabel.setText("Customer Name :");
 
-        cusEmailLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        cusEmailLabel.setText("Customer Email Address :");
-
         createBtn.setText("Create");
         createBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,23 +64,44 @@ public class CreateDNPanel extends javax.swing.JPanel {
         
     }
 
-    private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
-    	parent.createDN(dnNumTF.getText(),
-                        cusNameTF.getText(),
-                        cusEmailTF.getText(),
-                        reqItemTF.getText(),
-                        invoiceNumTF.getText() );
-        dnNumTF.setText("");
-        cusNameTF.setText("");
-        cusEmailTF.setText("");
-        reqItemTF.setText("");
-        invoiceNumTF.setText("");
+    private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {
+    	
+    	if( dnNumTF.getText().isEmpty() ||
+			cusNameTF.getText().isEmpty() ||
+			reqItemTF.getText().isEmpty() ||
+			invoiceNumTF.getText().isEmpty()
+			) {
+    		JOptionPane.showOptionDialog(this, 
+                    "Please fill the empty field", 
+                    "Empty Field", 
+                    JOptionPane.ERROR_MESSAGE,
+                    JOptionPane.ERROR_MESSAGE, null, null, null);
+    	}    	
+    	else {    		
+    		int jawab = JOptionPane.showOptionDialog(this, 
+    				"Are you sure you want to create Delivery Note ?", 
+    				"Confirmation Message", 
+    				JOptionPane.WARNING_MESSAGE, 
+    				JOptionPane.QUESTION_MESSAGE, null, null, null);
+    		
+    		if (jawab == JOptionPane.OK_OPTION) {
+    			parent.createDN(dnNumTF.getText(),
+    					cusNameTF.getText(),
+    					reqItemTF.getText(),
+    					invoiceNumTF.getText()
+    					);
+    			parent.showNewDNPopUp(dnNumTF.getText());
+    			
+    			dnNumTF.setText("");
+    			cusNameTF.setText("");
+    			reqItemTF.setText("");
+    			invoiceNumTF.setText("");  
+    		}
+    	}
     }
     
     private javax.swing.JPanel BuatSuratPanel;
     private javax.swing.JButton createBtn;
-    private javax.swing.JLabel cusEmailLabel;
-    private javax.swing.JTextField cusEmailTF;
     private javax.swing.JLabel cusNameLabel;
     private javax.swing.JTextField cusNameTF;
     private javax.swing.JLabel dnNumLabel;
@@ -113,11 +131,9 @@ public class CreateDNPanel extends javax.swing.JPanel {
                                     .addGroup(BuatSuratPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(dnNumLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(invoiceNumLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(cusNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cusEmailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(cusNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(28, 28, 28)
                                 .addGroup(BuatSuratPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cusEmailTF, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(invoiceNumTF, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(dnNumTF, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(cusNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -144,10 +160,6 @@ public class CreateDNPanel extends javax.swing.JPanel {
                 .addGroup(BuatSuratPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cusNameLabel)
                     .addComponent(cusNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(BuatSuratPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cusEmailLabel)
-                    .addComponent(cusEmailTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(BuatSuratPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(reqItemLabel)

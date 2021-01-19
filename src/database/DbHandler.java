@@ -302,19 +302,18 @@ public class DbHandler {
 		try {
 			Connection conn = new DbConnection().getConn();
 			  
-			String sql = "INSERT INTO deliverynote(`deliveryNoteNumber`, `customerName`, `customerEmail`, `requestedItem`,`status`, `invoiceNumber`, `orderDate`)"
-						+ "VALUES (?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO deliverynote(`deliveryNoteNumber`, `customerName`, `requestedItem`,`status`, `invoiceNumber`, `orderDate`)"
+						+ "VALUES (?,?,?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			
 			java.sql.Date sqlOrderDate=new java.sql.Date(deliveryNote.getOrderDate().getTime());
 			
 			ps.setString(1, deliveryNote.getDeliveryNoteNumber());
 			ps.setString(2, deliveryNote.getCustomerName());
-			ps.setString(3, deliveryNote.getCustomerEmail());
-			ps.setString(4, deliveryNote.getRequestedItem());
-			ps.setString(5, deliveryNote.getStatus());
-			ps.setString(6, deliveryNote.getInvoiceNumber());
-			ps.setDate(7, (java.sql.Date) sqlOrderDate);
+			ps.setString(3, deliveryNote.getRequestedItem());
+			ps.setString(4, deliveryNote.getStatus());
+			ps.setString(5, deliveryNote.getInvoiceNumber());
+			ps.setDate(6, (java.sql.Date) sqlOrderDate);
 			
 			ps.executeUpdate();
 			conn.close();
@@ -400,7 +399,6 @@ public class DbHandler {
             
             DeliveryNote deliveryNote = new DeliveryNote( rs.getString("deliveryNoteNumber"),
 						            					  rs.getString("customerName"),
-						            					  rs.getString("customerEmail"),
 						            					  rs.getString("requestedItem"),
 						            					  rs.getString("status"),
 						            					  rs.getString("invoiceNumber"),

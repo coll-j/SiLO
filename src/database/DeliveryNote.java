@@ -5,7 +5,6 @@ import java.util.Date;
 public class DeliveryNote {
 	private String deliveryNoteNumber,
 					customerName,
-					customerEmail,
 					requestedItem,
 					status,
 					invoiceNumber,
@@ -13,11 +12,10 @@ public class DeliveryNote {
     private Date orderDate,
     				deliveryDate;
 	
-	public DeliveryNote(String deliveryNoteNumber, String customerName, String customerEmail, String requestedItem,
+	public DeliveryNote(String deliveryNoteNumber, String customerName, String requestedItem,
 			String status, String invoiceNumber, Date orderDate, Date deliveryDate, String sign) {
 		this.deliveryNoteNumber = deliveryNoteNumber;
 		this.customerName = customerName;
-		this.customerEmail = customerEmail;
 		this.requestedItem = requestedItem;
 		this.status = status;
 		this.invoiceNumber = invoiceNumber;
@@ -32,10 +30,6 @@ public class DeliveryNote {
 
 	public String getCustomerName() {
 		return customerName;
-	}
-
-	public String getCustomerEmail() {
-		return customerEmail;
 	}
 
 	public String getRequestedItem() {

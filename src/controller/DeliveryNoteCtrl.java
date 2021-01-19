@@ -16,9 +16,9 @@ public class DeliveryNoteCtrl {
 		this.db = db;
 	}
 	
-	public void addDeliveryNote(String deliveryNoteNumber, String customerName, String customerEmail, String requestedItem, String invoiceNumber, Date orderDate) {
+	public void addDeliveryNote(String deliveryNoteNumber, String customerName, String requestedItem, String invoiceNumber, Date orderDate) {
 		
-		db.addDeliveryNote(new DeliveryNote(deliveryNoteNumber, customerName, customerEmail, requestedItem,"new", invoiceNumber,
+		db.addDeliveryNote(new DeliveryNote(deliveryNoteNumber, customerName, requestedItem,"new", invoiceNumber,
 				orderDate, null, null));
 	}
 	
@@ -35,7 +35,6 @@ public class DeliveryNoteCtrl {
 		
 		return new String [] { data.getDeliveryNoteNumber(),
 							   data.getCustomerName(),
-							   data.getCustomerEmail(),
 							   data.getInvoiceNumber(),
 							   data.getOrderDateStr(),
 							   data.getDeliveryDateStr(),
