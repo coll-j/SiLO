@@ -16,8 +16,8 @@ public class EditItemPanel extends JPanel {
         initCode();
     }
     
-    public void fill( String id) {
-        item = parent.getItem(id);
+    public void fill( String[] i) {
+        item = i;
         idTextField.setText(item[0]); 
         barcodeTextField.setText(item[1]); 
         titleTextField.setText(item[2]); 

@@ -13,8 +13,8 @@ public class SendEmailPanel extends javax.swing.JPanel {
         initCode();
     }
     
-    public void fill(String id) {
-    	delivNote = parent.getDelivNote(id);
+    public void fill(String[] i) {
+    	delivNote = i;
         
     	dnNumberTF.setText(delivNote[0]);
         cusNameTF.setText(delivNote[1]);

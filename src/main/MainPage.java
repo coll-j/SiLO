@@ -88,12 +88,10 @@ public class MainPage extends JFrame {
     /* Ui */
     public void paintPanel(JPanel panel){
     	MainPanel.removeAll();
-        MainPanel.repaint();
-        MainPanel.revalidate();
+        rePaint();
         
     	MainPanel.add(panel);
-        MainPanel.repaint();
-        MainPanel.revalidate();
+    	rePaint();
     }
     
     public void home() {
@@ -175,7 +173,7 @@ public class MainPage extends JFrame {
     }
     
     public void showEditItemPopUp(String id) {
-    	editItemPanel.fill(id);
+    	editItemPanel.fill( itemCtrl.getItem(id) );
     	editItemPopUp.showPopUp(editItemPanel);
     }
     
@@ -184,7 +182,7 @@ public class MainPage extends JFrame {
     }
     
     public void showInvoicePopUp(String id) {
-    	viewInvoicePanel.fill(id);
+    	viewInvoicePanel.fill( invoiceCtrl.getInvoice(id));
     	viewInvoicePopUp.showPopUp(viewInvoicePanel);
     }
     
@@ -193,7 +191,7 @@ public class MainPage extends JFrame {
     }
     
     public void showViewDNPopUp(String id) {
-    	viewDNPanel.fill(id);
+    	viewDNPanel.fill(dnCtrl.getDelivNote(id));
     	viewDNPopUp.showPopUp(viewDNPanel);
     }
     
@@ -202,7 +200,7 @@ public class MainPage extends JFrame {
     }
     
     public void showNewDNPopUp(String id) {
-    	newDNPanel.fill(id);
+    	newDNPanel.fill(dnCtrl.getDelivNote(id));
     	newDNPopUp.showPopUp(newDNPanel);
     }
     
@@ -211,7 +209,7 @@ public class MainPage extends JFrame {
     }
     
     public void showSendEmailPopUp(String id) {
-    	sendEmailPanel.fill(id);
+    	sendEmailPanel.fill( dnCtrl.getDelivNote(id));
     	sendEmailPopUp.showPopUp(sendEmailPanel);
     }
     

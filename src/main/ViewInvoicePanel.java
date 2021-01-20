@@ -11,8 +11,8 @@ public class ViewInvoicePanel extends javax.swing.JPanel {
         initCode();
     }
     
-    public void fill( String id) {
-    	invoice = parent.getInvoice(id);
+    public void fill( String[] i) {
+    	invoice = i;
     	invoiceNumTF.setText(invoice[0]);
     	poNumTF.setText(invoice[1]);
     	supplierNameTF.setText(invoice[2]);
@@ -71,7 +71,7 @@ public class ViewInvoicePanel extends javax.swing.JPanel {
     	parent.completeInvoice();
 		pendingBtn.setEnabled(false);
 		acceptBtn.setEnabled(false);
-		fill(invoice[0]);
+		fill(invoice);
     }
     
     public void hideStatusBtn() {
