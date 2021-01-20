@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package main;
 
 import java.util.Vector;
@@ -17,11 +12,7 @@ import database.DbHandler;
 
 public class MainPage extends JFrame {
 	
-	private static Vector<String> itemTableCol,
-								  dnTableCol,
-								  invoiceTableCol;
-
-    private static DbHandler db;
+	private static DbHandler db;
     
 	private static ItemCtrl itemCtrl;
 	private static DeliveryNoteCtrl dnCtrl;
@@ -53,13 +44,48 @@ public class MainPage extends JFrame {
     private static PopUp printPopUp;
     private static PrintPanel printPanel;
     
+    private static final String itemCol = "id, title, manufacturer, stocks";
+	private static final String dnCol = "invoiceNumber, deliveryNoteNumber, customerName, orderDate, deliveryDate, status";
+	private static final String invoiceCol = "invoiceNumber, poNumber, supplierName, orderDate, deliveryDate, status";
+	private static Vector<String> itemTableCol,
+								  dnTableCol,
+								  invoiceTableCol;
+
+    private void initTableCol() {
+    	itemTableCol = new Vector<String>();
+    	itemTableCol.add("ID");
+    	itemTableCol.add("Title");
+    	itemTableCol.add("Manufacturer");
+    	itemTableCol.add("Stocks");
+    	itemTableCol.add("");
+    	
+    	dnTableCol = new Vector<String>();
+    	dnTableCol.add("Invoice Number");
+    	dnTableCol.add("Delivery Notes Number");
+    	dnTableCol.add("Customer Name");
+    	dnTableCol.add("Order Date");
+    	dnTableCol.add("Delivery Date");
+    	dnTableCol.add("Status");
+    	dnTableCol.add("");
+    	
+    	invoiceTableCol = new Vector<String>();
+    	invoiceTableCol.add("Invoice Number");
+    	invoiceTableCol.add("PO Number");
+    	invoiceTableCol.add("Supplier Name");
+    	invoiceTableCol.add("Order Date");
+    	invoiceTableCol.add("Delivery Date");
+    	invoiceTableCol.add("Status");
+    	invoiceTableCol.add("");
+    }
+    
     public MainPage() {
     	initTableCol();
         initComponents();
         initCode();
         login();
     }
-        
+    
+    /* Ui */
     public void paintPanel(JPanel panel){
     	MainPanel.removeAll();
         MainPanel.repaint();
@@ -112,84 +138,34 @@ public class MainPage extends JFrame {
 		rePaint();
     }
     
-    public void setItemTable( String keyword) {
-    	itemTable.setTable(itemCtrl.searchItems(keyword), itemTableCol );
-    }
-    
-    public void setItemTable() {
-    	itemTable.setTable(itemCtrl.getItems(), itemTableCol );
-    }
-    
-    public void setInvoiceTable( String keyword) {
-    	invoiceTable.setTable(invoiceCtrl.searchInvoices(keyword), invoiceTableCol );
-    }
-    
-    public void setInvoiceTable() {
-    	invoiceTable.setTable(invoiceCtrl.getInvoices(), invoiceTableCol );    	
-    }
-    
-    public void setDNTable( String keyword) {
-    	deliveryNoteTable.setTable(dnCtrl.searchDelivNotes(keyword), dnTableCol );    	    	
-    }
-    
-    public void setDNTable() {
-    	deliveryNoteTable.setTable(dnCtrl.getDelivNotes(), dnTableCol );
-    }
-    
-    public JScrollPane getItemTableScrPane() {
-    	return itemTable.getScrPane();
-    }
-    
-    public JScrollPane getInvoiceTableScrPane() {
-    	return invoiceTable.getScrPane();
-    }    
 
-    public JScrollPane getDNTableScrPane() {
-    	return deliveryNoteTable.getScrPane();
-    }
+    /* Button Click */
+    private void accountLblMouseClicked(java.awt.event.MouseEvent evt) {                                        
+       home();
+       login();
+	}
     
-    
-    public void createItem( String id, String barcode, String title, String description, String manufacturer, String url, String stocks) {
-    	itemCtrl.addItem(id, barcode, title, description, manufacturer, url, stocks);
-    }
-    
-    public String[] getItem(String id) {
-    	return itemCtrl.getItem(id);
+    private void ItemBtnActionPerformed(java.awt.event.ActionEvent evt) {
+    	setItemTable();
+        paintPanel(itemPanel);
     }
 
-    public void editItem(String id, String barcode, String title, String description, String manufacturer, String url, String stocks) {
-    	itemCtrl.editItem(id, barcode, title, description, manufacturer, url, stocks);
+    private void deliveryNoteBtnActionPerformed(java.awt.event.ActionEvent evt) {
+    	setDNTable();
+    	paintPanel(deliveryNotePanel);
     }
     
-    public void createDN(String deliveryNoteNumber, String customerName, String requestedItem, String invoiceNumber) {
-    	createDNCtrl.createDN(deliveryNoteNumber, customerName, requestedItem, invoiceNumber);
+    private void CreateDNBtnActionPerformed(java.awt.event.ActionEvent evt) {        
+    	paintPanel(createDNPanel);
     }
     
-    public String[] getDelivNote(String id) {
-    	return dnCtrl.getDelivNote(id);
+    private void InvoiceBtnActionPerformed(java.awt.event.ActionEvent evt) {
+    	setInvoiceTable();
+    	paintPanel(invoicePanel);
     }
     
-    public void editStatusDN(String id, String status) {
-    	dnCtrl.editStatusDN(id, status);
-    }
-    
-    public void completeDN(String id, String sign) {
-    	dnCtrl.completeDN(id, sign);
-    }
-    
-    public String[] getInvoice(String id) {
-    	return invoiceCtrl.getInvoice(id);
-    }
-    
-    public void editStatusInvoice(String id) {
-    	invoiceCtrl.editStatusInvoice(id);
-    }
-    
-    public void completeInvoice(String id) {
-    	invoiceCtrl.completeInvoice(id);
-    }
-    
-
+        
+    /* PopUp */
     public void showAddItemPopUp() {
     	addItemPopUp.showPopUp(addItemPanel);
     }
@@ -251,34 +227,94 @@ public class MainPage extends JFrame {
     	printPopUp.hidePopUp();
     }
     
+        
+    /* Table */
+    public void setItemTable( String keyword) {
+    	itemTable.setTable(itemCtrl.searchItems(keyword), itemTableCol );
+    }
     
+    public void setItemTable() {
+    	itemTable.setTable(itemCtrl.getItems(), itemTableCol );
+    }
+    
+    public void setInvoiceTable( String keyword) {
+    	invoiceTable.setTable(invoiceCtrl.searchInvoices(keyword), invoiceTableCol );
+    }
+    
+    public void setInvoiceTable() {
+    	invoiceTable.setTable(invoiceCtrl.getInvoices(), invoiceTableCol );    	
+    }
+    
+    public void setDNTable( String keyword) {
+    	deliveryNoteTable.setTable(dnCtrl.searchDelivNotes(keyword), dnTableCol );    	    	
+    }
+    
+    public void setDNTable() {
+    	deliveryNoteTable.setTable(dnCtrl.getDelivNotes(), dnTableCol );
+    }
+    
+    public JScrollPane getItemTableScrPane() {
+    	return itemTable.getScrPane();
+    }
+    
+    public JScrollPane getInvoiceTableScrPane() {
+    	return invoiceTable.getScrPane();
+    }    
 
-    private void accountLblMouseClicked(java.awt.event.MouseEvent evt) {                                        
-       home();
-       login();
-	}
+    public JScrollPane getDNTableScrPane() {
+    	return deliveryNoteTable.getScrPane();
+    }
     
-    private void ItemBtnActionPerformed(java.awt.event.ActionEvent evt) {
-    	setItemTable();
-        paintPanel(itemPanel);
+    
+    /* Controller */
+    public void createItem( String id, String barcode, String title, String description, String manufacturer, String url, String stocks) {
+    	itemCtrl.addItem(id, barcode, title, description, manufacturer, url, stocks);
+    }
+    
+    public String[] getItem(String id) {
+    	return itemCtrl.getItem(id);
     }
 
-    private void deliveryNoteBtnActionPerformed(java.awt.event.ActionEvent evt) {
-    	setDNTable();
-    	paintPanel(deliveryNotePanel);
+    public void editItem(String barcode, String title, String description, String manufacturer, String url, String stocks) {
+    	itemCtrl.editItem(barcode, title, description, manufacturer, url, stocks);
     }
     
-    private void CreateDNBtnActionPerformed(java.awt.event.ActionEvent evt) {        
-    	paintPanel(createDNPanel);
+    public void createDN(String deliveryNoteNumber, String customerName, String requestedItem, String invoiceNumber) {
+    	createDNCtrl.createDN(deliveryNoteNumber, customerName, requestedItem, invoiceNumber);
     }
     
-    private void InvoiceBtnActionPerformed(java.awt.event.ActionEvent evt) {
-    	setInvoiceTable();
-    	paintPanel(invoicePanel);
+    public String[] getDelivNote(String id) {
+    	return dnCtrl.getDelivNote(id);
     }
     
+    public void pendingDN(){
+    	dnCtrl.pendingDN();
+    }
+    
+    public void preparingDN(){
+    	dnCtrl.preparingDN();
+    }
+    
+    public void completeDN(String sign) {
+    	dnCtrl.completeDN(sign);
+    }
+    
+    public String[] getInvoice(String id) {
+    	return invoiceCtrl.getInvoice(id);
+    }
+    
+    public void pendingInvoice() {
+    	invoiceCtrl.pendingInvoice();
+    }
+    
+    public void completeInvoice() {
+    	invoiceCtrl.completeInvoice();
+    }
+    
+    
+    /* Stuff */
     private void initComponents() {
-    	db = new DbHandler();
+    	db = new DbHandler( itemCol, invoiceCol, dnCol);
     	
     	itemCtrl = new ItemCtrl(db);
     	dnCtrl = new DeliveryNoteCtrl(db);
@@ -326,7 +362,6 @@ public class MainPage extends JFrame {
         WelcomePanel = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         accountLbl = new javax.swing.JLabel();
-        
     }
 
 	public static void main(String args[]) {
@@ -352,33 +387,6 @@ public class MainPage extends JFrame {
                 new MainPage().setVisible(true);
             }
         });
-    }
-    
-    private void initTableCol() {
-    	itemTableCol = new Vector<String>();
-    	itemTableCol.add("ID");
-    	itemTableCol.add("Title");
-    	itemTableCol.add("Manufacturer");
-    	itemTableCol.add("Stocks");
-    	itemTableCol.add("");
-    	
-    	dnTableCol = new Vector<String>();
-    	dnTableCol.add("Invoice Number");
-    	dnTableCol.add("Delivery Notes Number");
-    	dnTableCol.add("Customer Name");
-    	dnTableCol.add("Order Date");
-    	dnTableCol.add("Delivery Date");
-    	dnTableCol.add("Status");
-    	dnTableCol.add("");
-    	
-    	invoiceTableCol = new Vector<String>();
-    	invoiceTableCol.add("Invoice Number");
-    	invoiceTableCol.add("PO Number");
-    	invoiceTableCol.add("Supplier Name");
-    	invoiceTableCol.add("Order Date");
-    	invoiceTableCol.add("Delivery Date");
-    	invoiceTableCol.add("Status");
-    	invoiceTableCol.add("");
     }
     
 

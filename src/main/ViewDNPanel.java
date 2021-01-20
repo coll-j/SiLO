@@ -1,6 +1,6 @@
 package main;
 
-import java.awt.Color;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class ViewDNPanel extends JPanel {
@@ -21,16 +21,10 @@ public class ViewDNPanel extends JPanel {
         cusNameTF.setText(delivNote[1]);
         invoiceNumTF.setText(delivNote[2]);
         orderDateTF.setText(delivNote[3]);
+        delivDateTF.setText(delivNote[4]);
         statusTF.setText(delivNote[5]);
         reqItemTF.setText(delivNote[6]);
         signTF.setText(delivNote[7]);
-        
-        delivDateTF.setText("");
-        
-        if(delivNote[5].equals("null"))
-        	delivDateTF.setText("");
-        else
-        	delivDateTF.setText(delivNote[4]);
         
         if(delivNote[5].equals("completed")) {
         	pBtn.setEnabled(false);
@@ -78,31 +72,45 @@ public class ViewDNPanel extends JPanel {
         cusNameTF.setEditable(false);
         invoiceNumTF.setEditable(false);
     	orderDateTF.setEditable(false);
+    	delivDateTF.setEditable(false);
     	statusTF.setEditable(false);
     	reqItemTF.setEditable(false);
+    	signTF.setEditable(true);
         
     }
     
     private void pBtnActionPerformed(java.awt.event.ActionEvent evt) {
     	if(statusTF.getText().equals("pending")) {
     		pBtn.setText("Pending");
-    		parent.editStatusDN(delivNote[0], "preparing");
+    		parent.preparingDN();
     		statusTF.setText("preparing");
     	}
     	else {
     		pBtn.setText("Preparing");
-    		parent.editStatusDN(delivNote[0], "pending");
+    		parent.pendingDN();
     		statusTF.setText("pending");
     	}
     }
     
     private void signBtnActionPerformed(java.awt.event.ActionEvent evt) {
-    	signTF.setEditable(false);
-    	signBtn.setEnabled(false);
-    	pBtn.setEnabled(false);
-        
-        parent.completeDN(delivNote[0], signTF.getText());
-        fill(delivNote[0]);
+    	if(signTF.getText().isEmpty()) {
+    		JOptionPane.showOptionDialog(this, 
+    				"Please fill the sign field",
+	                "Empty Field", 
+	                JOptionPane.PLAIN_MESSAGE,
+	                   JOptionPane.ERROR_MESSAGE,
+	                   null,
+	                   null,
+	                   "OK");
+    	}
+    	else {
+    		signTF.setEditable(false);
+        	signBtn.setEnabled(false);
+        	pBtn.setEnabled(false);
+            
+            parent.completeDN(signTF.getText());
+            fill(delivNote[0]);
+    	}
     }
     
     private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {

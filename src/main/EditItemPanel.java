@@ -1,6 +1,8 @@
 package main;
 
 import java.awt.Color;
+
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class EditItemPanel extends JPanel {
@@ -52,19 +54,48 @@ public class EditItemPanel extends JPanel {
     }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-    	
-    	parent.editItem(
-    			idTextField.getText(), 
-                barcodeTextField.getText(), 
-                titleTextField.getText(), 
-                descriptionTextField.getText(), 
-                manuTextField.getText(), 
-                urlTextField.getText(),
-                stockTextField.getText()
-    			);
-    	        
-        parent.hideEditItemPopUp();
-        parent.setItemTable();
+    	try {
+    		if( !barcodeTextField.getText().isEmpty() && 
+                    !titleTextField.getText().isEmpty() &&
+                    !descriptionTextField.getText().isEmpty() && 
+                    !manuTextField.getText().isEmpty() &&
+                    !urlTextField.getText().isEmpty()
+                    ) {
+    			parent.editItem( 
+    	                barcodeTextField.getText(), 
+    	                titleTextField.getText(), 
+    	                descriptionTextField.getText(), 
+    	                manuTextField.getText(), 
+    	                urlTextField.getText(),
+    	                stockTextField.getText()
+    	    			);
+                
+    			parent.hideEditItemPopUp();
+    	        parent.setItemTable();
+    		}
+    		else {
+    			int jawab = JOptionPane.showOptionDialog(this, 
+                        "Require field is empty. Try Again?", 
+                        "Edit Item Error", 
+                        JOptionPane.WARNING_MESSAGE, 
+                        JOptionPane.QUESTION_MESSAGE, null, null, null);
+
+        		if(jawab == JOptionPane.CANCEL_OPTION){
+        		    parent.hideEditItemPopUp();
+        		}
+    		}
+    		
+    	} catch (Exception e) {
+    		int jawab = JOptionPane.showOptionDialog(this, 
+                    "Stock must be a Number. Try Again?", 
+                    "Edit Item Error", 
+                    JOptionPane.WARNING_MESSAGE, 
+                    JOptionPane.QUESTION_MESSAGE, null, null, null);
+
+    		if(jawab == JOptionPane.CANCEL_OPTION){
+    			parent.hideEditItemPopUp();
+    		}
+    	};
     }
 
     private javax.swing.JTextField barcodeTextField;

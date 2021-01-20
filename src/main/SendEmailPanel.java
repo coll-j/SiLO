@@ -1,7 +1,5 @@
 package main;
 
-import java.awt.Color;
-
 import javax.swing.JOptionPane;
 
 public class SendEmailPanel extends javax.swing.JPanel {
@@ -43,13 +41,19 @@ public class SendEmailPanel extends javax.swing.JPanel {
         cusEmailTF = new javax.swing.JTextField();
         cancelBtn = new javax.swing.JButton();
         sendBtn = new javax.swing.JButton();
-
+        
+        dnNumberTF.setEditable(false);
+        cusNameTF.setEditable(false);
+        invoiceNumTF.setEditable(false);
+    	orderDateTF.setEditable(false);
+    	delivDateTF.setEditable(false);
+    	statusTF.setEditable(false);
     }
     
     private void sendBtnActionPerformed(java.awt.event.ActionEvent evt) {
     	if(cusEmailTF.getText().isEmpty())
     		JOptionPane.showOptionDialog(this, 
-	                "Please fill the empty field", 
+	                "Please fill the Customer mail", 
 	                "Empty Field", 
 	                JOptionPane.PLAIN_MESSAGE,
 	                   JOptionPane.ERROR_MESSAGE,

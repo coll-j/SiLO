@@ -1,4 +1,4 @@
-package database;
+package entity;
 
 public class Item {
 	private String id,
@@ -49,6 +49,34 @@ public class Item {
 	
 	public String getStocksStr() {
 		return "" + stocks;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public void setBarcode(String barcode) {
+		this.barcode = barcode;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public void setManufacturer(String manufacturer) {
+		this.manufacturer = manufacturer;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public void setStocks(int stocks) {
+		this.stocks = stocks;
 	}
     
 }

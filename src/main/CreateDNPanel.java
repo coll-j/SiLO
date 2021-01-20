@@ -2,8 +2,6 @@ package main;
 
 import javax.swing.JOptionPane;
 
-import controller.CreateDNCtrl;
-
 public class CreateDNPanel extends javax.swing.JPanel {
 
 	private MainPage parent;

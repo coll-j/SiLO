@@ -1,6 +1,5 @@
 package main;
 
-import java.awt.Color;
 import javax.swing.JPanel;
 
 public class NewDNPanel extends JPanel {
@@ -45,7 +44,6 @@ public class NewDNPanel extends JPanel {
         statusTF = new javax.swing.JTextField();
         emailBtn = new javax.swing.JButton();
         closeBtn = new javax.swing.JButton();
-        pendingBtn = new javax.swing.JButton();
         reqItemTF = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         printBtn = new javax.swing.JButton();
@@ -56,17 +54,13 @@ public class NewDNPanel extends JPanel {
         cusNameTF.setEditable(false);
         invoiceNumTF.setEditable(false);
     	orderDateTF.setEditable(false);
+    	delivDateTF.setEditable(false);
     	statusTF.setEditable(false);
     	reqItemTF.setEditable(false);
     	signTF.setEditable(false);
         
     }
-    
-    private void pendingBtnActionPerformed(java.awt.event.ActionEvent evt) {
-		parent.editStatusDN(delivNote[0], "pending");
-		statusTF.setText("pending");
-    }
-        
+            
     private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {
      	parent.hideNewDNPopUp();
     }
@@ -94,7 +88,6 @@ public class NewDNPanel extends JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField orderDateTF;
-    private javax.swing.JButton pendingBtn;
     private javax.swing.JButton printBtn;
     private javax.swing.JTextField reqItemTF;
     private javax.swing.JTextField signTF;
@@ -138,13 +131,6 @@ public class NewDNPanel extends JPanel {
         closeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeBtnActionPerformed(evt);
-            }
-        });
-
-        pendingBtn.setText("Pending");
-        pendingBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pendingBtnActionPerformed(evt);
             }
         });
 
@@ -206,7 +192,6 @@ public class NewDNPanel extends JPanel {
                         .addComponent(reqItemTF, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(pendingBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(printBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -260,8 +245,7 @@ public class NewDNPanel extends JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(closeBtn)
-                    .addComponent(pendingBtn))
-                .addGap(31, 31, 31))
+                .addGap(31, 31, 31)) )
             );
     }
 

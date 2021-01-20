@@ -1,4 +1,4 @@
-package database;
+package entity;
 
 import java.util.Date;
 
@@ -57,11 +57,49 @@ public class DeliveryNote {
 	}
 	
 	public String getOrderDateStr() {
-		return "" + orderDate;
+		if (orderDate == null)
+			return "";
+		else
+			return "" + orderDate;
 	}
 
 	public String getDeliveryDateStr() {
-		return "" + deliveryDate;
+		if (deliveryDate == null)
+			return "";
+		else
+			return "" + deliveryDate;
+	}
+
+	public void setDeliveryNoteNumber(String deliveryNoteNumber) {
+		this.deliveryNoteNumber = deliveryNoteNumber;
+	}
+
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+
+	public void setRequestedItem(String requestedItem) {
+		this.requestedItem = requestedItem;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public void setInvoiceNumber(String invoiceNumber) {
+		this.invoiceNumber = invoiceNumber;
+	}
+
+	public void setSign(String sign) {
+		this.sign = sign;
+	}
+
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
+	}
+
+	public void setDeliveryDate(Date deliveryDate) {
+		this.deliveryDate = deliveryDate;
 	}
 
 }

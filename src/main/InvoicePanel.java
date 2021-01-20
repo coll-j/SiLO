@@ -5,8 +5,6 @@
  */
 package main;
 
-import controller.InvoiceCtrl;
-
 public class InvoicePanel extends javax.swing.JPanel {
 
     private MainPage parent;

@@ -6,19 +6,33 @@ import java.util.List;
 import java.util.Vector;
 
 import database.DbHandler;
-import database.DeliveryNote;
-import database.Invoice;
-import database.Item;
+import entity.DeliveryNote;
+import entity.Invoice;
+import entity.Item;
 
 public class InvoiceCtrl {
 	private DbHandler db;
+	private Invoice invoice;
 	
 	public InvoiceCtrl(DbHandler db) {
 		this.db = db;
 	}
 	
+	public String[] getInvoice(String id) {
+		invoice = db.getInvoice(id);
+		
+		return new String [] { invoice.getInvoiceNumber(),
+								invoice.getPoNumber(),
+								invoice.getSupplierName(),
+								invoice.getOrderDateStr(),
+								invoice.getDeliveryDateStr(),
+								invoice.getStatus()
+            };
+	}
+	
 	public void addInvoice(String invoiceNumber, Date orderDate) {
-		db.addInvoice(new Invoice(invoiceNumber, null, null, "completed", orderDate, null));
+		invoice = new Invoice(invoiceNumber, null, null, "completed", orderDate, null);
+		db.addInvoice(invoice);
 	}
 	
 	public Vector<Vector<Object>> getInvoices() {
@@ -29,23 +43,14 @@ public class InvoiceCtrl {
 		return db.searchInvoices(keyword);
 	}
 	
-	public String[] getInvoice(String id) {
-		Invoice data = db.getInvoice(id);
-		
-		return new String [] { data.getInvoiceNumber(),
-								data.getPoNumber(),
-								data.getSupplierName(),
-								data.getOrderDateStr(),
-								data.getDeliveryDateStr(),
-								data.getStatus()
-            };
+	public void pendingInvoice() {
+		invoice.setStatus("pending");
+		db.editInvoice(invoice);
 	}
 	
-	public void editStatusInvoice(String invoiceNumber) {
-		db.editStatusInvoice( invoiceNumber, "pending");
-	}
-	
-	public void completeInvoice(String invoiceNumber) {
-		db.completeInvoice( invoiceNumber, "completed");
+	public void completeInvoice() {
+		invoice.setStatus("completed");
+		invoice.setDeliveryDate(new Date());
+		db.editInvoice( invoice);
 	}
 }

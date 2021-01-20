@@ -1,4 +1,4 @@
-package database;
+package entity;
 
 import java.util.Date;
 
@@ -46,11 +46,41 @@ public class Invoice {
 	
 	
 	public String getOrderDateStr() {
-		return "" + orderDate;
+		if (orderDate == null)
+			return "";
+		else
+			return "" + orderDate;
 	}
 
 	public String getDeliveryDateStr() {
-		return "" + deliveryDate;
+		if (deliveryDate == null)
+			return "";
+		else
+			return "" + deliveryDate;
+	}
+
+	public void setInvoiceNumber(String invoiceNumber) {
+		this.invoiceNumber = invoiceNumber;
+	}
+
+	public void setPoNumber(String poNumber) {
+		this.poNumber = poNumber;
+	}
+
+	public void setSupplierName(String supplierName) {
+		this.supplierName = supplierName;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
+	}
+
+	public void setDeliveryDate(Date deliveryDate) {
+		this.deliveryDate = deliveryDate;
 	}
 	
 }

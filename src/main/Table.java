@@ -4,7 +4,6 @@ import java.awt.event.MouseEvent;
 import java.util.Vector;
 
 import javax.swing.DefaultCellEditor;
-import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -17,7 +16,6 @@ public class Table {
     private JTable table;
     
     private JTextField tf;
-    private DefaultCellEditor editor;
 	
 	public Table(MainPage main) {
 		scrPane = new JScrollPane();  

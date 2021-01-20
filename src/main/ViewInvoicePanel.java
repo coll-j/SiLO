@@ -17,12 +17,8 @@ public class ViewInvoicePanel extends javax.swing.JPanel {
     	poNumTF.setText(invoice[1]);
     	supplierNameTF.setText(invoice[2]);
     	orderDateTF.setText(invoice[3]);
+    	delivDateTF.setText(invoice[4]);
     	statusTF.setText(invoice[5]);
-    	
-    	if(invoice[4].equals("null"))
-    		delivDateTF.setText("");
-    	else
-    		delivDateTF.setText(invoice[4]);
     	
     	if(invoice[5].equals("completed")) {
     		pendingBtn.setEnabled(false);
@@ -66,14 +62,16 @@ public class ViewInvoicePanel extends javax.swing.JPanel {
     }
 
     private void pendingBtnActionPerformed(java.awt.event.ActionEvent evt) {
-    	parent.editStatusInvoice(invoice[0]);
+    	parent.pendingInvoice();
 		statusTF.setText("pending");
+		pendingBtn.setEnabled(false);
     }
 
     private void acceptBtnActionPerformed(java.awt.event.ActionEvent evt) {
-    	parent.completeInvoice(invoice[0]);
-		statusTF.setText("completed");
+    	parent.completeInvoice();
 		pendingBtn.setEnabled(false);
+		acceptBtn.setEnabled(false);
+		fill(invoice[0]);
     }
     
     public void hideStatusBtn() {
