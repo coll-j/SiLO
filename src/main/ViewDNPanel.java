@@ -33,20 +33,24 @@ public class ViewDNPanel extends JPanel {
         	pBtn.setText("Preparing");
         }
         else {
-        	signBtn.setEnabled(true);
-        	signTF.setEditable(true);
         	
         	if(delivNote[5].equals("new")) {
         		pBtn.setText("Preparing");
-        		pBtn.setEnabled(true);		
+        		pBtn.setEnabled(true);
+        		signBtn.setEnabled(false);
+        		signTF.setEditable(false);
         	}
         	else if(delivNote[5].equals("preparing")) {
         		pBtn.setText("Pending");
         		pBtn.setEnabled(true);
+        		signBtn.setEnabled(true);
+        		signTF.setEditable(true);
         	}
         	else {
         		pBtn.setText("Pending");
         		pBtn.setEnabled(false);
+        		signBtn.setEnabled(true);
+        		signTF.setEditable(true);
         	}
         		
         }
@@ -88,6 +92,9 @@ public class ViewDNPanel extends JPanel {
     }
     
     private void pBtnActionPerformed(java.awt.event.ActionEvent evt) {
+    	signBtn.setEnabled(true);
+		signTF.setEditable(true);
+		
     	if(statusTF.getText().equals("new")) {
     		parent.preparingDN();
     		statusTF.setText("preparing");

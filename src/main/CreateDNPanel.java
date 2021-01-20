@@ -69,7 +69,7 @@ public class CreateDNPanel extends javax.swing.JPanel {
 	                   null,
 	                   "OK");
     	}    	
-    	else {    		
+    	else {	
     		int jawab = JOptionPane.showOptionDialog(this, 
     				"Are you sure you want to create Delivery Note ?", 
     				"Confirmation Message", 
