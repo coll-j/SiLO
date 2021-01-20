@@ -30,17 +30,25 @@ public class ViewDNPanel extends JPanel {
         	pBtn.setEnabled(false);
         	signBtn.setEnabled(false);
         	signTF.setEditable(false);
+        	pBtn.setText("Preparing");
         }
         else {
-        	pBtn.setEnabled(true);
         	signBtn.setEnabled(true);
+        	signTF.setEditable(true);
         	
-        	if(delivNote[5].equals("preparing")) {
+        	if(delivNote[5].equals("new")) {
+        		pBtn.setText("Preparing");
+        		pBtn.setEnabled(true);		
+        	}
+        	else if(delivNote[5].equals("preparing")) {
         		pBtn.setText("Pending");
+        		pBtn.setEnabled(true);
         	}
         	else {
-        		pBtn.setText("Preparing");
+        		pBtn.setText("Pending");
+        		pBtn.setEnabled(false);
         	}
+        		
         }
         
         
@@ -80,13 +88,13 @@ public class ViewDNPanel extends JPanel {
     }
     
     private void pBtnActionPerformed(java.awt.event.ActionEvent evt) {
-    	if(statusTF.getText().equals("pending")) {
-    		pBtn.setText("Pending");
+    	if(statusTF.getText().equals("new")) {
     		parent.preparingDN();
     		statusTF.setText("preparing");
+    		pBtn.setText("Pending");
     	}
     	else {
-    		pBtn.setText("Preparing");
+    		pBtn.setEnabled(false);
     		parent.pendingDN();
     		statusTF.setText("pending");
     	}
@@ -109,7 +117,7 @@ public class ViewDNPanel extends JPanel {
         	pBtn.setEnabled(false);
             
             parent.completeDN(signTF.getText());
-            fill(delivNote);
+            fill(parent.getDelivNote(delivNote[0]));
     	}
     }
     

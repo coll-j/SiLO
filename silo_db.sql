@@ -46,7 +46,7 @@ INSERT INTO `deliverynote` (`deliveryNoteNumber`, `customerName`, `requestedItem
 ('DN1', 'Customer 1', 'IT1$1;', 'completed', 'OUT1', '2021-01-01', '2021-01-19', 'Signed'),
 ('DN2', 'Cusname 2', 'IT2$2; IT3$1;', 'completed', 'OUT2', '2021-01-02', '2021-01-19', 'Signed'),
 ('DN3', 'Customer 3', 'IT4$1;', 'completed', 'OUT3', '2021-01-03', '2021-01-19', 'Signed'),
-('DN4', 'Person 4', 'IT1$2;', 'completed', 'OUT4', '2021-01-14', NULL, NULL);
+('DN4', 'Person 4', 'IT1$2;', 'new', 'OUT4', '2021-01-14', NULL, NULL);
 
 -- --------------------------------------------------------
 

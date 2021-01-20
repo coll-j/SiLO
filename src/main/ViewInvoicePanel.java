@@ -71,7 +71,7 @@ public class ViewInvoicePanel extends javax.swing.JPanel {
     	parent.completeInvoice();
 		pendingBtn.setEnabled(false);
 		acceptBtn.setEnabled(false);
-		fill(invoice);
+		fill( parent.getInvoice(invoice[0]));
     }
     
     public void hideStatusBtn() {
